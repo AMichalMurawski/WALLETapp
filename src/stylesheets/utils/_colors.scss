@@ -1,0 +1,23 @@
+:root {
+  --text-primary: black;
+  --text-alernative: white;
+
+  --textShadow-primary: 2px 2px 2px black;
+
+  --link-primary: rgb(193, 152, 30);
+  --link-secondary: rgb(255, 229, 151);
+
+  --bg-primary: rgb(255, 247, 224);
+  --bg-secondary: rgb(248, 236, 198);
+
+  --bgShadow-primary: linear-gradient(
+    rgba(175, 174, 173, 0.3),
+    rgba(175, 174, 173, 0.3)
+  );
+  --bgShadow-secondary: linear-gradient(
+    rgba(175, 174, 173, 0.15),
+    rgba(175, 174, 173, 0.15)
+  );
+
+  --border-primary: rgb(255, 220, 107);
+}

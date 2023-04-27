@@ -1,0 +1,9 @@
+// utils
+@use './utils/colors' as *;
+
+@forward './utils/flex' as flex-*;
+@forward './utils/font' as font-*;
+@forward './utils/transition' as transition-*;
+
+// components
+@use './components/global' as *;
