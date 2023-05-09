@@ -2,7 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import Datetime from 'react-datetime';
 import { useState } from 'react';
-//import { useDispatch } from 'react-redux';
+
 import 'react-datetime/css/react-datetime.css';
 
 import { RiCalendar2Line } from 'react-icons/ri';
@@ -10,7 +10,7 @@ import { HiOutlineChevronDown, HiOutlineChevronUp } from 'react-icons/hi';
 import getDate from '../../../utils/getDate';
 import scss from './ModalAddTransactionForm.module.scss';
 import ModalAddTransactionFormMenu from './ModalAddTransactionFormMenu/ModalAddTransactionFormMenu';
-//import financeOperation from 'redux/finance/financeOperation';
+
 
 let patternTwoDigisAfterComma = /^\d+(\.\d{0,2})?$/;
 
@@ -40,13 +40,13 @@ const initialValues = {
 
 export const ModalAddTransactionForm = prop => {
   const { checkboxStatus, onClick } = prop;
-  // const [bekDate, setBekDate] = useState(new Date().toISOString());
+ 
   const [date, setDate] = useState(getDate());
   const [open, setOpen] = useState(false);
-  // const [categoryId, setCategoryId] = useState('10');
+
   const [categoryValue, setCategoryValue] = useState('Other expenses');
 
-  // const dispatch = useDispatch();
+
 
   const today = new Date();
   const lastYear = new Date('December 31, 2022 23:59:59');
@@ -55,7 +55,7 @@ export const ModalAddTransactionForm = prop => {
   };
 
   const createDate = ({ _d }) => {
-    // setBekDate(_d.toISOString());
+
     setDate(getDate(_d));
   };
 
@@ -64,13 +64,13 @@ export const ModalAddTransactionForm = prop => {
   };
 
   const addValueCategory = (_id, name) => {
-    // setCategoryId(_id);
+ 
     setCategoryValue(name);
     handleClose();
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    // const { amount, comment } = values;
+    
 
     if (checkboxStatus) {
       // if (comment === '') {
