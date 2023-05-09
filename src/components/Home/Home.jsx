@@ -18,8 +18,9 @@ const Home = () => {
   };
 
   useEffect(() => {
-    dispatch(getTransactions({ walletId: user.wallets[0]._id }));
+    dispatch(getTransactions({ walletId: user.wallets[0].id }));
   }, [dispatch, user.wallets]);
+  
 
   return (
     <>

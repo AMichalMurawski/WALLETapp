@@ -1,4 +1,5 @@
 import Media from 'react-media';
+import { useAuth } from '../../hooks';
 import IconSvg from '../utils/IconsSvg/IconSvg';
 import scss from './Header.module.scss';
 import { useDispatch } from 'react-redux';
@@ -6,7 +7,7 @@ import { signout } from '../../redux/auth/authThunk';
 
 export const Header = () => {
   const dispatch = useDispatch();
-
+  const { user } = useAuth();
   const handleLogout = e => {
     dispatch(signout());
   };
@@ -33,7 +34,7 @@ export const Header = () => {
               </button>
               <div className={scss.main}>
                 <button className={scss.button}>
-                  <h1 className={scss.logout}>Name</h1>
+                  <h1 className={scss.logout}>{user.firstName}</h1>
                 </button>
                 <p className={scss.dot}></p>
                 <button
@@ -60,7 +61,7 @@ export const Header = () => {
               </button>
               <div className={scss.main}>
                 <button className={scss.button}>
-                  <h1 className={scss.logout}>Name</h1>
+                  <h1 className={scss.logout}>{user.firstName}</h1>
                 </button>
                 <p className={scss.dot}></p>
                 <button
@@ -88,7 +89,7 @@ export const Header = () => {
               </button>
               <div className={scss.main}>
                 <button className={scss.button}>
-                  <h1 className={scss.logout}>Name</h1>
+                  <h1 className={scss.logout}>{user.firstName}</h1>
                 </button>
                 <p className={scss.dot}></p>
                 <button
