@@ -10,6 +10,7 @@
     margin: 20px 32px 27px 32px;
   }
   @include mq(desk) {
+    display: flex;
     margin: 32px 16px 44px 69px;
   }
 }
