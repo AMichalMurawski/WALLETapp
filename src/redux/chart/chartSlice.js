@@ -6,8 +6,8 @@ const initialState = {
   incomeSummary: 0,
   expenseSummary: 0,
   periodTotal: 0,
-  year: new Date().getFullYear(),
-  month: new Date().getMonth(),
+  year: new Date().getFullYear().toString(),
+  month: new Date().getMonth().toString(),
   isRefreshing: false,
 };
 
@@ -16,10 +16,10 @@ const chartSlice = createSlice({
   initialState,
   extraReducers: builder => {
     builder.addCase(changeMonth.fulfilled, (state, action) => {
-      state.month = action.payload.month;
+      state.month = action.payload;
     });
     builder.addCase(changeYear.fulfilled, (state, action) => {
-      state.year = action.payload.year;
+      state.year = action.payload;
     });
     builder.addCase(transactionsSummary.fulfilled, (state, action) => {
       state.categorySummary = action.payload.categorySummary;
