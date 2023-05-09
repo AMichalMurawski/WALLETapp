@@ -5,6 +5,8 @@
   margin: 43px 20px 51px 20px;
 
   @include mq(tab) {
+    display: grid;
+    grid-template-columns: auto auto;
     margin: 20px 32px 27px 32px;
   }
   @include mq(desk) {
