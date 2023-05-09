@@ -2,7 +2,7 @@ import { toggleShowModalLogout } from '../../../redux/modal/modalSlice';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { ModalUniversal } from '../ModalUniversal';
-import { logOut } from '../../../redux/auth/authThunk';
+import { signout } from '../../../redux/auth/authThunk';
 import s from './ModalLogout.module.scss';
 import logo from '../../../../images/login/not_found.png';
 
@@ -15,7 +15,7 @@ export const ModalLogout = () => {
   };
 
   const handleYesBtn = () => {
-    dispatch(logOut());
+    dispatch(signout());
     dispatch(toggleShowModalLogout(false));
   };
 
