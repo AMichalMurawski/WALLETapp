@@ -17,7 +17,7 @@ const Table = ({ colors }) => {
         </ul>
 
         <ul className={css.listTransaction}>
-          {categorySummary.length > 0 ? (
+          {/* {categorySummary.length > 0 ? (
             categorySummary.map((category, i) => {
               return (
                 <li className={css.elementTransaction}>
@@ -38,7 +38,7 @@ const Table = ({ colors }) => {
             <li className={css.elementTransaction}>
               <div className={css.category}>Here is nothing </div>
             </li>
-          )}
+          )} */}
         </ul>
 
         <ul className={css.listAll}>

@@ -6,26 +6,31 @@ import { useChart } from '../../hooks';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { transactionsSummary } from '../../redux/chart/chartThunk';
+import { useState } from 'react';
 
-const colors = [
-  '#FED057',
-  '#FFD8D0',
-  '#FD9498',
-  '#C5BAFF',
-  '#6E78E8',
-  '#4A56E2',
-  '#81E1FF',
-  '#24CCA7',
-  '#00AD84',
-];
+const rainbowColors = nr => {
+  let colors = [];
+  for (let i = 0; i < nr; i++) {
+    colors.push('hsl(' + (360 * i) / nr + ',80%,50%)');
+  }
+};
 
 const DiagramTab = () => {
-  const { year, month } = useChart();
+  const [colors, setColors] = useState();
+  const { chartCategories, year, month } = useChart();
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(transactionsSummary());
   }, [dispatch, year, month]);
+
+  useEffect(() => {
+    if (chartCategories) {
+      setColors(rainbowColors(chartCategories.length));
+    } else {
+      setColors([]);
+    }
+  }, [chartCategories]);
 
   return (
     <div className={css.container}>

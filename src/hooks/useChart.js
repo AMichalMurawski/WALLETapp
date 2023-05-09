@@ -6,10 +6,12 @@ import {
   selectPeriodTotal,
   selectYear,
   selectMonth,
+  selectChartCategories,
 } from '../redux/chart/selectors';
 
 export const useChart = () => {
   const categorySummary = useSelector(selectCategorySummary);
+  const chartCategories = useSelector(selectChartCategories);
   const incomeSummary = useSelector(selectIncomeSummary);
   const expenseSummary = useSelector(selectExpenseSummary);
   const periodTotal = useSelector(selectPeriodTotal);
@@ -17,6 +19,7 @@ export const useChart = () => {
   const month = useSelector(selectMonth);
   return {
     categorySummary,
+    chartCategories,
     incomeSummary,
     expenseSummary,
     periodTotal,
