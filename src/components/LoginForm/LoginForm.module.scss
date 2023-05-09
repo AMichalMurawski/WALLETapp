@@ -6,12 +6,11 @@
   padding-bottom: 20px;
   background-color: #ffffff;
 
+
   @include mq(tab) {
     width: 533px;
     padding-top: 40px;
     padding-bottom: 62px;
-    padding-left: 65px;
-    padding-right: 58.5px;
     border-radius: 20px;
   }
 }
@@ -23,7 +22,7 @@
 
   @include mq(tab) {
     justify-content: flex-start;
-    margin-left: 101px;
+    margin-left: 176px;
   }
 }
 
@@ -37,6 +36,8 @@
 .form {
   display: flex;
   flex-direction: column;
+  align-items: center;
+
 }
 
 .input {
@@ -111,6 +112,7 @@
   @extend %btnGreen;
   display: block;
   height: 50px;
+  width: 280px;
   margin-bottom: 20px;
   padding: 13px 98px;
   letter-spacing: 0.1em;
@@ -131,7 +133,7 @@
   gap: 15px;
   height: 50px;
   margin-bottom: 20px;
-  padding: 13px 98px;
+  padding: 13px 105px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 
@@ -147,11 +149,9 @@
   @extend %btnTransperentBlue;
   display: block;
   height: 50px;
+  width: 280px;
   border-radius: 20px;
   padding-top: 13px;
-  padding-bottom: 13px;
-  padding-left: 55px;
-  padding-right: 55px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 20px;

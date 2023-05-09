@@ -18,6 +18,7 @@
 
   @include mq(desk) {
     height: 100vh;
+   
     background-image: url('../../images/login/ellipse1.svg'),
       url('../../images/login/ellipse2.svg');
   }
@@ -26,7 +27,7 @@
 .blur {
   @include mq(desk) {
     position: absolute;
-    max-width: 731px;
+width: 100%;
     top: 0;
     right: 0;
     left:549px;
@@ -46,7 +47,8 @@
   @include mq(tab) {
     flex-direction: column;
     height: 100vh;
-    max-width: 100%;
+    width: 100%;
+    padding-left:118px ;
     gap: 50px;
     justify-content: center;
   }
@@ -55,13 +57,13 @@
     height: 100vh;
     max-width: 100%;
     flex-direction: row;
-    margin-right: 91px;
+   
   }
 }
 
 .loginImgWrapper {
   display: flex;
-  width: 100%;
+  width: 549px;
   gap: 36px;
 
   @include mq(desk) {
@@ -73,11 +75,11 @@
 
 .loginImg {
   margin-top: 60px;
-  margin-left: 82px;
+  
 
   @include mq(desk) {
     margin-top: 150px;
-    margin-left: 60px;
+    margin-right: 38px;
   }
 }
 
