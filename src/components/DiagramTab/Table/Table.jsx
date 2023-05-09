@@ -1,6 +1,6 @@
 import * as React from 'react';
 import css from './Table.module.scss';
-import TableFilters from '../../Dropdown/Dropdown';
+import TableFilters from '../../TableFilters/TableFilters';
 import { useChart } from '../../../hooks';
 
 const Table = ({ colors }) => {
@@ -43,7 +43,7 @@ const Table = ({ colors }) => {
 
         <ul className={css.listAll}>
           <li className={css.elementListAll}>
-            <div className={css.elementAllText}>Costs:</div>
+            <div className={css.elementAllText}>Expenses :</div>
             <div className={css.elementAllCosts}>{expenseSummary}</div>
           </li>
           <li className={css.elementListAll}>

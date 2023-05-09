@@ -1,37 +1,37 @@
 @use '../../stylesheets/vars';
 @import '../../stylesheets/utils/mixins';
 
-.primary{
-    @include mq(desk){
+.primary {
+  @include mq(desk) {
     display: grid;
-    grid-template-columns: auto auto;}
-    @include mq(tab){
-        display:flex;
-        flex-direction: column;
-
-    }
-    @include mq(desk){
-        display:flex;
-        flex-direction: row;
-
-    }
+    grid-template-columns: auto auto;
+  }
+  @include mq(tab) {
+    display: flex;
+    flex-direction: column;
+  }
+  @include mq(desk) {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
 }
 
-.secondary{
-    @include mq(tab){
-        display:grid;
-        grid-template-columns: auto auto;
-    }
+.secondary {
+  @include mq(tab) {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
 }
-  
-    .container{
-        display:flex;
-        background-color: var(--main-background-color);
-        justify-content: space-between;
-        height: 80px;
-    }
-       
-    .pageHomeContainer{
-        background:var(--background-color-dropdown);
-        backdrop-filter: blur(25px);
-    }
+
+.container {
+  display: flex;
+  background-color: var(--main-background-color);
+  justify-content: space-between;
+  height: 80px;
+}
+
+.pageHomeContainer {
+  background: var(--background-color-dropdown);
+  backdrop-filter: blur(25px);
+}

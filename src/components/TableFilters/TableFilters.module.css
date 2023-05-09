@@ -44,11 +44,22 @@
   --desktop: 1280px;
 }
 
+.selectContainer {
+  display: block;
+  padding-top: 32px;
+  gap: 16px;
+}
+@media screen and (min-width: 768px) {
+  .selectContainer {
+    display: flex;
+  }
+}
+
 .container {
   margin: 20px;
 }
-@media screen and (min-width: 768px) {
-  .container {
-    display: flex;
-  }
-}/*# sourceMappingURL=DiagramTab.module.css.map */
+
+.select {
+  margin-bottom: 20px;
+  min-width: 160px;
+} /*# sourceMappingURL=Dropdown.module.css.map */

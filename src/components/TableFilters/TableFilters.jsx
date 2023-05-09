@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Select from 'react-select';
 import { format } from 'date-fns';
 import { pl } from 'date-fns/locale';
-import css from './Dropdown.module.scss';
+import css from './TableFilters.module.scss';
 import { selectStyles } from './SelectStyles';
+import { useDispatch } from 'react-redux';
+import { changeMonth, changeYear } from '../../redux/chart/chartThunk';
 
 // const currentMonth = new Date().getMonth() + 1;
 const months = Array.from({ length: 12 }, (item, i) => {
@@ -14,7 +16,7 @@ const months = Array.from({ length: 12 }, (item, i) => {
 
 const monthOptions = Array(12)
   .fill(null)
-  .map((item, index) => ({ value: index + 1, label: months[index] }));
+  .map((item, index) => ({ value: index, label: months[index] }));
 
 const currentYear = new Date().getFullYear();
 const years = [];
@@ -23,8 +25,14 @@ for (let i = currentYear; i >= 1999; i--) {
 }
 
 const TableFilters = () => {
-  const updateDate = (name, value) => {
-    // setDate(prev => ({ ...prev, [name]: value }));
+  const dispatch = useDispatch();
+
+  const handleMonth = e => {
+    dispatch(changeMonth(e.value));
+  };
+
+  const handleYear = e => {
+    dispatch(changeYear(e.value));
   };
 
   return (
@@ -34,9 +42,7 @@ const TableFilters = () => {
           styles={selectStyles}
           options={monthOptions}
           placeholder="Month"
-          onChange={option => {
-            updateDate('month', option.value);
-          }}
+          onChange={handleMonth}
         />
       </div>
       <div className={css.select}>
@@ -44,9 +50,7 @@ const TableFilters = () => {
           styles={selectStyles}
           options={years}
           placeholder="Year"
-          onChange={option => {
-            updateDate('year', option.value);
-          }}
+          onChange={handleYear}
         />
       </div>
     </div>
