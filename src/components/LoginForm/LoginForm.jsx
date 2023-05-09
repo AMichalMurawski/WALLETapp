@@ -22,7 +22,7 @@ export const LoginForm = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('example@mail.com');
   const [password, setPassword] = useState('Password1!');
-  const isLoggetIn = useAuth();
+  const { isLoggedIn } = useAuth();
 
   const onSubmit = e => {
     e.preventDefault();
@@ -135,7 +135,7 @@ export const LoginForm = () => {
                 </span>
               )}
             </label>
-            {isLoggetIn === false ? (
+            {isLoggedIn === false ? (
               <button type="submit" className={s.loginBtn}>
                 log in
               </button>
