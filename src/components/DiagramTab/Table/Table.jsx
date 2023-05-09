@@ -1,6 +1,6 @@
 import * as React from 'react';
 import css from './Table.module.scss';
-import TableFilters from '../../Dropdown/Dropdown';
+import TableFilters from '../../TableFilters/TableFilters';
 import { useChart } from '../../../hooks';
 
 const Table = ({ colors }) => {
