@@ -39,6 +39,7 @@ export const changeYear = createAsyncThunk(
   'chart/changeYear',
   async (year, thunkAPI) => {
     try {
+      console.log(year);
       return year.toString();
     } catch (error) {
       console.log('error');
@@ -61,3 +62,4 @@ export const transactionsSummary = createAsyncThunk(
     }
   }
 );
+
