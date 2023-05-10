@@ -4,9 +4,17 @@ import {
   modalEditTransaction,
   modalSuccessLogout,
   modalSuccessRegistration,
+  modalTransaction,
 } from './modalThunk';
 
 const initialState = {
+  modalTransaction: {
+    date: new Date(),
+    type: null,
+    categoryId: 99,
+    comment: '',
+    sum: 0,
+  },
   showAddTransaction: false,
   showEditTransaction: false,
   showLogout: false,
@@ -28,6 +36,9 @@ const modalSlice = createSlice({
     });
     builder.addCase(modalSuccessRegistration.fulfilled, (state, action) => {
       state.showSuccessRegistration = action.payload;
+    });
+    builder.addCase(modalTransaction.fulfilled, (state, action) => {
+      state.modalTransaction = action.payload;
     });
   },
 });

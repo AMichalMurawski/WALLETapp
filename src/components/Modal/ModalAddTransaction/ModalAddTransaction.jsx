@@ -5,11 +5,20 @@ import s from './ModalAddTransaction.module.scss';
 import { ModalAddTransactionCheckbox } from './ModalAddTransactioCheckbox';
 import { ModalAddTransactionForm } from './ModalAddTransactionForm';
 import { modalAddTransaction } from '../../../redux/modal/modalThunk';
+import { useWallet, useModal } from '../../../hooks';
+
+const initialTransaction = {
+  date: new Date(),
+  type: 'expense',
+  sum: 0,
+  comment: '',
+  categoryId: 99,
+};
 
 const ModalAddTransaction = () => {
   const dispatch = useDispatch();
-
-  const [checkboxStatus, setCheckboxStatus] = useState(false);
+  const { categories } = useWallet();
+  const { modalTransaction } = useModal();
 
   const handleCloseModal = () => {
     dispatch(modalAddTransaction(false));
@@ -24,12 +33,6 @@ const ModalAddTransaction = () => {
   const escKeyDown = e => {
     if (e.code === 'Escape') {
       handleCloseModal();
-    }
-  };
-
-  const handleCheckbox = e => {
-    if (e.currentTarget === e.target) {
-      setCheckboxStatus(!checkboxStatus);
     }
   };
 
@@ -50,12 +53,8 @@ const ModalAddTransaction = () => {
     >
       <div className={s.box}>
         <h2 className={s.title}>Add transaction</h2>
-        <ModalAddTransactionCheckbox
-          onHandleCheckbox={handleCheckbox}
-          checkboxStatus={checkboxStatus}
-        ></ModalAddTransactionCheckbox>
+        <ModalAddTransactionCheckbox></ModalAddTransactionCheckbox>
         <ModalAddTransactionForm
-          checkboxStatus={checkboxStatus}
           onClick={handleCloseModal}
         ></ModalAddTransactionForm>
         <button className={s.closeBtn} type="button" onClick={handleCloseModal}>

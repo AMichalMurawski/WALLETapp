@@ -4,6 +4,7 @@ import {
   selectShowEditTransaction,
   selectShowLogout,
   selectShowSuccessRegistration,
+  selectModalTransaction,
 } from '../redux/modal/selectors';
 
 export const useModal = () => {
@@ -11,11 +12,13 @@ export const useModal = () => {
   const showEditTransaction = useSelector(selectShowEditTransaction);
   const showLogout = useSelector(selectShowLogout);
   const showSuccessRegistration = useSelector(selectShowSuccessRegistration);
+  const modalTransaction = useSelector(selectModalTransaction);
 
   return {
     showAddTransaction,
     showEditTransaction,
     showLogout,
     showSuccessRegistration,
+    modalTransaction,
   };
 };
