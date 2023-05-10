@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet';
-import { Outlet } from 'react-router-dom';
 import Media from 'react-media';
+import { Route, Routes } from 'react-router-dom';
+import Card from '../../components/utils/Card/Card';
+import Home from '../../components/Home/Home';
 import { Header } from '../../components/Header/Header';
 import { Balance } from '../../components/Balance/Balance';
 import { Currency } from '../../components/Currency/Currency';
@@ -8,7 +10,8 @@ import { AddButton } from '../../components/utils/AddButton/AddButton'; // to us
 import { Navigation } from '../../components/Navigation/Navigation';
 
 import scss from './DashboardPage.module.scss';
-import { Suspense } from 'react';
+
+import DiagramTab from '../../components/DiagramTab/DiagramTab';
 
 const DashboardPage = () => {
   return (
@@ -27,18 +30,22 @@ const DashboardPage = () => {
         {matches => (
           <>
             {matches.mob && (
+              <>
               <div className={scss.primary}>
                 <div>
                   <Navigation />
-
-                  <Balance />
                 </div>
-                <Suspense>
-                  <Outlet />
-                </Suspense>
+                <Routes>              
+          <Route index element={<Card/>} />
+          <Route path="homeMob" element={<Card />} />
+          <Route path="chartMob" element={<DiagramTab/>} />
+          <Route path="currencyMob" element={<Currency/>} />
+          </Routes>
               </div>
+              </>
             )}
             {matches.tab && (
+              <>
               <div className={scss.primary}>
                 <div className={scss.secondary}>
                   <div>
@@ -48,10 +55,15 @@ const DashboardPage = () => {
                   </div>
                   <Currency />
                 </div>
-                <Suspense>
-                  <Outlet />
-                </Suspense>
+                <Routes>
+              <Route index element={<Home/>} />
+          <Route path="homeTab" element={<Home />} />
+          <Route path="chartTab" element={<DiagramTab/>} />
+          <Route path="currencyTab" element={<Currency/>} />
+          </Routes>
+
               </div>
+              </>
             )}
             {matches.desk && (
               <div className={scss.primary}>
@@ -62,9 +74,13 @@ const DashboardPage = () => {
 
                   <Currency />
                 </div>
-                <Suspense>
-                  <Outlet />
-                </Suspense>
+                <Routes>
+              <Route index element={<Home/>} />
+          <Route path="homeDesk" element={<Home />} />
+          <Route path="chartDesk" element={<DiagramTab/>} />
+          <Route path="currencyDesk" element={<Currency/>} />
+          </Routes>
+
               </div>
             )}
           </>

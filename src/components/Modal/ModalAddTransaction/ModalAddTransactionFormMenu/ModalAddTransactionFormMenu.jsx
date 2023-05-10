@@ -1,5 +1,5 @@
-import { useSelector } from 'react-redux';
-import { userSelectors } from 'redux/user/userSelectors';
+
+import { useWallet } from '../../../../hooks/useWallet';
 import { useRef, useEffect } from 'react';
 import s from './ModalAddTransactionFormMenu.module.scss';
 
@@ -9,7 +9,7 @@ export const ModalAddTransactionFormMenu = props => {
   useEffect(() => {
     ulFocus.current.focus();
   }, []);
-  const categories = useSelector(userSelectors.getCategories);
+  const categories = (useWallet.categories);
 
   return (
     <ul

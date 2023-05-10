@@ -24,11 +24,10 @@ axios.interceptors.request.use(
 
 export const changeMonth = createAsyncThunk(
   'chart/changeMonth',
-  async ({ month }, thunkAPI) => {
+  async (month, thunkAPI) => {
     try {
-      return month;
+      return month.toString();
     } catch (error) {
-      console.log('error');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -36,11 +35,10 @@ export const changeMonth = createAsyncThunk(
 
 export const changeYear = createAsyncThunk(
   'chart/changeYear',
-  async ({ year }, thunkAPI) => {
+  async (year, thunkAPI) => {
     try {
-      return year;
+      return year.toString();
     } catch (error) {
-      console.log('error');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -51,11 +49,12 @@ export const transactionsSummary = createAsyncThunk(
   async ({ walletId, year, month }, thunkAPI) => {
     try {
       const response = await axios.get(
-        `wallet/${walletId}/transaction-categories?year=${year}&month=${month}`
+        `wallet/${walletId}/transactions-summary?year=${year}&month=${
+          +month + 1
+        }`
       );
       return response.data;
     } catch (error) {
-      console.log('error');
       return thunkAPI.rejectWithValue(error.message);
     }
   }

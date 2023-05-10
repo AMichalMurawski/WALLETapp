@@ -1,0 +1,43 @@
+.editHome {
+    display:flex;
+    flex-direction: row;
+}
+
+.editHome li{
+    align-self:center;
+    margin:10px;
+}
+
+.editHome li svg{
+    width: 15px;
+    height: 15px;
+}
+
+.delButton{
+    cursor:pointer;
+    width: 67px;
+    height: 26px;
+    background-color: rgba(36, 204, 167, 1);
+    color:rgba(255, 255, 255, 1);
+    text-align:center;
+    font-weight: 400;
+    font-size:14px;
+    border:none;
+    border-radius:30px;
+}
+.delButton:hover{
+    background-color: red;
+    transition: transform .2s;
+    transform: scale(1.05);
+}
+
+.editButton{
+    cursor: pointer;
+    border:none;
+    background-color: transparent;
+}
+.editButton:hover{
+    fill:green;
+    transition: transform .2s;
+    transform: scale(1.05);
+}

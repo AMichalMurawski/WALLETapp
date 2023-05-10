@@ -13,6 +13,7 @@ const initialState = {
   transactions: [],
   categories: [],
   summary: null,
+  changeTransactions: false,
   isRefreshing: false,
 };
 
@@ -22,12 +23,13 @@ const walletSlice = createSlice({
   extraReducers: builder => {
     builder.addCase(getTransactions.fulfilled, (state, action) => {
       state.transactions = action.payload.transactions;
-      console.log(action.payload);
       state.balance = action.payload.balance;
+      state.changeTransactions = false;
     });
     builder.addCase(addTransaction.fulfilled, (state, action) => {
       state.transactions = [...state.transaction, action.payload.transaction];
       state.balance = action.payload.balance;
+      state.changeTransactions = true;
     });
     builder.addCase(editTransaction.fulfilled, (state, action) => {
       const transactions = state.transactions;
@@ -39,17 +41,15 @@ const walletSlice = createSlice({
       });
       state.transactions = transactions;
       state.balance = action.payload.balance;
+      state.changeTransactions = true;
     });
     builder.addCase(deleteTransaction.fulfilled, (state, action) => {
-      const transactions = state.transactions;
-      const transaction = action.payload.transaction;
-      transactions.forEach((e, i) => {
-        if (e._id === transaction._id) {
-          transactions.splice(i, 0);
-        }
-      });
-      state.transactions = transactions;
+      const i = state.transactions.findIndex(
+        transaction => transaction._id === action.payload.transactionId
+      );
+      state.transactions.splice(i, 1);
       state.balance = action.payload.balance;
+      state.changeTransactions = true;
     });
     builder.addCase(getCategories.fulfilled, (state, action) => {
       state.categories = action.payload;

@@ -11,10 +11,7 @@ const RegistrationPage = lazy(() =>
   import('./pages/RegistrationPage/RegistrationPage')
 );
 const DashboardPage = lazy(() => import('./pages/DashboardPage/DashboardPage'));
-const HomeTab = lazy(() => import('./components/Home/Home'));
-const DiagramTab = lazy(() => import('./components/DiagramTab/DiagramTab'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
-
 export const App = () => {
   const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
@@ -45,9 +42,6 @@ export const App = () => {
             <ProtectedRoute redirectTo="/login" component={<DashboardPage />} />
           }
         >
-          <Route index element={<Navigate to="/home" />} />
-          <Route path="/home" element={<HomeTab />} />
-          <Route path="/statistics" element={<DiagramTab />} />
           <Route path="*" element={<Navigate to="/home" />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
@@ -57,5 +51,3 @@ export const App = () => {
     </Routes>
   );
 };
-
-//

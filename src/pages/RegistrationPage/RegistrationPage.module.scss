@@ -55,7 +55,7 @@
       max-width: 100%;
       flex-direction: row;
       align-items: flex-start;
-      justify-content: baseline;
+     // justify-content: baseline;
       padding-top: 0;
       padding-bottom: 0;
     }
@@ -63,24 +63,25 @@
   
   .registerImgWrapper {
     display: flex;
+    justify-content: center;
     width: 100%;
     gap: 40px;
   
     @include mq(desk) {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      flex-basis: content;
       gap: 31.9px;
     }
   }
   
   .registerImg {
     margin-top: 60px;
-    margin-left: 82px;
+    
   
     @include mq(desk) {
-      margin-top: 153px;
-      margin-left: 50px;
+      margin-top: 158px;
+      margin-right: 50px;
     }
   }
   
@@ -108,7 +109,7 @@
     @include mq(desk) {
       display: flex;
       align-items: center;
-      height: 100vh;
+    
       width: auto;
       margin-right: -16px;
       padding-left: 107px;
