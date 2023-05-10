@@ -13,13 +13,15 @@ import scss from './ModalAddTransactionForm.module.scss';
 import { useAuth, useModal, useWallet } from '../../../hooks';
 import { useDispatch } from 'react-redux';
 import { getCategories } from '../../../redux/wallet/walletThunk';
-import { modalSpliceTransaction } from '../../../redux/modal/modalThunk';
+import {
+  modalAddTransaction,
+  modalSpliceTransaction,
+} from '../../../redux/modal/modalThunk';
 
 let patternTwoDigisAfterComma = /^\d+(\.\d{0,2})?$/;
 
 const initialTransaction = {
   date: new Date().toLocaleDateString(),
-  type: 'expense',
   categoryId: 99,
   comment: '',
   sum: 0,
@@ -68,30 +70,26 @@ export const ModalAddTransactionForm = ({ onClick }) => {
     dispatch(modalSpliceTransaction(initialTransaction));
   }, [changeTransactions]);
 
-  const categoryValue = () => {
-    const category = categories.find(e => e.id === modalTransaction.categoryId);
-    return category.id;
-  };
-
-  const createDate = e => {
+  const handleDate = e => {
     dispatch(modalSpliceTransaction({ date: e._d.toLocaleDateString() }));
     setOpen(false);
   };
 
-  const handleOpen = e => {
-    setOpen(true);
+  const handleCategoryId = e => {
+    dispatch(modalSpliceTransaction({ categoryId: e.currentTarget.value }));
   };
 
-  const addValueCategory = (_id, name) => {
-    handleClose();
+  const handleSum = e => {
+    dispatch(modalSpliceTransaction({ sum: e.currentTarget.value }));
   };
 
-  const handleSubmit = (values, { resetForm }) => {
-    console.log('submit');
+  const handleComment = e => {
+    dispatch(modalSpliceTransaction({ comment: e.currentTarget.value }));
   };
 
-  const handleClose = e => {
-    setOpen(false);
+  const handleSubmit = e => {
+    e.preventDefault();
+    dispatch(modalSpliceTransaction({ ...e.currentTarget.value }));
   };
 
   const renderCalendarInput = (props, openCalendar) => {
@@ -129,6 +127,8 @@ export const ModalAddTransactionForm = ({ onClick }) => {
     );
   };
 
+  console.log(modalTransaction.sum);
+
   return (
     <Formik
       initialValues={initialValues}
@@ -143,50 +143,25 @@ export const ModalAddTransactionForm = ({ onClick }) => {
               as="select"
               placeholder="Select a category"
               name="category"
+              onChange={handleCategoryId}
             >
-              {categories.map((e, i, array) => (
-                <options value={i}>i</options>
-              ))}
+              {categories.map((e, i, array) => {
+                if (e.type[0] === modalTransaction.type) {
+                  return <option value={e.id}>{e.name}</option>;
+                }
+              })}
             </Field>
-            {/* <Field
-              className={scss.addFormInputCategory}
-              type="text"
-              placeholder="Select a category"
-              name="category"
-              value={categoryValue}
-              onClick={open ? handleClose : handleOpen}
-              autoComplete="off"
-              readOnly
-            />
-            <button
-              className={scss.openMenuBtn}
-              type="button"
-              onClick={open ? handleClose : handleOpen}
-            >
-              {!open ? (
-                <HiOutlineChevronDown
-                  className={scss.openMenuBtnIcon}
-                ></HiOutlineChevronDown>
-              ) : (
-                <HiOutlineChevronUp
-                  className={scss.openMenuBtnIcon}
-                ></HiOutlineChevronUp>
-              )}
-            </button>
-            {open && (
-              <ModalAddTransactionFormMenu
-                handleCategory={addValueCategory}
-                handleBlur={handleClose}
-              ></ModalAddTransactionFormMenu>
-            )} */}
           </label>
           <label className={scss.sumBox}>
             <Field
               className={scss.addFormInputSum}
               type="text"
               placeholder="0.00"
+              enableReinitialize={true}
+              value={modalTransaction.sum}
               name="amount"
-              autoComplete="off"
+              // autoComplete="off"
+              onChange={handleSum}
             ></Field>
             <ErrorMessage
               className={scss.errorMessage}
@@ -203,7 +178,7 @@ export const ModalAddTransactionForm = ({ onClick }) => {
               dateFormat="DD.MM.YYYY"
               closeOnSelect={true}
               initialValue={new Date()}
-              onChange={createDate}
+              onChange={handleDate}
             />
           </label>
           <label className={scss.commentBox}>
@@ -212,11 +187,14 @@ export const ModalAddTransactionForm = ({ onClick }) => {
               name="comment"
               component="textarea"
               placeholder="Comment"
+              enableReinitialize={true}
+              value={modalTransaction.comment}
               onKeyPress={e => {
                 if (e.charCode === 13) {
                   e.preventDefault();
                 }
               }}
+              onChange={handleComment}
             ></Field>
             <ErrorMessage
               className={scss.errorMessage}
