@@ -1,7 +1,6 @@
 @import '../../stylesheets/utils/colors';
 @import '../../stylesheets/utils/mixins';
 
-
 .back {
   position: relative;
   width: 100%;
@@ -100,7 +99,7 @@ width: 100%;
   width: 100%;
 
   @include mq(tab) {
-    padding-bottom: 146px;
+    padding-bottom: 48px;
     width: auto;
   }
 
@@ -111,9 +110,9 @@ width: 100%;
     width: auto;
     margin-right: -16px;
     padding-left: 107px;
-    padding-top: 136px;
+    padding-top: 52px;
     padding-right: 91px;
-    padding-bottom: 116px;
+    padding-bottom: 52px;
     background-color: rgba(255, 255, 255, 0.4);
     backdrop-filter: blur(25px);
   }
