@@ -1,7 +1,7 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import Datetime from 'react-datetime';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import 'react-datetime/css/react-datetime.css';
 
@@ -22,7 +22,7 @@ import {
   modalSpliceTransaction,
 } from '../../../redux/modal/modalThunk';
 
-let patternTwoDigisAfterComma = /^\d+(\.\d{0,2})?$/;
+// let patternTwoDigisAfterComma = /^\d+(\.\d{0,2})?$/;
 
 const initialTransaction = {
   date: new Date().toLocaleDateString(),
@@ -62,8 +62,6 @@ export const ModalAddTransactionForm = ({ onClick }) => {
   const dispatch = useDispatch();
   const { user } = useAuth();
 
-  const [open, setOpen] = useState(false);
-
   const today = new Date();
   const lastYear = new Date('December 31, 2022 23:59:59');
   const disableFutureDt = current => {
@@ -73,11 +71,10 @@ export const ModalAddTransactionForm = ({ onClick }) => {
   useEffect(() => {
     dispatch(getCategories({ walletId: user.wallets[0].id }));
     dispatch(modalSpliceTransaction(initialTransaction));
-  }, [changeTransactions]);
+  }, [dispatch, user, changeTransactions]);
 
   const handleDate = e => {
     dispatch(modalSpliceTransaction({ date: e._d.toLocaleDateString() }));
-    setOpen(false);
   };
 
   const handleCategoryId = e => {
@@ -89,7 +86,7 @@ export const ModalAddTransactionForm = ({ onClick }) => {
   const handleSum = e => {
     const val = e.currentTarget.value;
     if (val === undefined) return;
-    if (Number(val) === NaN) return;
+    if (isNaN(val)) return;
     if (Math.round(val * 100) !== val * 100) return;
     if (val < 0) return;
     if (val > 2500000) return;
@@ -133,21 +130,6 @@ export const ModalAddTransactionForm = ({ onClick }) => {
     );
   };
 
-  const createValidateMessageAmount = r => {
-    if (
-      r === 'Please, enter an amount min 0.01' ||
-      r === 'Please, enter an amount max 2500000!' ||
-      r === 'Amount is required'
-    ) {
-      return <div className={scss.errorSum}>{r}</div>;
-    }
-    return (
-      <div className={scss.errorSum}>
-        Digits only, no more than two after the decimal point
-      </div>
-    );
-  };
-
   console.log(modalTransaction);
 
   return (
@@ -174,6 +156,7 @@ export const ModalAddTransactionForm = ({ onClick }) => {
                     </option>
                   );
                 }
+                return null;
               })}
             </Field>
           </label>
