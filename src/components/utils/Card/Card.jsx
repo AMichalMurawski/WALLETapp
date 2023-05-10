@@ -7,98 +7,61 @@ import { AddButton } from '../AddButton/AddButton';
 import IconSvg from '../IconsSvg/IconSvg';
 import scss from './Card.module.scss';
 
-const Card = () =>{
-    const { user } = useAuth();
+const Card = () => {
+  const { user } = useAuth();
   const { transactions } = useWallet();
   const dispatch = useDispatch();
-    useEffect(() => {
-        dispatch(getTransactions({ walletId: user.wallets[0].id }));
-      }, [dispatch, user.wallets]);
-      
-    
-        return(
+  useEffect(() => {
+    dispatch(getTransactions({ walletId: user.wallets[0].id }));
+  }, [dispatch, user.wallets]);
 
-        <>
-        <Balance/>
-        { transactions.map((single, index) =>{
-           
-           return(
-            <div className={scss.container}>
-
-           <div className={scss.transactionsCard}>
-            <ul className={scss.transactionsUl}>
+  return (
+    <>
+      <Balance />
+      {transactions.map((single, index) => {
+        return (
+          <div className={scss.container}>
+            <div className={scss.transactionsCard}>
+              <ul className={scss.transactionsUl}>
                 <li>
-                    <div className={scss.transactionsType}>Date</div>
-                    <div className={scss.transactionsValue}>{new Date(single.date).toLocaleDateString()}</div>
+                  <div className={scss.transactionsType}>Date</div>
+                  <div className={scss.transactionsValue}>
+                    {new Date(single.date).toLocaleDateString()}
+                  </div>
                 </li>
                 <li>
-                    <div className={scss.transactionsType}>Type</div>
-                    <div className={scss.transactionsValue}>{single.type}</div>
+                  <div className={scss.transactionsType}>Type</div>
+                  <div className={scss.transactionsValue}>{single.type}</div>
                 </li>
                 <li>
-                    <div className={scss.transactionsType}>Category</div>
-                    <div className={scss.transactionsValue}>{single.categoryId}</div>
+                  <div className={scss.transactionsType}>Category</div>
+                  <div className={scss.transactionsValue}>
+                    {single.categoryId}
+                  </div>
                 </li>
                 <li>
-                    <div className={scss.transactionsType}>Comment</div>
-                    <div className={scss.transactionsValue}>{single.comment}</div>
+                  <div className={scss.transactionsType}>Comment</div>
+                  <div className={scss.transactionsValue}>{single.comment}</div>
                 </li>
                 <li>
-                    <div className={scss.transactionsType}>Sum</div>
-                    <div className={scss.transactionsValue}>{single.sum}</div>
+                  <div className={scss.transactionsType}>Sum</div>
+                  <div className={scss.transactionsValue}>{single.sum}</div>
                 </li>
                 <li>
-                <button className={scss.editButton}>
-                  <IconSvg icon="edit"/>
+                  <button className={scss.editButton}>
+                    <IconSvg icon="edit" />
                   </button>
-                  
+
                   <button className={scss.delButton}>Delete</button>
                 </li>
-            </ul>
-           </div>     
-           <AddButton/>
+              </ul>
             </div>
-
-           )
-        })
-
-        }
-{/* 
-        {dataJson.map((single,index)=>{
-        
-        return(
-            <>
-            
-                <table  key ={index} className={scss.cardTable}>
-                    <tbody className={scss.cardTbody}>
-                    
-                    <tr>
-                        {theadData.map((single =>{
-                    
-                            return(
-                             <th key={single}>{single}</th>
-                            
-                            )
-                        }))}
-                    </tr>
-                    <tr>
-                        {tbodyData.map((single =>{
-                            return(
-                        
-                                <td key={single}>{single}</td>
-
-                                                     )
-                        }))}
-                    </tr>
-                    </tbody>
-                </table>
-                </>
-            )
-
-                        
-        })} */}
-        </>
-    )
-}
+            <AddButton />
+          </div>
+        );
+      })}
+    </>
+  );
+};
 
 export default Card;

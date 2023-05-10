@@ -11,7 +11,6 @@ import { useState } from 'react';
 import { signin } from '../../redux/auth/authThunk';
 import { BiHide, BiShow } from 'react-icons/bi';
 import { useAuth } from '../../hooks';
-//import { Loader } from 'components';
 
 export const LoginForm = () => {
   const initialValues = {

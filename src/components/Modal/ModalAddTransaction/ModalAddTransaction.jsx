@@ -1,7 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import s from './ModalAddTransaction.module.scss';
-// import { ModalUniversal } from '../ModalUniversal';
 import { ModalAddTransactionCheckbox } from './ModalAddTransactioCheckbox';
 import { ModalAddTransactionForm } from './ModalAddTransactionForm';
 import {
