@@ -16,7 +16,7 @@ const months = Array.from({ length: 12 }, (item, i) => {
 });
 
 const d = new Date();
-const name = months[d.getMonth()];
+// const name = months[d.getMonth()];
 
 const monthOptions = Array(12)
   .fill(null)
@@ -30,7 +30,7 @@ for (let i = currentYear; i >= 1999; i--) {
 
 const TableFilters = () => {
   const dispatch = useDispatch();
-  const { year, month } = useChart();
+  // const { year, month } = useChart();
 
   const handleMonth = e => {
     dispatch(changeMonth(e.value));
@@ -41,13 +41,12 @@ const TableFilters = () => {
   };
 
   return (
-
     <div className={css.selectContainer}>
       <div className={css.select}>
         <Select
           styles={selectStyles}
           options={monthOptions}
-          placeholder={new Date().getMonth()+1}
+          placeholder={new Date().getMonth() + 1}
           onChange={handleMonth}
         />
       </div>
