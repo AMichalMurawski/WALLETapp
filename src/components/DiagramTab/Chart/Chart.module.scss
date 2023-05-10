@@ -2,38 +2,44 @@
 @import '../../../stylesheets/utils/mixins';
 
 .container {
-   margin-top: 8px;
-   align-items: center;
- }
+  margin-top: 8px;
+  align-items: center;
+}
 
 .buttonsItem {
-   display: flex;
-   width: 24px;
-   height: 24px;
+  display: flex;
+  width: 24px;
+  height: 24px;
 }
 
 .buttons {
-   display: flex;
-   width: 24px;
-   height: 24px;
+  display: flex;
+  width: 24px;
+  height: 24px;
+}
+
+.noChart {
+  width: 24px;
+  height: 24px;
+  padding: 26px;
 }
 
 @media screen and (min-width: 768px) {
-   .container {
+  .container {
     margin-top: 20px;
     max-width: 336px;
-   }
- }
- 
- @media screen and (min-width: 1280px) {
-   .container {
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .container {
     margin-top: 8px;
     max-width: 336px;
-   }
- }
+  }
+}
 
 .statistics {
-   font-weight: 400;
-   font-size: 30px;
-   line-height: 45px;
- }
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 45px;
+}

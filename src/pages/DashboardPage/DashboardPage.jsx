@@ -8,7 +8,6 @@ import { Balance } from '../../components/Balance/Balance';
 import { Currency } from '../../components/Currency/Currency';
 import { AddButton } from '../../components/utils/AddButton/AddButton'; // to usuń AddButton będzie w Diagram.jsx
 import { Navigation } from '../../components/Navigation/Navigation';
-import DiagramTab from '../../components/DiagramTab/DiagramTab';
 
 import scss from './DashboardPage.module.scss';
 
@@ -74,7 +73,6 @@ const DashboardPage = () => {
                   <Balance />
 
                   <Currency />
-                  
                 </div>
                 <Routes>
               <Route index element={<Home/>} />

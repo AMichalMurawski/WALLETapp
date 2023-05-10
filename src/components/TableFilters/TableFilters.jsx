@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Select from 'react-select';
 import { format } from 'date-fns';
 import { pl } from 'date-fns/locale';
@@ -6,6 +6,7 @@ import css from './TableFilters.module.scss';
 import { selectStyles } from './SelectStyles';
 import { useDispatch } from 'react-redux';
 import { changeMonth, changeYear } from '../../redux/chart/chartThunk';
+import { useChart } from '../../hooks';
 
 // const currentMonth = new Date().getMonth() + 1;
 const months = Array.from({ length: 12 }, (item, i) => {
@@ -26,6 +27,7 @@ for (let i = currentYear; i >= 1999; i--) {
 
 const TableFilters = () => {
   const dispatch = useDispatch();
+  const { year, month } = useChart();
 
   const handleMonth = e => {
     dispatch(changeMonth(e.value));

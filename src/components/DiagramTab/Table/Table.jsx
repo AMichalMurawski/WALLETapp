@@ -3,9 +3,8 @@ import css from './Table.module.scss';
 import TableFilters from '../../TableFilters/TableFilters';
 import { useChart } from '../../../hooks';
 
-const Table = ({ colors }) => {
-  const { categorySummary, incomeSummary, expenseSummary, periodTotal } =
-    useChart();
+const Table = ({ colors, chartCategories }) => {
+  const { incomeSummary, expenseSummary, periodTotal } = useChart();
 
   return (
     <>
@@ -17,10 +16,10 @@ const Table = ({ colors }) => {
         </ul>
 
         <ul className={css.listTransaction}>
-          {categorySummary.length > 0 ? (
-            categorySummary.map((category, i) => {
+          {chartCategories.length > 0 ? (
+            chartCategories.map((category, i) => {
               return (
-                <li className={css.elementTransaction}>
+                <li className={css.elementTransaction} key={category.id}>
                   <div
                     style={{
                       backgroundColor: `${colors[i]}`,
