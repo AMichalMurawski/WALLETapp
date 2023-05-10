@@ -1,20 +1,20 @@
 import { HiOutlinePlus, HiOutlineMinus } from 'react-icons/hi';
 import s from './ModalAddTransactionCheckbox.module.scss';
+import { useWallet } from '../../../hooks/useWallet';
 
 export const ModalAddTransactionCheckbox = prop => {
-  const { onHandleCheckbox, checkboxStatus } = prop;
   return (
     <div className={s.checkboxInfo}>
       <span
         className={s.checkboxText}
-        style={checkboxStatus ? { color: '#24CCA7' } : { color: '#e0e0e0' }}
+        style={true ? { color: '#24CCA7' } : { color: '#e0e0e0' }}
       >
         Income
       </span>
-      <label className={s.checkboxLabel} onClick={onHandleCheckbox}>
+      <label className={s.checkboxLabel}>
         <input className={s.checkbox} type="checkbox" />
-        <div className={s.checkboxIconBox} onClick={onHandleCheckbox}>
-          {checkboxStatus ? (
+        <div className={s.checkboxIconBox}>
+          {true ? (
             <HiOutlinePlus className={s.checkboxIcon} />
           ) : (
             <HiOutlineMinus className={s.checkboxIcon} />
@@ -23,7 +23,7 @@ export const ModalAddTransactionCheckbox = prop => {
       </label>
       <span
         className={s.checkboxText}
-        style={!checkboxStatus ? { color: '#FF6596' } : { color: '#e0e0e0' }}
+        style={!true ? { color: '#FF6596' } : { color: '#e0e0e0' }}
       >
         Expense
       </span>

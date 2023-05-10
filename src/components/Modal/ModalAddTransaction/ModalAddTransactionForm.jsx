@@ -37,9 +37,7 @@ const initialValues = {
   comment: '',
 };
 
-export const ModalAddTransactionForm = prop => {
-  const { checkboxStatus, onClick } = prop;
-
+export const ModalAddTransactionForm = ({ onClick }) => {
   // const [date, setDate] = useState(getDate());
   const [open, setOpen] = useState(false);
 
@@ -65,7 +63,7 @@ export const ModalAddTransactionForm = prop => {
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    if (checkboxStatus) {
+    if (true) {
       // if (comment === '') {
       //   // const formValues = {
       //   //   transactionType: checkboxStatus,
@@ -156,7 +154,7 @@ export const ModalAddTransactionForm = prop => {
     >
       <Form className={scss.addForm}>
         <div className={scss.addFormInputContainer}>
-          {!checkboxStatus && (
+          {!true && (
             <label className={scss.categoryLabel}>
               <Field
                 className={scss.addFormInputCategory}

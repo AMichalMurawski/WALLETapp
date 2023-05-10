@@ -43,3 +43,14 @@ export const modalSuccessRegistration = createAsyncThunk(
     }
   }
 );
+
+export const modalTransaction = createAsyncThunk(
+  'modal/modalTransaction',
+  async (transaction, thunkAPI) => {
+    try {
+      return transaction;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
