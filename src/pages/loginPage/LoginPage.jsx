@@ -1,6 +1,6 @@
 import { Helmet } from 'react-helmet';
-//import { LoginForm } from '../../components/LoginForm/LoginForm';
-import ModalAddTransaction from '../../components/Modal/ModalAddTransaction/ModalAddTransaction'
+import { LoginForm } from '../../components/LoginForm/LoginForm';
+
 import s from './LoginPage.module.scss';
 import man from '../../images/login/man.svg';
 
@@ -48,7 +48,7 @@ const LoginPage = () => {
                 </>
               )}
             </Media>
-            <ModalAddTransaction/>
+           
           </div>
         </div>
       </div>
