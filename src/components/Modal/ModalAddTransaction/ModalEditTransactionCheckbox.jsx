@@ -1,20 +1,8 @@
-
 import s from './ModalAddTransactionCheckbox.module.scss';
 import { useModal } from '../../../hooks';
-import { useDispatch } from 'react-redux';
-import { modalSpliceTransaction } from '../../../redux/modal/modalThunk';
 
 export const ModalEditTransactionCheckbox = prop => {
   const { modalTransaction } = useModal();
-  const dispatch = useDispatch();
-
-  const handleString = e => {
-    if (e.currentTarget.checked) {
-      dispatch(modalSpliceTransaction({ type: 'income' }));
-    } else {
-      dispatch(modalSpliceTransaction({ type: 'expense' }));
-    }
-  };
 
   return (
     <div className={s.checkboxInfo}>
@@ -28,8 +16,7 @@ export const ModalEditTransactionCheckbox = prop => {
       >
         Income
       </p>
-      
-      
+      <p>/</p>
       <p
         className={s.checkboxText}
         style={

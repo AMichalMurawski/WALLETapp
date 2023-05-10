@@ -11,6 +11,7 @@ import { lazy } from 'react';
 import scss from './DashboardPage.module.scss';
 import DiagramTab from '../../components/DiagramTab/DiagramTab';
 import { useModal } from '../../hooks';
+import ModalEditTransaction from '../../components/Modal/ModalAddTransaction/ModalEditTransaction';
 
 const ModalAddTransaction = lazy(() =>
   import('../../components/Modal/ModalAddTransaction/ModalAddTransaction')
@@ -91,11 +92,8 @@ const DashboardPage = () => {
         )}
       </Media>
 
-      {showAddTransaction || showEditTransaction ? (
-        <ModalAddTransaction />
-      ) : (
-        <></>
-      )}
+      {showAddTransaction ? <ModalAddTransaction /> : <></>}
+      {showEditTransaction ? <ModalEditTransaction /> : <></>}
     </div>
   );
 };
