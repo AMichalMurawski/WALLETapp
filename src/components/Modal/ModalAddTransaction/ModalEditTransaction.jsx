@@ -1,24 +1,21 @@
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import { ModalAddTransactionCheckbox } from './ModalAddTransactioCheckbox';
-import { ModalAddTransactionForm } from './ModalAddTransactionForm';
+import  {ModalEditTransactionCheckbox}  from './ModalEditTransactionCheckbox';
+import { ModalEditTransactionForm } from './ModalEditTransactionForm';
 import {
-  modalAddTransaction,
-  modalEditTransaction,
+  modalShowAddTransaction,
+  modalShowEditTransaction,
 } from '../../../redux/modal/modalThunk';
+import s from './ModalAddTransaction.module.scss';
 
-const initialTransaction = {
-  date: new Date(),
-  type: 'expense',
-  sum: 0,
-  comment: '',
-  categoryId: 99,
-};
-const ModalEditTransaction = () =>{
+
+
+
+export const ModalEditTransaction = () =>{
     const dispatch = useDispatch();
     const handleCloseModal = () => {
-        dispatch(modalAddTransaction(false));
-        dispatch(modalEditTransaction(false));
+      dispatch(modalShowAddTransaction(false));
+      dispatch(modalShowEditTransaction(false));
       };
       const handleBackdropClick = e => {
         if (e.currentTarget === e.target) {
@@ -45,16 +42,17 @@ const ModalEditTransaction = () =>{
           onClose={handleCloseModal}
           onClick={handleBackdropClick}
         >
-          <div className={s.box}>
-            <h2 className={s.title}>Edit transaction</h2>
-            <ModalAddTransactionCheckbox></ModalAddTransactionCheckbox>
-            <ModalAddTransactionForm
-              onClick={handleCloseModal}
-            ></ModalAddTransactionForm>
+            <div className={s.box}>
+        <h2 className={s.title}>Add transaction</h2>
+        <ModalEditTransactionCheckbox></ModalEditTransactionCheckbox>
+        <ModalEditTransactionForm
+          onClick={handleCloseModal}
+        ></ModalEditTransactionForm>
             <button className={s.closeBtn} type="button" onClick={handleCloseModal}>
               cancel
             </button>
           </div>
-        </div>
+          </div>
+      
       );
 }
