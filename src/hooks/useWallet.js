@@ -5,6 +5,7 @@ import {
   selectTransactions,
   selectCategories,
   selectSummary,
+  selectChangeTransactions,
 } from '../redux/wallet/selectors';
 
 export const useWallet = () => {
@@ -13,11 +14,13 @@ export const useWallet = () => {
   const transactions = useSelector(selectTransactions);
   const categories = useSelector(selectCategories);
   const summary = useSelector(selectSummary);
+  const changeTransactions = useSelector(selectChangeTransactions);
   return {
     id,
     balance,
     transactions,
     categories,
     summary,
+    changeTransactions,
   };
 };

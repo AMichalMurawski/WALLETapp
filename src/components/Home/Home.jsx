@@ -9,7 +9,7 @@ import { getTransactions } from '../../redux/wallet/walletThunk';
 
 const Home = () => {
   const { user } = useAuth();
-  const { transactions } = useWallet();
+  const { transactions, changeTransactions } = useWallet();
   const dispatch = useDispatch();
 
   const dataJson = data[0].data;
@@ -19,8 +19,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getTransactions({ walletId: user.wallets[0].id }));
-  }, [dispatch, user.wallets]);
-  
+  }, [dispatch, user.wallets, changeTransactions]);
 
   return (
     <>
