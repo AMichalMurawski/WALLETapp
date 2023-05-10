@@ -21,8 +21,8 @@ export const Navigation = () => {
                   <NavLink
                     style={({ isActive }) => {
                       return {
-                        fontWeight: isActive ? 'bold' : '',
-                        textDecoration: isActive ? 'underline' : 'none',
+                        scale: isActive ? '1.2' : '',
+
                       };
                     }}
                     to="homeMob"
@@ -35,9 +35,7 @@ export const Navigation = () => {
                     className={scss.navLink}
                     style={({ isActive }) => {
                       return {
-                        fontWeight: isActive ? 'bold' : '',
-                        textDecoration: isActive ? 'underline' : 'none',
-                      };
+                        scale: isActive ? '1.2' : ''                      };
                     }}
                     to="chartMob"
                   >
@@ -48,9 +46,7 @@ export const Navigation = () => {
                   <NavLink
                     style={({ isActive }) => {
                       return {
-                        fontWeight: isActive ? 'bold' : '',
-                        textDecoration: isActive ? 'underline' : 'none',
-                      };
+                        scale: isActive ? '1.2' : '' };
                     }}
                     to="currencyMob"
                   >
