@@ -1,10 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { toggleShowModalAddTransaction } from '../../../redux/modal/modalSlice';
 import s from './ModalAddTransaction.module.scss';
-import {ModalUniversal} from '../ModalUniversal';
-import {ModalAddTransactionCheckbox} from './ModalAddTransactioCheckbox';
-import {ModalAddTransactionForm} from './ModalAddTransactionForm';
+// import { ModalUniversal } from '../ModalUniversal';
+import { ModalAddTransactionCheckbox } from './ModalAddTransactioCheckbox';
+import { ModalAddTransactionForm } from './ModalAddTransactionForm';
+import { modalAddTransaction } from '../../../redux/modal/modalThunk';
 
 const ModalAddTransaction = () => {
   const dispatch = useDispatch();
@@ -12,7 +12,7 @@ const ModalAddTransaction = () => {
   const [checkboxStatus, setCheckboxStatus] = useState(false);
 
   const handleCloseModal = () => {
-    dispatch(toggleShowModalAddTransaction(false));
+    dispatch(modalAddTransaction(false));
   };
 
   const handleBackdropClick = e => {
@@ -43,7 +43,11 @@ const ModalAddTransaction = () => {
     };
   });
   return (
-    <ModalUniversal onClose={handleCloseModal} onClick={handleBackdropClick}>
+    <div
+      className={s.backdrop}
+      onClose={handleCloseModal}
+      onClick={handleBackdropClick}
+    >
       <div className={s.box}>
         <h2 className={s.title}>Add transaction</h2>
         <ModalAddTransactionCheckbox
@@ -58,7 +62,7 @@ const ModalAddTransaction = () => {
           cancel
         </button>
       </div>
-    </ModalUniversal>
+    </div>
   );
 };
 

@@ -10,22 +10,23 @@ import { ReactComponent as Password } from '../../images/login/password.svg';
 import classNames from 'classnames';
 import PasswordStrength from './PasswordStrength';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { signup } from '../../redux/auth/authThunk';
-import { toggleShowModalSuccessRegistration } from '../../redux/modal/modalSlice';
 import { BiHide, BiShow } from 'react-icons/bi';
-import { selectIsLoggedIn } from '../../redux/auth/selectors';
+import { useAuth } from '../../hooks';
+import { modalSuccessRegistration } from '../../redux/modal/modalThunk';
 //import { Loader } from 'components';
 
+const initialValues = {
+  email: '',
+  password: '',
+  passwordConfirm: '',
+  firstName: '',
+};
+
 const RegisterForm = () => {
-  const initialValues = {
-    email: '',
-    password: '',
-    passwordConfirm: '',
-    firstName: '',
-  };
   const dispatch = useDispatch();
-  const loading = useSelector(selectIsLoggedIn);
+  const { isLoggedIn } = useAuth();
 
   const onSubmit = ({ email, password, firstName }) => {
     const user = {
@@ -35,7 +36,7 @@ const RegisterForm = () => {
     };
     dispatch(signup(user)).then(response => {
       if (response.payload.status === 'success') {
-        dispatch(toggleShowModalSuccessRegistration(true));
+        dispatch(modalSuccessRegistration(true));
       }
     });
   };
@@ -214,7 +215,7 @@ const RegisterForm = () => {
                 <div className={s.errorField}>{errors.firstName}</div>
               )}
             </label>
-            {loading === false ? (
+            {isLoggedIn === false ? (
               <button type="submit" className={s.registerBtn}>
                 register
               </button>

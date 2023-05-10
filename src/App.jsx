@@ -42,7 +42,7 @@ export const App = () => {
             <ProtectedRoute redirectTo="/login" component={<DashboardPage />} />
           }
         >
-          <Route path="*" element={<Navigate to="/home" />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
         <Route path="*" element={<Navigate to="/" />} />
         <Route path="/notFound" element={<NotFound />} />

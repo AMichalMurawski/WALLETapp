@@ -1,4 +1,4 @@
-@import '../../stylesheets/utils/colors';
+@use 'src/stylesheets/vars' as *;
 
 .checkboxInfo {
   display: flex;
@@ -7,7 +7,7 @@
   margin-top: 40px;
   gap: 24px;
   margin-bottom: 40px;
-  @include mq(tab) {
+  @include mixins-mq(tab) {
     margin-bottom: 43px;
   }
 }
