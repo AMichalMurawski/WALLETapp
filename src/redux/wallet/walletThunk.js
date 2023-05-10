@@ -89,7 +89,7 @@ export const getCategories = createAsyncThunk(
       const response = await axios.get(
         `wallet/${walletId}/transaction-categories`
       );
-      return response.data;
+      return response.data.categories;
     } catch (error) {
       console.log('error');
       return thunkAPI.rejectWithValue(error.message);

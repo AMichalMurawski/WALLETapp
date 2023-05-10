@@ -13,7 +13,7 @@ export const Currency = () => {
   }, [dispatch]);
 
   if (currency.length > 0) {
-    const currencyData = currency[0].rates;
+    const currencyData = currency;
 
     return (
       <>

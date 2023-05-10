@@ -1,12 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-const currency_URL ="http://api.nbp.pl/api/exchangerates/tables/C?format=json";
+const currency_URL = 'http://api.nbp.pl/api/exchangerates/tables/C?format=json';
 
-
-export const getCurrency = createAsyncThunk("currency/getCurrency", async () =>{
+export const getCurrency = createAsyncThunk(
+  'currency/getCurrency',
+  async () => {
     const res = await fetch(currency_URL);
     return await res.json();
-})
-
+  }
+);
 
 const initialState = {
   currency: [],
@@ -25,7 +26,7 @@ export const currencySlice = createSlice({
     [getCurrency.fulfilled](state, action) {
       state.isLoading = false;
       state.error = null;
-      state.currency = action.payload;
+      state.currency = action.payload[0].rates;
     },
     [getCurrency.rejected](state, action) {
       state.isLoading = false;

@@ -4,13 +4,13 @@ import {
   modalEditTransaction,
   modalSuccessLogout,
   modalSuccessRegistration,
-  modalTransaction,
+  modalSpliceTransaction,
 } from './modalThunk';
 
 const initialState = {
   modalTransaction: {
-    date: new Date(),
-    type: null,
+    date: new Date().toLocaleDateString(),
+    type: 'expense',
     categoryId: 99,
     comment: '',
     sum: 0,
@@ -37,8 +37,9 @@ const modalSlice = createSlice({
     builder.addCase(modalSuccessRegistration.fulfilled, (state, action) => {
       state.showSuccessRegistration = action.payload;
     });
-    builder.addCase(modalTransaction.fulfilled, (state, action) => {
-      state.modalTransaction = action.payload;
+    builder.addCase(modalSpliceTransaction.fulfilled, (state, action) => {
+      console.log(action.payload);
+      state.modalTransaction = { ...state.modalTransaction, ...action.payload };
     });
   },
 });

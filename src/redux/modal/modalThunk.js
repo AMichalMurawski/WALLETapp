@@ -44,7 +44,7 @@ export const modalSuccessRegistration = createAsyncThunk(
   }
 );
 
-export const modalTransaction = createAsyncThunk(
+export const modalSpliceTransaction = createAsyncThunk(
   'modal/modalTransaction',
   async (transaction, thunkAPI) => {
     try {
