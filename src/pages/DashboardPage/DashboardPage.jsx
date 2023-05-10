@@ -6,7 +6,6 @@ import Home from '../../components/Home/Home';
 import { Header } from '../../components/Header/Header';
 import { Balance } from '../../components/Balance/Balance';
 import { Currency } from '../../components/Currency/Currency';
-import { AddButton } from '../../components/utils/AddButton/AddButton'; // to usuń AddButton będzie w Diagram.jsx
 import { Navigation } from '../../components/Navigation/Navigation';
 
 import scss from './DashboardPage.module.scss';
@@ -35,7 +34,9 @@ const DashboardPage = () => {
                 <div>
                   <Navigation />
                 </div>
+            
                 <Routes>              
+          
           <Route index element={<Card/>} />
           <Route path="homeMob" element={<Card />} />
           <Route path="chartMob" element={<DiagramTab/>} />
@@ -87,7 +88,7 @@ const DashboardPage = () => {
         )}
       </Media>
 
-      <AddButton />
+      {/* <AddButton /> */}
     </div>
   );
 };

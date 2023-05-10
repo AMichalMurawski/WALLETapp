@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet';
 import Table from '../utils/Table/Table';
+import { AddButton } from '../utils/AddButton/AddButton';
 import { useAuth, useWallet } from '../../hooks';
 import scss from './Home.module.scss';
 import data from '../../data.json';
@@ -36,6 +37,7 @@ const Home = () => {
           </div>
         )}
       </div>
+<AddButton/>      
     </>
   );
 };

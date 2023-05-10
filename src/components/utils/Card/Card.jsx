@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getTransactions } from '../../../redux/wallet/walletThunk';
 import { Balance } from '../../Balance/Balance';
+import { AddButton } from '../AddButton/AddButton';
 import IconSvg from '../IconsSvg/IconSvg';
 import scss from './Card.module.scss';
 
@@ -55,6 +56,7 @@ const Card = () =>{
                 </li>
             </ul>
            </div>     
+           <AddButton/>
             </div>
 
            )
