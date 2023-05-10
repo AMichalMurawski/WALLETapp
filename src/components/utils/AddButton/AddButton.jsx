@@ -6,7 +6,6 @@ export const AddButton = () => {
   const dispatch = useDispatch();
 
   const handleModalTransaction = e => {
-    console.log('open modal');
     dispatch(modalShowAddTransaction(true));
   };
 

@@ -6,10 +6,7 @@ import { useEffect } from 'react';
 import 'react-datetime/css/react-datetime.css';
 
 import { RiCalendar2Line } from 'react-icons/ri';
-// import { HiOutlineChevronDown, HiOutlineChevronUp } from 'react-icons/hi';
-// import getDate from '../../../utils/getDate';
 import scss from './ModalAddTransactionForm.module.scss';
-// import { ModalAddTransactionFormMenu } from './ModalAddTransactionFormMenu/ModalAddTransactionFormMenu';
 import { useAuth, useModal, useWallet } from '../../../hooks';
 import { useDispatch } from 'react-redux';
 import {
@@ -21,28 +18,15 @@ import {
   modalSpliceTransaction,
 } from '../../../redux/modal/modalThunk';
 
-// let patternTwoDigisAfterComma = /^\d+(\.\d{0,2})?$/;
-
 const initialTransaction = {
   date: new Date().toLocaleDateString(),
+  type: 'expense',
   categoryId: 99,
   comment: '',
   sum: 0,
 };
 
 const schema = yup.object().shape({
-  // amount: yup
-  //   .string()
-  //   .test(val => {
-  //     if (val !== undefined) {
-  //       return patternTwoDigisAfterComma.test(val);
-  //     }
-  //     return true;
-  //   })
-  //   .min(0.01, 'Please, enter an amount min 0.01')
-  //   .max(2500000, 'Please, enter an amount max 2500000!')
-  //   .required('Amount is required'),
-
   comment: yup
     .string()
     .trim()
@@ -97,7 +81,6 @@ export const ModalAddTransactionForm = ({ onClick }) => {
   };
 
   const handleSubmit = e => {
-    console.log('submit');
     dispatch(
       addTransaction({
         walletId: user.wallets[0].id,
@@ -126,8 +109,6 @@ export const ModalAddTransactionForm = ({ onClick }) => {
       </div>
     );
   };
-
-  console.log(modalTransaction);
 
   return (
     <Formik
@@ -165,15 +146,8 @@ export const ModalAddTransactionForm = ({ onClick }) => {
               enableReinitialize={true}
               value={modalTransaction.sum}
               name="amount"
-              // autoComplete="off"
               onChange={handleSum}
             ></Field>
-            {/* <ErrorMessage
-              className={scss.errorMessage}
-              name="amount"
-              component="div"
-              render={createValidateMessageAmount}
-            ></ErrorMessage> */}
           </label>
           <label className={scss.dateBox}>
             <Datetime

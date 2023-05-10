@@ -6,17 +6,12 @@ import css from './TableFilters.module.scss';
 import { selectStyles } from './SelectStyles';
 import { useDispatch } from 'react-redux';
 import { changeMonth, changeYear } from '../../redux/chart/chartThunk';
-// import { useChart } from '../../hooks';
 
-// const currentMonth = new Date().getMonth() + 1;
 const months = Array.from({ length: 12 }, (item, i) => {
   return format(new Date(0, i), 'LLLL', {
     locale: pl,
   });
 });
-
-// const d = new Date();
-// const name = months[d.getMonth()];
 
 const monthOptions = Array(12)
   .fill(null)
@@ -30,7 +25,6 @@ for (let i = currentYear; i >= 1999; i--) {
 
 const TableFilters = () => {
   const dispatch = useDispatch();
-  // const { year, month } = useChart();
 
   const handleMonth = e => {
     dispatch(changeMonth(e.value));

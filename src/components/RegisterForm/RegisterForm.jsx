@@ -15,7 +15,6 @@ import { signup } from '../../redux/auth/authThunk';
 import { BiHide, BiShow } from 'react-icons/bi';
 import { useAuth } from '../../hooks';
 import { modalShowSuccessRegistration } from '../../redux/modal/modalThunk';
-//import { Loader } from 'components';
 
 const initialValues = {
   email: '',
