@@ -12,7 +12,10 @@ import scss from './ModalAddTransactionForm.module.scss';
 // import { ModalAddTransactionFormMenu } from './ModalAddTransactionFormMenu/ModalAddTransactionFormMenu';
 import { useAuth, useModal, useWallet } from '../../../hooks';
 import { useDispatch } from 'react-redux';
-import { getCategories } from '../../../redux/wallet/walletThunk';
+import {
+  addTransaction,
+  getCategories,
+} from '../../../redux/wallet/walletThunk';
 import {
   modalAddTransaction,
   modalSpliceTransaction,
@@ -28,17 +31,17 @@ const initialTransaction = {
 };
 
 const schema = yup.object().shape({
-  amount: yup
-    .number()
-    .test(val => {
-      if (val !== undefined) {
-        return patternTwoDigisAfterComma.test(val);
-      }
-      return true;
-    })
-    .min(0.01, 'Please, enter an amount min 0.01')
-    .max(2500000, 'Please, enter an amount max 2500000!')
-    .required('Amount is required'),
+  // amount: yup
+  //   .string()
+  //   .test(val => {
+  //     if (val !== undefined) {
+  //       return patternTwoDigisAfterComma.test(val);
+  //     }
+  //     return true;
+  //   })
+  //   .min(0.01, 'Please, enter an amount min 0.01')
+  //   .max(2500000, 'Please, enter an amount max 2500000!')
+  //   .required('Amount is required'),
 
   comment: yup
     .string()
@@ -76,10 +79,19 @@ export const ModalAddTransactionForm = ({ onClick }) => {
   };
 
   const handleCategoryId = e => {
-    dispatch(modalSpliceTransaction({ categoryId: e.currentTarget.value }));
+    dispatch(
+      modalSpliceTransaction({ categoryId: e.currentTarget.value.toString() })
+    );
   };
 
   const handleSum = e => {
+    const val = e.currentTarget.value;
+    if (val === undefined) return;
+    if (Number(val) === NaN) return;
+    if (Math.round(val * 100) !== val * 100) return;
+    if (val < 0) return;
+    if (val > 2500000) return;
+
     dispatch(modalSpliceTransaction({ sum: e.currentTarget.value }));
   };
 
@@ -88,8 +100,14 @@ export const ModalAddTransactionForm = ({ onClick }) => {
   };
 
   const handleSubmit = e => {
-    e.preventDefault();
-    dispatch(modalSpliceTransaction({ ...e.currentTarget.value }));
+    console.log('submit');
+    dispatch(
+      addTransaction({
+        walletId: user.wallets[0].id,
+        transaction: modalTransaction,
+      })
+    );
+    dispatch(modalAddTransaction(false));
   };
 
   const renderCalendarInput = (props, openCalendar) => {
@@ -127,8 +145,6 @@ export const ModalAddTransactionForm = ({ onClick }) => {
     );
   };
 
-  console.log(modalTransaction.sum);
-
   return (
     <Formik
       initialValues={initialValues}
@@ -147,7 +163,11 @@ export const ModalAddTransactionForm = ({ onClick }) => {
             >
               {categories.map((e, i, array) => {
                 if (e.type[0] === modalTransaction.type) {
-                  return <option value={e.id}>{e.name}</option>;
+                  return (
+                    <option key={e.id} value={e.id}>
+                      {e.name}
+                    </option>
+                  );
                 }
               })}
             </Field>
@@ -163,12 +183,12 @@ export const ModalAddTransactionForm = ({ onClick }) => {
               // autoComplete="off"
               onChange={handleSum}
             ></Field>
-            <ErrorMessage
+            {/* <ErrorMessage
               className={scss.errorMessage}
               name="amount"
               component="div"
               render={createValidateMessageAmount}
-            ></ErrorMessage>
+            ></ErrorMessage> */}
           </label>
           <label className={scss.dateBox}>
             <Datetime
@@ -187,7 +207,6 @@ export const ModalAddTransactionForm = ({ onClick }) => {
               name="comment"
               component="textarea"
               placeholder="Comment"
-              enableReinitialize={true}
               value={modalTransaction.comment}
               onKeyPress={e => {
                 if (e.charCode === 13) {

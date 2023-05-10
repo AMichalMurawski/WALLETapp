@@ -26,13 +26,13 @@ export const addTransaction = createAsyncThunk(
   'wallet/addTransactions',
   async ({ walletId, transaction }, thunkAPI) => {
     try {
-      const response = await axios.post(
-        `wallet/${walletId}/transactions`,
-        transaction
-      );
+      const response = await axios.post(`wallet/${walletId}/transactions`, {
+        ...transaction,
+        categoryId: transaction.categoryId.toString(),
+      });
       return response.data;
     } catch (error) {
-      console.log('error');
+      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
