@@ -1,9 +1,24 @@
 import scss from './AddButton.module.scss';
+import { useDispatch } from 'react-redux';
+import { modalAddTransaction } from '../../../redux/modal/modalThunk';
 
 export const AddButton = () => {
+  const dispatch = useDispatch();
+
+  const handleModalTransaction = e => {
+    console.log('open modal');
+    dispatch(modalAddTransaction(true));
+  };
+
   return (
     <div className={scss.statsButtonContainer}>
-      <button className={scss.statsButton}>+</button>
+      <button
+        type="button"
+        className={scss.statsButton}
+        onClick={handleModalTransaction}
+      >
+        +
+      </button>
     </div>
   );
 };

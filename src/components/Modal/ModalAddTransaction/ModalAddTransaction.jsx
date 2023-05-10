@@ -1,18 +1,25 @@
 import { useDispatch } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { toggleShowModalAddTransaction } from '../../../redux/modal/modalSlice';
 import s from './ModalAddTransaction.module.scss';
-import {ModalUniversal} from '../ModalUniversal';
-import {ModalAddTransactionCheckbox} from './ModalAddTransactioCheckbox';
-import {ModalAddTransactionForm} from './ModalAddTransactionForm';
+import { ModalUniversal } from '../ModalUniversal';
+import { ModalAddTransactionCheckbox } from './ModalAddTransactioCheckbox';
+import { ModalAddTransactionForm } from './ModalAddTransactionForm';
+import { modalAddTransaction } from '../../../redux/modal/modalThunk';
+import { useWallet, useModal } from '../../../hooks';
+
+const initialTransaction = {
+  date: new Date(),
+  type: 'expense',
+  sum: 0,
+  comment: '',
+  categoryId: 99,
+};
 
 const ModalAddTransaction = () => {
   const dispatch = useDispatch();
 
-  const [checkboxStatus, setCheckboxStatus] = useState(false);
-
   const handleCloseModal = () => {
-    dispatch(toggleShowModalAddTransaction(false));
+    dispatch(modalAddTransaction(false));
   };
 
   const handleBackdropClick = e => {
@@ -27,12 +34,6 @@ const ModalAddTransaction = () => {
     }
   };
 
-  const handleCheckbox = e => {
-    if (e.currentTarget === e.target) {
-      setCheckboxStatus(!checkboxStatus);
-    }
-  };
-
   useEffect(() => {
     document.addEventListener('keydown', escKeyDown);
     document.body.style.overflow = 'hidden';
@@ -42,23 +43,28 @@ const ModalAddTransaction = () => {
       document.body.style.overflow = '';
     };
   });
+
   return (
-    <ModalUniversal onClose={handleCloseModal} onClick={handleBackdropClick}>
+
+    <div
+      className={s.backdrop}
+      onClose={handleCloseModal}
+      onClick={handleBackdropClick}
+    >
+          
       <div className={s.box}>
         <h2 className={s.title}>Add transaction</h2>
-        <ModalAddTransactionCheckbox
-          onHandleCheckbox={handleCheckbox}
-          checkboxStatus={checkboxStatus}
-        ></ModalAddTransactionCheckbox>
+        <ModalAddTransactionCheckbox></ModalAddTransactionCheckbox>
         <ModalAddTransactionForm
-          checkboxStatus={checkboxStatus}
           onClick={handleCloseModal}
         ></ModalAddTransactionForm>
         <button className={s.closeBtn} type="button" onClick={handleCloseModal}>
           cancel
         </button>
       </div>
-    </ModalUniversal>
+      
+    </div>
+  
   );
 };
 

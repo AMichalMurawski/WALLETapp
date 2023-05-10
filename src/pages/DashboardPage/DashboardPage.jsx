@@ -1,19 +1,24 @@
 import { Helmet } from 'react-helmet';
 import Media from 'react-media';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import Card from '../../components/utils/Card/Card';
 import Home from '../../components/Home/Home';
 import { Header } from '../../components/Header/Header';
 import { Balance } from '../../components/Balance/Balance';
 import { Currency } from '../../components/Currency/Currency';
-import { AddButton } from '../../components/utils/AddButton/AddButton'; // to usuń AddButton będzie w Diagram.jsx
 import { Navigation } from '../../components/Navigation/Navigation';
-
+import { lazy } from 'react';
 import scss from './DashboardPage.module.scss';
-
 import DiagramTab from '../../components/DiagramTab/DiagramTab';
+import { useModal } from '../../hooks';
+
+const ModalAddTransaction = lazy(() =>
+  import('../../components/Modal/ModalAddTransaction/ModalAddTransaction')
+);
 
 const DashboardPage = () => {
+  const { showAddTransaction } = useModal();
+
   return (
     <div className={scss.pageHomeContainer}>
       <Helmet>
@@ -29,42 +34,6 @@ const DashboardPage = () => {
       >
         {matches => (
           <>
-            {matches.mob && (
-              <>
-              <div className={scss.primary}>
-                <div>
-                  <Navigation />
-                </div>
-                <Routes>              
-          <Route index element={<Card/>} />
-          <Route path="homeMob" element={<Card />} />
-          <Route path="chartMob" element={<DiagramTab/>} />
-          <Route path="currencyMob" element={<Currency/>} />
-          </Routes>
-              </div>
-              </>
-            )}
-            {matches.tab && (
-              <>
-              <div className={scss.primary}>
-                <div className={scss.secondary}>
-                  <div>
-                    <Navigation />
-
-                    <Balance />
-                  </div>
-                  <Currency />
-                </div>
-                <Routes>
-              <Route index element={<Home/>} />
-          <Route path="homeTab" element={<Home />} />
-          <Route path="chartTab" element={<DiagramTab/>} />
-          <Route path="currencyTab" element={<Currency/>} />
-          </Routes>
-
-              </div>
-              </>
-            )}
             {matches.desk && (
               <div className={scss.primary}>
                 <div>
@@ -75,19 +44,54 @@ const DashboardPage = () => {
                   <Currency />
                 </div>
                 <Routes>
-              <Route index element={<Home/>} />
-          <Route path="homeDesk" element={<Home />} />
-          <Route path="chartDesk" element={<DiagramTab/>} />
-          <Route path="currencyDesk" element={<Currency/>} />
-          </Routes>
-
+                  <Route index element={<Navigate to="home" />} />
+                  <Route path="home" element={<Home />} />
+                  <Route path="diagram" element={<DiagramTab />} />
+                  <Route path="*" element={<Navigate to="home" />} />
+                </Routes>
               </div>
+            )}
+            {matches.tab && (
+              <>
+                <div className={scss.primary}>
+                  <div className={scss.secondary}>
+                    <div>
+                      <Navigation />
+
+                      <Balance />
+                    </div>
+                    <Currency />
+                  </div>
+                  <Routes>
+                    <Route index element={<Navigate to="home" />} />
+                    <Route path="home" element={<Home />} />
+                    <Route path="diagram" element={<DiagramTab />} />
+                    <Route path="*" element={<Navigate to="home" />} />
+                  </Routes>
+                </div>
+              </>
+            )}
+            {matches.mob && (
+              <>
+                <div className={scss.primary}>
+                  <div>
+                    <Navigation />
+                  </div>
+
+                  <Routes>
+                    <Route index element={<Navigate to="home" />} />
+                    <Route path="home" element={<Card />} />
+                    <Route path="diagram" element={<DiagramTab />} />
+                    <Route path="currency" element={<Currency />} />
+                  </Routes>
+                </div>
+              </>
             )}
           </>
         )}
       </Media>
 
-      <AddButton />
+      {showAddTransaction ? <ModalAddTransaction /> : <></>}
     </div>
   );
 };

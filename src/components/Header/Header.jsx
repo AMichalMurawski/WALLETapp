@@ -3,6 +3,7 @@ import { useAuth } from '../../hooks';
 import IconSvg from '../utils/IconsSvg/IconSvg';
 import scss from './Header.module.scss';
 import { useDispatch } from 'react-redux';
+import { NavLink } from 'react-router-dom';
 import { signout } from '../../redux/auth/authThunk';
 
 export const Header = () => {
@@ -24,14 +25,14 @@ export const Header = () => {
         <>
           {matches.mob && (
             <div className={scss.containerHeader}>
-              <button className={scss.button}>
+              <NavLink className={scss.button} to='homeMob'>
                 <div className={scss.main}>
                   <div className={scss.logo}>
                     <IconSvg icon="logo" />
                   </div>
                   <div className={scss.wallet}>Wallet</div>
                 </div>
-              </button>
+              </NavLink>
               <div className={scss.main}>
                 <button className={scss.button}>
                   <h1 className={scss.logout}>{user.firstName}</h1>
@@ -51,14 +52,14 @@ export const Header = () => {
           )}
           {matches.tab && (
             <div className={scss.containerHeader}>
-              <button className={scss.button}>
+              <NavLink className={scss.button} to='homeTab'>
                 <div className={scss.main}>
                   <div className={scss.logo}>
                     <IconSvg icon="logo" />
                   </div>
                   <div className={scss.wallet}>Wallet</div>
                 </div>
-              </button>
+              </NavLink>
               <div className={scss.main}>
                 <button className={scss.button}>
                   <h1 className={scss.logout}>{user.firstName}</h1>
@@ -79,14 +80,14 @@ export const Header = () => {
           )}
           {matches.desk && (
             <div className={scss.containerHeader}>
-              <button className={scss.button}>
+              <NavLink className={scss.button} to='homeDesk'>
                 <div className={scss.main}>
                   <div className={scss.logo}>
                     <IconSvg icon="logo" />
                   </div>
                   <div className={scss.wallet}>Wallet</div>
                 </div>
-              </button>
+              </NavLink>
               <div className={scss.main}>
                 <button className={scss.button}>
                   <h1 className={scss.logout}>{user.firstName}</h1>

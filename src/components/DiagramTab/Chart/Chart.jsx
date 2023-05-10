@@ -11,7 +11,10 @@ const Chart = ({ colors, chartCategories, total }) => {
     datasets: [
       {
         labels: chartCategories.map(e => e.name),
-        data: [...chartCategories.map(e => e.total)],
+        data:
+          chartCategories.length > 0
+            ? [...chartCategories.map(e => e.total)]
+            : [0],
         backgroundColor: colors,
         borderColor: colors,
         cutout: '70%',
@@ -55,15 +58,11 @@ const Chart = ({ colors, chartCategories, total }) => {
       <h1 className={css.statistics}> Statistics </h1>
       <div className={css.container}>
         <div>
-          {chartCategories.length > 0 ? (
-            <Doughnut
-              data={data}
-              options={options}
-              plugins={[textCenter]}
-            ></Doughnut>
-          ) : (
-            <div className={css.noChart}></div>
-          )}
+          <Doughnut
+            data={data}
+            options={options}
+            plugins={[textCenter]}
+          ></Doughnut>
         </div>
       </div>
     </div>

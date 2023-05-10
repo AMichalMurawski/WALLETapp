@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet';
 import { LoginForm } from '../../components/LoginForm/LoginForm';
+
 import s from './LoginPage.module.scss';
 import man from '../../images/login/man.svg';
 
@@ -47,9 +48,7 @@ const LoginPage = () => {
                 </>
               )}
             </Media>
-            <div className={s.form}>
-            <LoginForm />
-            </div>
+           
           </div>
         </div>
       </div>

@@ -1,0 +1,325 @@
+@use 'src/stylesheets/vars' as *;
+@import '../../../stylesheets/utils/mixins';
+@import '../../../stylesheets/utils/placeholders';
+
+
+.addFormInputCategory {
+  width: 60px;
+}
+
+.menu {
+  position: absolute;
+  top: 32px;
+
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.7);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(25px);
+  z-index: 100;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+
+  @include mixins-mq(mob-only) {
+    width: 100%;
+    max-width: 402;
+    max-height: 400px;
+    overflow-y: scroll;
+  }
+  @include mixins-mq(tab) {
+    width: 402px;
+    height: 352px;
+    overflow: auto;
+  }
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  height: 44px;
+  font-size: 18px;
+  line-height: 27px;
+  &:hover,
+  &:focus {
+    background-color: #ffffff;
+    color: #ff6596;
+    cursor: pointer;
+  }
+}
+.addBtn {
+  @extend %btnGreen;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  width: 300px;
+  height: 50px;
+  padding: 13px 0;
+  border-radius: 20px;
+  text-transform: uppercase;
+}
+.addForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 34px;
+  max-width: 320px;
+  @include mq(mob-only) {
+    width: 100%;
+    padding: 0 10px;
+  }
+}
+
+.addFormInputContainer {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  @include mq(mob-only) {
+    flex-direction: column;
+    width: 100%;
+  }
+  @include mq(tab) {
+    flex-wrap: wrap;
+  }
+}
+
+.categoryLabel {
+  position: relative;
+  @include mq(mob-only) {
+    width: 100%;
+  }
+}
+
+.addFormInputCategory {
+  padding: 4px 20px 8px 20px;
+  margin-bottom: 40px;
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  border: 0;
+  border-bottom: 1px solid #e0e0e0;
+  outline: 0;
+
+  @include mq(mob-only) {
+    width: 100%;
+    height: 32px;
+  }
+  @include mq(tab) {
+    padding: 4px 20px 8px 8px;
+    width: 394px;
+    height: 32px;
+  }
+
+  animation: scaleTitle 0.3s ease 1 alternate;
+  @keyframes scaleTitle {
+    0% {
+      transform: scaleX(0);
+    }
+
+    100% {
+      transform: scaleX(1);
+    }
+  }
+}
+
+.openMenuBtn {
+  position: absolute;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border: 0;
+  cursor: pointer;
+
+  &Icon {
+    width: 22px;
+    height: 20px;
+  }
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 32px;
+  }
+  @include mq(mob-only) {
+    top: 0px;
+    right: 11px;
+  }
+  @include mq(tab) {
+    top: 4px;
+    right: 0px;
+  }
+}
+
+.sumBox {
+  position: relative;
+  @include mq(mob-only) {
+    width: 100%;
+  }
+}
+
+.addFormInputSum {
+  padding: 4px 20px 8px 20px;
+
+  font-size: 18px;
+  line-height: 27px;
+  border: 0;
+  border-bottom: 1px solid #e0e0e0;
+  outline: 0;
+  @include mq(mob-only) {
+    margin-bottom: 40px;
+    width: 100%;
+    height: 32px;
+  }
+  @include mq(tab) {
+    text-align: center;
+    width: 162px;
+    height: 32px;
+    padding-right: 10px;
+    margin-right: 32px;
+  }
+}
+
+.dateBox {
+  position: relative;
+  @include mq(mob-only) {
+    width: 100%;
+  }
+}
+
+.addFormInputDate {
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  border: 0;
+  border-bottom: 1px solid #e0e0e0;
+  outline: 0;
+  @include mq(mob-only) {
+    padding: 0 17px 8px 20px;
+    margin-bottom: 40px;
+    width: 100%;
+    height: 32px;
+  }
+  @include mq(tab) {
+    padding: 4px 14px 8px 20px;
+    height: 32px;
+    width: 160px;
+  }
+}
+
+.dataBtn {
+  position: absolute;
+
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  background-color: #fff;
+  color: #4a56e2;
+  border: 0;
+  cursor: pointer;
+
+  &Icon {
+    width: 22px;
+    height: 22px;
+  }
+  @include mq(mob-only) {
+    top: 0px;
+    right: 12px;
+  }
+  @include mq(tab) {
+    top: 0px;
+    right: 6px;
+  }
+}
+
+.commentBox {
+  position: relative;
+  width: 100%;
+}
+
+.addFormTextarea {
+  resize: none;
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+
+  line-height: calc(27 / 18);
+  border: 0;
+  border-bottom: 1px solid #e0e0e0;
+  outline: 0;
+
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  &::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+  }
+  @include mq(mob-only) {
+    padding: 0 17px 8px 20px;
+    width: 100%;
+    height: 84px;
+  }
+  @include mq(tab) {
+    padding: 0 17px 8px 8px;
+    width: 394px;
+    height: 32px;
+    margin-top: 40px;
+    overflow: hidden;
+  }
+}
+
+.errorSum {
+  position: absolute;
+  display: flex;
+  padding: 2px 10px;
+  left: 0;
+  font-size: 12px;
+  color: red;
+  z-index: 3;
+  @include mq(mob-only) {
+    bottom: 18px;
+    max-width: 280px;
+  }
+  @include mq(tab) {
+    bottom: -22px;
+    width: 340px;
+  }
+}
+
+.errorComment {
+  position: absolute;
+  display: flex;
+  padding: 2px 10px;
+  bottom: -17px;
+  left: 0;
+  font-size: 12px;
+  color: red;
+  min-width: 280px;
+}

@@ -1,18 +1,29 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import Datetime from 'react-datetime';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import 'react-datetime/css/react-datetime.css';
 
 import { RiCalendar2Line } from 'react-icons/ri';
-import { HiOutlineChevronDown, HiOutlineChevronUp } from 'react-icons/hi';
-import getDate from '../../../utils/getDate';
+// import { HiOutlineChevronDown, HiOutlineChevronUp } from 'react-icons/hi';
+// import getDate from '../../../utils/getDate';
 import scss from './ModalAddTransactionForm.module.scss';
-import ModalAddTransactionFormMenu from './ModalAddTransactionFormMenu/ModalAddTransactionFormMenu';
-
+// import { ModalAddTransactionFormMenu } from './ModalAddTransactionFormMenu/ModalAddTransactionFormMenu';
+import { useAuth, useModal, useWallet } from '../../../hooks';
+import { useDispatch } from 'react-redux';
+import { getCategories } from '../../../redux/wallet/walletThunk';
+import { modalSpliceTransaction } from '../../../redux/modal/modalThunk';
 
 let patternTwoDigisAfterComma = /^\d+(\.\d{0,2})?$/;
+
+const initialTransaction = {
+  date: new Date().toLocaleDateString(),
+  type: 'expense',
+  categoryId: 99,
+  comment: '',
+  sum: 0,
+};
 
 const schema = yup.object().shape({
   amount: yup
@@ -38,15 +49,13 @@ const initialValues = {
   comment: '',
 };
 
-export const ModalAddTransactionForm = prop => {
-  const { checkboxStatus, onClick } = prop;
- 
-  const [date, setDate] = useState(getDate());
+export const ModalAddTransactionForm = ({ onClick }) => {
+  const { modalTransaction } = useModal();
+  const { categories, changeTransactions } = useWallet();
+  const dispatch = useDispatch();
+  const { user } = useAuth();
+
   const [open, setOpen] = useState(false);
-
-  const [categoryValue, setCategoryValue] = useState('Other expenses');
-
-
 
   const today = new Date();
   const lastYear = new Date('December 31, 2022 23:59:59');
@@ -54,9 +63,19 @@ export const ModalAddTransactionForm = prop => {
     return current.isBefore(today) && current.isAfter(lastYear);
   };
 
-  const createDate = ({ _d }) => {
+  useEffect(() => {
+    dispatch(getCategories({ walletId: user.wallets[0].id }));
+    dispatch(modalSpliceTransaction(initialTransaction));
+  }, [changeTransactions]);
 
-    setDate(getDate(_d));
+  const categoryValue = () => {
+    const category = categories.find(e => e.id === modalTransaction.categoryId);
+    return category.id;
+  };
+
+  const createDate = e => {
+    dispatch(modalSpliceTransaction({ date: e._d.toLocaleDateString() }));
+    setOpen(false);
   };
 
   const handleOpen = e => {
@@ -64,56 +83,11 @@ export const ModalAddTransactionForm = prop => {
   };
 
   const addValueCategory = (_id, name) => {
- 
-    setCategoryValue(name);
     handleClose();
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    
-
-    if (checkboxStatus) {
-      // if (comment === '') {
-      //   // const formValues = {
-      //   //   transactionType: checkboxStatus,
-      //   //   amount: Number(amount).toFixed(2) * 1,
-      //   //   date: bekDate,
-      //   // };
-      //   // dispatch(financeOperation.addTransaction(formValues));
-      //   onClick();
-      //   return;
-      // }
-      // const formValues = {
-      //   transactionType: checkboxStatus,
-      //   comment,
-      //   amount: Number(amount).toFixed(2) * 1,
-      //   date: bekDate,
-      // };
-      // dispatch(financeOperation.addTransaction(formValues));
-      onClick();
-      return;
-    }
-    // if (comment === '') {
-    //   // const formValues = {
-    //   //   transactionType: checkboxStatus,
-    //   //   category: categoryId,
-    //   //   amount: Number(amount),
-    //   //   date: bekDate,
-    //   // };
-    //   //dispatch(financeOperation.addTransaction(formValues));
-    //   onClick();
-    //   return;
-    // }
-    // const formValues = {
-    //   transactionType: checkboxStatus,
-    //   category: categoryId,
-    //   comment,
-    //   amount: Number(amount),
-    //   date: bekDate,
-    // };
-    // dispatch(financeOperation.addTransaction(formValues));
-    onClick();
-    return;
+    console.log('submit');
   };
 
   const handleClose = e => {
@@ -130,7 +104,7 @@ export const ModalAddTransactionForm = prop => {
           placeholder="date"
           name="date"
           autoComplete="off"
-          value={date}
+          value={modalTransaction.date}
           readOnly
         ></Field>
         <button className={scss.dataBtn} type="button" onClick={openCalendar}>
@@ -163,41 +137,49 @@ export const ModalAddTransactionForm = prop => {
     >
       <Form className={scss.addForm}>
         <div className={scss.addFormInputContainer}>
-          {!checkboxStatus && (
-            <label className={scss.categoryLabel}>
-              <Field
-                className={scss.addFormInputCategory}
-                type="text"
-                placeholder="Select a category"
-                name="category"
-                value={categoryValue}
-                onClick={open ? handleClose : handleOpen}
-                autoComplete="off"
-                readOnly
-              />
-              <button
-                className={scss.openMenuBtn}
-                type="button"
-                onClick={open ? handleClose : handleOpen}
-              >
-                {!open ? (
-                  <HiOutlineChevronDown
-                    className={scss.openMenuBtnIcon}
-                  ></HiOutlineChevronDown>
-                ) : (
-                  <HiOutlineChevronUp
-                    className={scss.openMenuBtnIcon}
-                  ></HiOutlineChevronUp>
-                )}
-              </button>
-              {open && (
-                <ModalAddTransactionFormMenu
-                  handleCategory={addValueCategory}
-                  handleBlur={handleClose}
-                ></ModalAddTransactionFormMenu>
+          <label className={scss.categoryLabel}>
+            <Field
+              className={scss.addFormInputCategory}
+              as="select"
+              placeholder="Select a category"
+              name="category"
+            >
+              {categories.map((e, i, array) => (
+                <options value={i}>i</options>
+              ))}
+            </Field>
+            {/* <Field
+              className={scss.addFormInputCategory}
+              type="text"
+              placeholder="Select a category"
+              name="category"
+              value={categoryValue}
+              onClick={open ? handleClose : handleOpen}
+              autoComplete="off"
+              readOnly
+            />
+            <button
+              className={scss.openMenuBtn}
+              type="button"
+              onClick={open ? handleClose : handleOpen}
+            >
+              {!open ? (
+                <HiOutlineChevronDown
+                  className={scss.openMenuBtnIcon}
+                ></HiOutlineChevronDown>
+              ) : (
+                <HiOutlineChevronUp
+                  className={scss.openMenuBtnIcon}
+                ></HiOutlineChevronUp>
               )}
-            </label>
-          )}
+            </button>
+            {open && (
+              <ModalAddTransactionFormMenu
+                handleCategory={addValueCategory}
+                handleBlur={handleClose}
+              ></ModalAddTransactionFormMenu>
+            )} */}
+          </label>
           <label className={scss.sumBox}>
             <Field
               className={scss.addFormInputSum}
