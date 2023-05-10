@@ -1,11 +1,13 @@
 import { useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import s from './ModalAddTransaction.module.scss';
-import { ModalUniversal } from '../ModalUniversal';
+// import { ModalUniversal } from '../ModalUniversal';
 import { ModalAddTransactionCheckbox } from './ModalAddTransactioCheckbox';
 import { ModalAddTransactionForm } from './ModalAddTransactionForm';
-import { modalAddTransaction } from '../../../redux/modal/modalThunk';
-import { useWallet, useModal } from '../../../hooks';
+import {
+  modalAddTransaction,
+  modalEditTransaction,
+} from '../../../redux/modal/modalThunk';
 
 const initialTransaction = {
   date: new Date(),
@@ -20,6 +22,7 @@ const ModalAddTransaction = () => {
 
   const handleCloseModal = () => {
     dispatch(modalAddTransaction(false));
+    dispatch(modalEditTransaction(false));
   };
 
   const handleBackdropClick = e => {
@@ -45,13 +48,11 @@ const ModalAddTransaction = () => {
   });
 
   return (
-
     <div
       className={s.backdrop}
       onClose={handleCloseModal}
       onClick={handleBackdropClick}
     >
-          
       <div className={s.box}>
         <h2 className={s.title}>Add transaction</h2>
         <ModalAddTransactionCheckbox></ModalAddTransactionCheckbox>
@@ -62,9 +63,7 @@ const ModalAddTransaction = () => {
           cancel
         </button>
       </div>
-      
     </div>
-  
   );
 };
 

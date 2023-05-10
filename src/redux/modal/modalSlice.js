@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   modalTransaction: {
+    id: null,
     date: new Date().toLocaleDateString(),
     type: 'expense',
     categoryId: 99,
@@ -38,7 +39,6 @@ const modalSlice = createSlice({
       state.showSuccessRegistration = action.payload;
     });
     builder.addCase(modalSpliceTransaction.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.modalTransaction = { ...state.modalTransaction, ...action.payload };
     });
   },

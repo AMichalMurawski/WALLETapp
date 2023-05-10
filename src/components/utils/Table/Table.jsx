@@ -1,16 +1,27 @@
 import { useDispatch } from 'react-redux';
 import IconsSvg from '../../../components/utils/IconsSvg/IconSvg';
 import scss from './Table.module.scss';
-import { deleteTransaction } from '../../../redux/wallet/walletThunk';
-import { useAuth } from '../../../hooks';
+import {
+  deleteTransaction,
+  editTransaction,
+} from '../../../redux/wallet/walletThunk';
+import { useAuth, useWallet } from '../../../hooks';
+import {
+  modalEditTransaction,
+  modalSpliceTransaction,
+} from '../../../redux/modal/modalThunk';
 
 const Table = ({ theadData, tbodyData, className }) => {
   const dispatch = useDispatch();
   const { user } = useAuth();
+  const { transactions } = useWallet();
 
   const handleEdit = e => {
     const id = e.currentTarget.getAttribute('data-id');
-    console.log(id);
+    const transaction = transactions.filter(e => e._id === id);
+    console.log(transaction);
+    dispatch(modalSpliceTransaction({ ...transaction[0], id }));
+    dispatch(modalEditTransaction(true));
   };
 
   const handleDelete = e => {
@@ -24,9 +35,9 @@ const Table = ({ theadData, tbodyData, className }) => {
     <table className={className}>
       <thead className={className + '_head'}>
         <tr>
-          {theadData.map(heading => {
+          {theadData.map((heading, i) => {
             return (
-              <th className={className + '_th'} key={heading}>
+              <th className={className + '_th'} key={i}>
                 {heading}
               </th>
             );

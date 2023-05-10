@@ -20,7 +20,7 @@ export const LoginForm = () => {
   };
 
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('example@mail.com');
+  const [email, setEmail] = useState('example@mail.pl');
   const [password, setPassword] = useState('Password1!');
   const { isLoggedIn } = useAuth();
 
@@ -140,7 +140,9 @@ export const LoginForm = () => {
                 log in
               </button>
             ) : (
-              <button className={s.loginBtnLoading} enabled>log In</button>
+              <button className={s.loginBtnLoading} enabled>
+                log In
+              </button>
             )}
 
             <Link to="/registration" className={s.registerBtn}>
