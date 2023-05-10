@@ -4,19 +4,17 @@ import RegisterForm from '../../components/RegisterForm/RegisterForm';
 import s from './RegistrationPage.module.scss';
 import woman from '../../images/login/woman.svg';
 import { SuccessRegistrationModal } from '../../components/Modal/SuccessRegistractionModal/SuccessRagistractionModal';
-import { useSelector } from 'react-redux';
-import { modalSelectors } from '../../redux/modal/modalSelector';
+import { useModal } from '../../hooks';
 
 const RegistrationPage = () => {
-  const showModalSuccessRegistration = useSelector(
-    modalSelectors.showModalSuccessRegistration
-  );
+  const { showSuccessRegistration } = useModal();
+
   return (
     <>
       <Helmet>registration</Helmet>
       <div className={s.back}>
         <div className={s.container}>
-          {showModalSuccessRegistration && <SuccessRegistrationModal />}
+          {showSuccessRegistration && <SuccessRegistrationModal />}
           <div className={s.registerContainer}>
             <Media
               queries={{

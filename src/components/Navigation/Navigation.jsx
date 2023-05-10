@@ -22,10 +22,9 @@ export const Navigation = () => {
                     style={({ isActive }) => {
                       return {
                         scale: isActive ? '1.2' : '',
-
                       };
                     }}
-                    to="homeMob"
+                    to="home"
                   >
                     <div className={scss.homeMobIcon}>
                       <IconSvg icon="home" />
@@ -35,9 +34,10 @@ export const Navigation = () => {
                     className={scss.navLink}
                     style={({ isActive }) => {
                       return {
-                        scale: isActive ? '1.2' : ''                      };
+                        scale: isActive ? '1.2' : '',
+                      };
                     }}
-                    to="chartMob"
+                    to="diagram"
                   >
                     <div className={scss.homeMobIcon}>
                       <IconSvg icon="stats" />
@@ -46,9 +46,10 @@ export const Navigation = () => {
                   <NavLink
                     style={({ isActive }) => {
                       return {
-                        scale: isActive ? '1.2' : '' };
+                        scale: isActive ? '1.2' : '',
+                      };
                     }}
-                    to="currencyMob"
+                    to="currency"
                   >
                     <div className={scss.homeMobIcon}>
                       <IconSvg icon="dolar" />
@@ -68,7 +69,7 @@ export const Navigation = () => {
                       textDecoration: isActive ? 'underline' : 'none',
                     };
                   }}
-                  to="homeTab"
+                  to="home"
                 >
                   <div className={scss.mainHome}>
                     <div className={scss.home}>
@@ -84,7 +85,7 @@ export const Navigation = () => {
                       textDecoration: isActive ? 'underline' : 'none',
                     };
                   }}
-                  to="chartTab "
+                  to="diagram "
                 >
                   <div className={scss.mainStats}>
                     <div className={scss.stats}>
@@ -107,7 +108,7 @@ export const Navigation = () => {
                         textDecoration: isActive ? 'underline' : 'none',
                       };
                     }}
-                    to="homeDesk"
+                    to="home"
                   >
                     <div className={scss.mainHome}>
                       <div className={scss.home}>
@@ -124,7 +125,7 @@ export const Navigation = () => {
                         textDecoration: isActive ? 'underline' : 'none',
                       };
                     }}
-                    to="chartDesk"
+                    to="diagram"
                   >
                     <div className={scss.mainStats}>
                       <div className={scss.stats}>

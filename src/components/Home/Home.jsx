@@ -36,8 +36,8 @@ const Home = () => {
             />
           </div>
         )}
+        <AddButton />
       </div>
-<AddButton/>      
     </>
   );
 };

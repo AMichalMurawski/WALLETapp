@@ -1,7 +1,6 @@
-
 import { useWallet } from '../../../../hooks/useWallet';
 import { useRef, useEffect } from 'react';
-import s from './ModalAddTransactionFormMenu.module.scss';
+import s from './ModalAddTranstactionFormMenu.module.scss';
 
 export const ModalAddTransactionFormMenu = props => {
   const { handleCategory, handleBlur } = props;
@@ -9,7 +8,7 @@ export const ModalAddTransactionFormMenu = props => {
   useEffect(() => {
     ulFocus.current.focus();
   }, []);
-  const categories = (useWallet.categories);
+  const categories = useWallet.categories;
 
   return (
     <ul

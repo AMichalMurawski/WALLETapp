@@ -7,10 +7,9 @@ import 'react-datetime/css/react-datetime.css';
 
 import { RiCalendar2Line } from 'react-icons/ri';
 import { HiOutlineChevronDown, HiOutlineChevronUp } from 'react-icons/hi';
-import getDate from '../../../utils/getDate';
+// import getDate from '../../../utils/getDate';
 import scss from './ModalAddTransactionForm.module.scss';
-import ModalAddTransactionFormMenu from './ModalAddTransactionFormMenu/ModalAddTransactionFormMenu';
-
+import { ModalAddTransactionFormMenu } from './ModalAddTransactionFormMenu/ModalAddTransactionFormMenu';
 
 let patternTwoDigisAfterComma = /^\d+(\.\d{0,2})?$/;
 
@@ -40,13 +39,11 @@ const initialValues = {
 
 export const ModalAddTransactionForm = prop => {
   const { checkboxStatus, onClick } = prop;
- 
-  const [date, setDate] = useState(getDate());
+
+  // const [date, setDate] = useState(getDate());
   const [open, setOpen] = useState(false);
 
   const [categoryValue, setCategoryValue] = useState('Other expenses');
-
-
 
   const today = new Date();
   const lastYear = new Date('December 31, 2022 23:59:59');
@@ -55,8 +52,7 @@ export const ModalAddTransactionForm = prop => {
   };
 
   const createDate = ({ _d }) => {
-
-    setDate(getDate(_d));
+    // setDate(getDate(_d));
   };
 
   const handleOpen = e => {
@@ -64,14 +60,11 @@ export const ModalAddTransactionForm = prop => {
   };
 
   const addValueCategory = (_id, name) => {
- 
     setCategoryValue(name);
     handleClose();
   };
 
   const handleSubmit = (values, { resetForm }) => {
-    
-
     if (checkboxStatus) {
       // if (comment === '') {
       //   // const formValues = {
@@ -130,7 +123,7 @@ export const ModalAddTransactionForm = prop => {
           placeholder="date"
           name="date"
           autoComplete="off"
-          value={date}
+          value={'4'}
           readOnly
         ></Field>
         <button className={scss.dataBtn} type="button" onClick={openCalendar}>

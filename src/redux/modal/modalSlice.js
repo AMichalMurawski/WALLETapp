@@ -1,27 +1,35 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {
+  modalAddTransaction,
+  modalEditTransaction,
+  modalSuccessLogout,
+  modalSuccessRegistration,
+} from './modalThunk';
 
 const initialState = {
-  showModalAddTransaction: false,
-  showModalLogout: false,
-  showModalSuccessRegistration: false
+  showAddTransaction: false,
+  showEditTransaction: false,
+  showLogout: false,
+  showSuccessRegistration: false,
 };
 
 const modalSlice = createSlice({
   name: 'modal',
   initialState,
-  reducers: {
-    toggleShowModalAddTransaction(state, action) {
-      state.showModalAddTransaction = action.payload;
-    },
-    toggleShowModalLogout(state, action) {
-      state.showModalLogout = action.payload;
-    },
-    toggleShowModalSuccessRegistration(state, action) {
-      state.showModalSuccessRegistration = action.payload;
-    }
+  extraReducers: builder => {
+    builder.addCase(modalAddTransaction.fulfilled, (state, action) => {
+      state.showAddTransaction = action.payload;
+    });
+    builder.addCase(modalEditTransaction.fulfilled, (state, action) => {
+      state.showEditTransaction = action.payload;
+    });
+    builder.addCase(modalSuccessLogout.fulfilled, (state, action) => {
+      state.showLogout = action.payload;
+    });
+    builder.addCase(modalSuccessRegistration.fulfilled, (state, action) => {
+      state.showSuccessRegistration = action.payload;
+    });
   },
 });
 
 export const modalReducer = modalSlice.reducer;
-export const { toggleShowModalAddTransaction, toggleShowModalLogout, toggleShowModalSuccessRegistration } =
-  modalSlice.actions;
