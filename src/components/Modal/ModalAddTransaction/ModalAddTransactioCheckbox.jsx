@@ -4,6 +4,7 @@ import { useWallet, useModal } from '../../../hooks';
 import { useDispatch } from 'react-redux';
 import { modalSpliceTransaction } from '../../../redux/modal/modalThunk';
 
+
 export const ModalAddTransactionCheckbox = prop => {
   const { modalTransaction } = useModal();
   const dispatch = useDispatch();
