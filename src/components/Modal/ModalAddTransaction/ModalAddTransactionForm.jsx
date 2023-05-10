@@ -112,20 +112,20 @@ export const ModalAddTransactionForm = ({ onClick }) => {
     );
   };
 
-  const createValidateMessageAmount = r => {
-    if (
-      r === 'Please, enter an amount min 0.01' ||
-      r === 'Please, enter an amount max 2500000!' ||
-      r === 'Amount is required'
-    ) {
-      return <div className={scss.errorSum}>{r}</div>;
-    }
-    return (
-      <div className={scss.errorSum}>
-        Digits only, no more than two after the decimal point
-      </div>
-    );
-  };
+  // const createValidateMessageAmount = r => {
+  //   if (
+  //     r === 'Please, enter an amount min 0.01' ||
+  //     r === 'Please, enter an amount max 2500000!' ||
+  //     r === 'Amount is required'
+  //   ) {
+  //     return <div className={scss.errorSum}>{r}</div>;
+  //   }
+  //   return (
+  //     <div className={scss.errorSum}>
+  //       Digits only, no more than two after the decimal point
+  //     </div>
+  //   );
+  // };
 
   console.log(modalTransaction.sum);
 
@@ -163,12 +163,12 @@ export const ModalAddTransactionForm = ({ onClick }) => {
               // autoComplete="off"
               onChange={handleSum}
             ></Field>
-            <ErrorMessage
+            {/* <ErrorMessage
               className={scss.errorMessage}
               name="amount"
               component="div"
               render={createValidateMessageAmount}
-            ></ErrorMessage>
+            ></ErrorMessage> */}
           </label>
           <label className={scss.dateBox}>
             <Datetime
