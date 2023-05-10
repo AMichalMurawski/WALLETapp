@@ -1,37 +1,82 @@
 @import '../../../stylesheets/vars';
 
-.cardTable{
+.transactionsCard{
+    display:flex;
+    justify-content: center;
+}
+.transactionsType{
+    font-family:Circe;
+    font-weight: 700;
+    font-size:18px;
+}
+
+.transactionsValue{
+    font-family:Circe;
+    font-weight: 400;
+    font-size:16px;
+}
+
+.transactionsUl{
+width: 280px;
+border: 1px solid rgba(220, 220, 223, 1);
+align-items: center;
+padding:12px;
+border-radius:30px;
+border-left: 5px #FF6596 solid;
+background-color: white;
+}
+
+.transactionsUl li{
     width: 280px;
-    height: 282px;
-    border:1px solid black;
+    height: 47px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom:1px solid rgba(220, 220, 223, 1);
+    align-items: center;
+
+}
+
+.editButton svg{
+    width: 12px;
+    height: 12px;
+}
+
+.transactionType{
+width: 140px;
+height: 47px;
+}
+
+.transactionValue{
+width: 140px;
+height: 47px;
+}
+
+.delButton{
+    cursor:pointer;
+    width: 67px;
+    height: 26px;
+    background-color: rgba(36, 204, 167, 1);
+    color:rgba(255, 255, 255, 1);
+    text-align:center;
+    font-weight: 400;
+    font-size:14px;
+    border:none;
     border-radius:30px;
-    margin:2px auto;
+}
+.delButton:hover{
+    background-color: red;
+    transition: transform .2s;
+    transform: scale(1.05);
 }
 
-
-.cardTbody{
-    @include flex-display(null, null, space-between);
+.editButton{
+    cursor: pointer;
+    border:none;
+    background-color: transparent;
 }
-
-.cardTbody tr{
-display:grid;
-justify-content: center;
-padding:20px 12px;
-}
-
-.cardTbody th{
-    text-align: left;
-    @include font-type(bold, text-medium);
-    height: 30px;
-    border-radius:0;
-    border-bottom:1px solid black;
-}
-
-.cardTbody td{
-    text-align:end; 
-    @include font-type(normal,text-normal);
-    border-radius:0;
-    border-bottom:1px solid black;
-
-
+.editButton:hover{
+    fill:green;
+    transition: transform .2s;
+    transform: scale(1.05);
 }
