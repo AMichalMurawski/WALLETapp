@@ -1,9 +1,8 @@
 import { HiOutlinePlus, HiOutlineMinus } from 'react-icons/hi';
 import s from './ModalAddTransactionCheckbox.module.scss';
-import { useWallet, useModal } from '../../../hooks';
+import { useModal } from '../../../hooks';
 import { useDispatch } from 'react-redux';
 import { modalSpliceTransaction } from '../../../redux/modal/modalThunk';
-
 
 export const ModalAddTransactionCheckbox = prop => {
   const { modalTransaction } = useModal();

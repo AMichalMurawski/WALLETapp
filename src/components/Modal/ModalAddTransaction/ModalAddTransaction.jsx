@@ -9,14 +9,6 @@ import {
   modalEditTransaction,
 } from '../../../redux/modal/modalThunk';
 
-const initialTransaction = {
-  date: new Date(),
-  type: 'expense',
-  sum: 0,
-  comment: '',
-  categoryId: 99,
-};
-
 const ModalAddTransaction = () => {
   const dispatch = useDispatch();
 
