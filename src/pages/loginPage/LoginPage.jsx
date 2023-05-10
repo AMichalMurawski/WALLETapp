@@ -48,7 +48,9 @@ const LoginPage = () => {
                 </>
               )}
             </Media>
-           
+            <div className={s.form}>
+              <LoginForm />
+            </div>
           </div>
         </div>
       </div>
