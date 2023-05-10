@@ -32,7 +32,6 @@ export const addTransaction = createAsyncThunk(
       });
       return response.data;
     } catch (error) {
-      console.log(error);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -45,7 +44,6 @@ export const getTransactions = createAsyncThunk(
       const response = await axios.get(`wallet/${walletId}/transactions`);
       return response.data;
     } catch (error) {
-      console.log('error');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -61,7 +59,6 @@ export const editTransaction = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      console.log('error');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -76,7 +73,6 @@ export const deleteTransaction = createAsyncThunk(
       );
       return response.data;
     } catch (error) {
-      console.log('error');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -91,7 +87,6 @@ export const getCategories = createAsyncThunk(
       );
       return response.data.categories;
     } catch (error) {
-      console.log('error');
       return thunkAPI.rejectWithValue(error.message);
     }
   }

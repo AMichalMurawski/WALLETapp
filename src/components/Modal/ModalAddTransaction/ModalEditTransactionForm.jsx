@@ -2,9 +2,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as yup from 'yup';
 import Datetime from 'react-datetime';
 import { useEffect } from 'react';
-
 import 'react-datetime/css/react-datetime.css';
-
 import { RiCalendar2Line } from 'react-icons/ri';
 import scss from './ModalAddTransactionForm.module.scss';
 import { useAuth, useModal, useWallet } from '../../../hooks';
@@ -20,13 +18,13 @@ import {
 
 const initialTransaction = {
   date: new Date().toLocaleDateString(),
-  type: 'expense',
   categoryId: 99,
   comment: '',
   sum: 0,
 };
 
 const schema = yup.object().shape({
+ 
   comment: yup
     .string()
     .trim()
@@ -38,7 +36,7 @@ const initialValues = {
   comment: '',
 };
 
-export const ModalAddTransactionForm = ({ onClick }) => {
+export const ModalEditTransactionForm = ({ onClick }) => {
   const { modalTransaction } = useModal();
   const { categories, changeTransactions } = useWallet();
   const dispatch = useDispatch();
@@ -81,6 +79,7 @@ export const ModalAddTransactionForm = ({ onClick }) => {
   };
 
   const handleSubmit = e => {
+    console.log('submit');
     dispatch(
       addTransaction({
         walletId: user.wallets[0].id,
@@ -109,6 +108,8 @@ export const ModalAddTransactionForm = ({ onClick }) => {
       </div>
     );
   };
+
+  console.log(modalTransaction);
 
   return (
     <Formik
@@ -146,8 +147,10 @@ export const ModalAddTransactionForm = ({ onClick }) => {
               enableReinitialize={true}
               value={modalTransaction.sum}
               name="amount"
+         
               onChange={handleSum}
             ></Field>
+           
           </label>
           <label className={scss.dateBox}>
             <Datetime
@@ -185,7 +188,7 @@ export const ModalAddTransactionForm = ({ onClick }) => {
           </label>
         </div>
         <button type="submit" className={scss.addBtn}>
-          Add
+          Save
         </button>
       </Form>
     </Formik>

@@ -15,7 +15,6 @@ import { modalReducer } from './modal/modalSlice';
 import { walletReducer } from './wallet/walletSlice';
 import { chartReducer } from './chart/chartSlice.js';
 import currencyReducer from './currency/CurrencySlice.js';
-// import { reducer } from "./path/to/reducer"
 
 const authPersistConfig = {
   key: 'auth',
@@ -30,7 +29,6 @@ export const store = configureStore({
     wallet: walletReducer,
     chart: chartReducer,
     currency: currencyReducer,
-    // name: reducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({

@@ -11,7 +11,6 @@ import { useState } from 'react';
 import { signin } from '../../redux/auth/authThunk';
 import { BiHide, BiShow } from 'react-icons/bi';
 import { useAuth } from '../../hooks';
-//import { Loader } from 'components';
 
 export const LoginForm = () => {
   const initialValues = {
@@ -20,8 +19,8 @@ export const LoginForm = () => {
   };
 
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('example@mail.pl');
-  const [password, setPassword] = useState('Password1!');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const { isLoggedIn } = useAuth();
 
   const onSubmit = e => {

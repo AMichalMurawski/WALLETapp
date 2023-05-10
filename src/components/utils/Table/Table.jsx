@@ -16,7 +16,6 @@ const Table = ({ theadData, tbodyData, className }) => {
   const handleEdit = e => {
     const id = e.currentTarget.getAttribute('data-id');
     const transaction = transactions.filter(e => e._id === id);
-    console.log(transaction);
     dispatch(modalSpliceTransaction({ ...transaction[0], id }));
     dispatch(modalShowEditTransaction(true));
   };

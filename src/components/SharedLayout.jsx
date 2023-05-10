@@ -1,10 +1,12 @@
-import { Suspense } from "react";
-import { Outlet } from "react-router-dom";
+import { Suspense } from 'react';
+import { Outlet } from 'react-router-dom';
+import { Spinner } from './utils/Spinner/Spinner';
+import scss from './SharedLayout.module.scss';
 
 export const SharedLayout = () => {
   return (
-    <div style={{ backgroundColor: "lightblue" }}>
-      <Suspense fallback={<div>Loading page...</div>}>
+    <div className={scss.refresh}>
+      <Suspense fallback={<Spinner />}>
         <Outlet />
       </Suspense>
     </div>
