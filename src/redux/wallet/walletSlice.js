@@ -27,7 +27,7 @@ const walletSlice = createSlice({
       state.changeTransactions = false;
     });
     builder.addCase(addTransaction.fulfilled, (state, action) => {
-      state.transactions = [...state.transaction, action.payload.transaction];
+      state.transactions.push(action.payload.transaction);
       state.balance = action.payload.balance;
       state.changeTransactions = true;
     });

@@ -24,9 +24,9 @@ const Table = ({ theadData, tbodyData, className }) => {
     <table className={className}>
       <thead className={className + '_head'}>
         <tr>
-          {theadData.map(heading => {
+          {theadData.map((heading, i) => {
             return (
-              <th className={className + '_th'} key={heading}>
+              <th className={className + '_th'} key={i}>
                 {heading}
               </th>
             );
