@@ -6,6 +6,7 @@ import { SharedLayout } from './components/SharedLayout';
 import { useDispatch } from 'react-redux';
 import { currentUser } from './redux/auth/authThunk';
 import { Spinner } from './components/utils/Spinner/Spinner';
+import scss from './App.module.scss';
 
 const LoginPage = lazy(() => import('./pages/loginPage/LoginPage'));
 const RegistrationPage = lazy(() =>
@@ -22,7 +23,9 @@ export const App = () => {
   });
 
   return isRefreshing ? (
-    <Spinner />
+    <div className={scss.refresh}>
+      <Spinner />
+    </div>
   ) : (
     <Routes>
       <Route path="/" element={<SharedLayout />}>
