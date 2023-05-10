@@ -9,6 +9,7 @@ import {
 
 const initialState = {
   modalTransaction: {
+    id: null,
     date: new Date().toLocaleDateString(),
     type: 'expense',
     categoryId: 99,

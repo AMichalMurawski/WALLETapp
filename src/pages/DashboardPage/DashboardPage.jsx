@@ -17,7 +17,7 @@ const ModalAddTransaction = lazy(() =>
 );
 
 const DashboardPage = () => {
-  const { showAddTransaction } = useModal();
+  const { showAddTransaction, showEditTransaction } = useModal();
 
   return (
     <div className={scss.pageHomeContainer}>
@@ -91,7 +91,11 @@ const DashboardPage = () => {
         )}
       </Media>
 
-      {showAddTransaction ? <ModalAddTransaction /> : <></>}
+      {showAddTransaction || showEditTransaction ? (
+        <ModalAddTransaction />
+      ) : (
+        <></>
+      )}
     </div>
   );
 };
