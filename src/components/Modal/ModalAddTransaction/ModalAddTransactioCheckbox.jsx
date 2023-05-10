@@ -1,6 +1,6 @@
 import { HiOutlinePlus, HiOutlineMinus } from 'react-icons/hi';
 import s from './ModalAddTransactionCheckbox.module.scss';
-import { useWallet } from '../../../hooks/useWallet';
+//import { useWallet } from '../../../hooks/useWallet';
 
 export const ModalAddTransactionCheckbox = prop => {
   return (
