@@ -6,7 +6,7 @@ import css from './TableFilters.module.scss';
 import { selectStyles } from './SelectStyles';
 import { useDispatch } from 'react-redux';
 import { changeMonth, changeYear } from '../../redux/chart/chartThunk';
-// import { useChart } from '../../hooks';
+import { useChart } from '../../hooks';
 
 // const currentMonth = new Date().getMonth() + 1;
 const months = Array.from({ length: 12 }, (item, i) => {
@@ -14,6 +14,9 @@ const months = Array.from({ length: 12 }, (item, i) => {
     locale: pl,
   });
 });
+
+const d = new Date();
+const name = months[d.getMonth()];
 
 const monthOptions = Array(12)
   .fill(null)
@@ -27,7 +30,7 @@ for (let i = currentYear; i >= 1999; i--) {
 
 const TableFilters = () => {
   const dispatch = useDispatch();
-  // const { year, month } = useChart();
+  const { year, month } = useChart();
 
   const handleMonth = e => {
     dispatch(changeMonth(e.value));
@@ -43,7 +46,7 @@ const TableFilters = () => {
         <Select
           styles={selectStyles}
           options={monthOptions}
-          placeholder="Month"
+          placeholder={name}
           onChange={handleMonth}
         />
       </div>
@@ -51,7 +54,7 @@ const TableFilters = () => {
         <Select
           styles={selectStyles}
           options={years}
-          placeholder="Year"
+          placeholder={new Date().getFullYear()}
           onChange={handleYear}
         />
       </div>
