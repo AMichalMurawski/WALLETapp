@@ -24,30 +24,30 @@ export const App = () => {
     <b>Refreshing user...</b>
   ) : (
     <Routes>
-      <Route path="/" element={<SharedLayout />}>
+      <Route path="." element={<SharedLayout />}>
         <Route index element={<Navigate to="/home" />} />
         <Route
           path="/login"
-          element={<RestrictedRoute redirectTo="/" component={<LoginPage />} />}
+          element={<RestrictedRoute redirectTo="." component={<LoginPage />} />}
         />
         <Route
           path="/registration"
           element={
-            <RestrictedRoute redirectTo="/" component={<RegistrationPage />} />
+            <RestrictedRoute redirectTo="." component={<RegistrationPage />} />
           }
         />
         <Route
-          path="/"
+          path="."
           element={
             <ProtectedRoute redirectTo="/login" component={<DashboardPage />} />
           }
         >
-          <Route path="*" element={<Navigate to="/" />} />
+          <Route path="*" element={<Navigate to="." />} />
         </Route>
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="." />} />
         <Route path="/notFound" element={<NotFound />} />
       </Route>
-      <Route path="*" element={<Navigate to="/" />} />
+      <Route path="*" element={<Navigate to="." />} />
     </Routes>
   );
 };
