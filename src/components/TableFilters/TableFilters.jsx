@@ -27,7 +27,7 @@ for (let i = currentYear; i >= 1999; i--) {
 
 const TableFilters = () => {
   const dispatch = useDispatch();
-  const { month, year } = useChart();
+  const { year, month } = useChart();
 
   const handleMonth = e => {
     dispatch(changeMonth(e.value));
@@ -44,9 +44,7 @@ const TableFilters = () => {
           styles={selectStyles}
           options={monthOptions}
           placeholder="Month"
-          value={month}
           onChange={handleMonth}
-          tabSelectsValue={month}
         />
       </div>
       <div className={css.select}>

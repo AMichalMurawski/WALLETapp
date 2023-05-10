@@ -14,9 +14,27 @@ export const selectMonth = state => state.chart.month;
 
 export const selectChartCategories = createSelector(
   [selectCategorySummary],
-  chart => {
-    if (chart.categorySummary) {
-      return chart.categorySummary.filter(e => e.total > 0);
+  categorySummary => {
+    if (categorySummary) {
+      return categorySummary.filter(e => e.total > 0);
+    }
+    return [];
+  }
+);
+
+const rainbowColors = nr => {
+  let colors = [];
+  for (let i = 0; i < nr; i++) {
+    colors.push('hsl(' + (360 * i) / nr + ',80%,50%)');
+  }
+  return colors;
+};
+
+export const selectChartColors = createSelector(
+  [selectChartCategories],
+  chartCategories => {
+    if (chartCategories.length > 0) {
+      return rainbowColors(chartCategories.length);
     }
     return [];
   }

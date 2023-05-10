@@ -49,7 +49,9 @@ export const transactionsSummary = createAsyncThunk(
   async ({ walletId, year, month }, thunkAPI) => {
     try {
       const response = await axios.get(
-        `wallet/${walletId}/transactions-summary?year=${year}&month=${month}`
+        `wallet/${walletId}/transactions-summary?year=${year}&month=${
+          +month + 1
+        }`
       );
       return response.data;
     } catch (error) {
