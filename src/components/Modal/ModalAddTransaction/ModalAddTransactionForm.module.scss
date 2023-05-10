@@ -1,5 +1,9 @@
 @use 'src/stylesheets/vars' as *;
 
+.addFormInputCategory {
+  width: 60px;
+}
+
 .menu {
   position: absolute;
   top: 32px;
