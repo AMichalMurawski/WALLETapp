@@ -17,8 +17,6 @@ const initialTransaction = {
 
 const ModalAddTransaction = () => {
   const dispatch = useDispatch();
-  const { categories } = useWallet();
-  const { modalTransaction } = useModal();
 
   const handleCloseModal = () => {
     dispatch(modalAddTransaction(false));
@@ -45,6 +43,7 @@ const ModalAddTransaction = () => {
       document.body.style.overflow = '';
     };
   });
+
   return (
 
     <div
