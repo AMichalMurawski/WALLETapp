@@ -15,6 +15,9 @@ const months = Array.from({ length: 12 }, (item, i) => {
   });
 });
 
+// const d = new Date();
+// const name = months[d.getMonth()];
+
 const monthOptions = Array(12)
   .fill(null)
   .map((item, index) => ({ value: index, label: months[index] }));
@@ -43,7 +46,7 @@ const TableFilters = () => {
         <Select
           styles={selectStyles}
           options={monthOptions}
-          placeholder="Month"
+          placeholder={new Date().getMonth() + 1}
           onChange={handleMonth}
         />
       </div>
@@ -51,7 +54,7 @@ const TableFilters = () => {
         <Select
           styles={selectStyles}
           options={years}
-          placeholder="Year"
+          placeholder={new Date().getFullYear()}
           onChange={handleYear}
         />
       </div>

@@ -2,7 +2,7 @@ name: Build and deploy to GitHub Pages
 
 on:
   push:
-    branches: [main]
+    branches: [dev]
 permissions:
   contents: write
 jobs:
@@ -19,7 +19,7 @@ jobs:
           npm install
           npm run lint:js
           npm run build
-          
+
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.0
         with:

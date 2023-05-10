@@ -2,14 +2,11 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import  {ModalEditTransactionCheckbox}  from './ModalEditTransactionCheckbox';
 import { ModalEditTransactionForm } from './ModalEditTransactionForm';
+import s from './ModalEditTransaction.module.scss';
 import {
   modalShowAddTransaction,
   modalShowEditTransaction,
 } from '../../../redux/modal/modalThunk';
-import s from './ModalAddTransaction.module.scss';
-
-
-
 
 export const ModalEditTransaction = () =>{
     const dispatch = useDispatch();
@@ -56,3 +53,6 @@ export const ModalEditTransaction = () =>{
       
       );
 }
+
+export default ModalEditTransaction;
+
