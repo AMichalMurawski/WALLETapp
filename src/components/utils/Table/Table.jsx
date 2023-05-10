@@ -1,13 +1,10 @@
 import { useDispatch } from 'react-redux';
 import IconsSvg from '../../../components/utils/IconsSvg/IconSvg';
 import scss from './Table.module.scss';
-import {
-  deleteTransaction,
-  editTransaction,
-} from '../../../redux/wallet/walletThunk';
+import { deleteTransaction } from '../../../redux/wallet/walletThunk';
 import { useAuth, useWallet } from '../../../hooks';
 import {
-  modalEditTransaction,
+  modalShowEditTransaction,
   modalSpliceTransaction,
 } from '../../../redux/modal/modalThunk';
 
@@ -21,7 +18,7 @@ const Table = ({ theadData, tbodyData, className }) => {
     const transaction = transactions.filter(e => e._id === id);
     console.log(transaction);
     dispatch(modalSpliceTransaction({ ...transaction[0], id }));
-    dispatch(modalEditTransaction(true));
+    dispatch(modalShowEditTransaction(true));
   };
 
   const handleDelete = e => {

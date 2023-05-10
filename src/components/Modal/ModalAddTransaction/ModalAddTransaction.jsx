@@ -5,16 +5,16 @@ import s from './ModalAddTransaction.module.scss';
 import { ModalAddTransactionCheckbox } from './ModalAddTransactioCheckbox';
 import { ModalAddTransactionForm } from './ModalAddTransactionForm';
 import {
-  modalAddTransaction,
-  modalEditTransaction,
+  modalShowAddTransaction,
+  modalShowEditTransaction,
 } from '../../../redux/modal/modalThunk';
 
 const ModalAddTransaction = () => {
   const dispatch = useDispatch();
 
   const handleCloseModal = () => {
-    dispatch(modalAddTransaction(false));
-    dispatch(modalEditTransaction(false));
+    dispatch(modalShowAddTransaction(false));
+    dispatch(modalShowEditTransaction(false));
   };
 
   const handleBackdropClick = e => {
