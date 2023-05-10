@@ -14,7 +14,7 @@ import { useDispatch } from 'react-redux';
 import { signup } from '../../redux/auth/authThunk';
 import { BiHide, BiShow } from 'react-icons/bi';
 import { useAuth } from '../../hooks';
-import { modalSuccessRegistration } from '../../redux/modal/modalThunk';
+import { modalShowSuccessRegistration } from '../../redux/modal/modalThunk';
 //import { Loader } from 'components';
 
 const initialValues = {
@@ -36,7 +36,7 @@ const RegisterForm = () => {
     };
     dispatch(signup(user)).then(response => {
       if (response.payload.status === 'success') {
-        dispatch(modalSuccessRegistration(true));
+        dispatch(modalShowSuccessRegistration(true));
       }
     });
   };

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
-export const modalAddTransaction = createAsyncThunk(
+export const modalShowAddTransaction = createAsyncThunk(
   'modal/addTransaction',
   async (boolean, thunkAPI) => {
     try {
@@ -11,7 +11,7 @@ export const modalAddTransaction = createAsyncThunk(
   }
 );
 
-export const modalEditTransaction = createAsyncThunk(
+export const modalShowEditTransaction = createAsyncThunk(
   'modal/editTransaction',
   async (boolean, thunkAPI) => {
     try {
@@ -22,7 +22,7 @@ export const modalEditTransaction = createAsyncThunk(
   }
 );
 
-export const modalSuccessLogout = createAsyncThunk(
+export const modalShowSuccessLogout = createAsyncThunk(
   'modal/successLogout',
   async (boolean, thunkAPI) => {
     try {
@@ -33,7 +33,7 @@ export const modalSuccessLogout = createAsyncThunk(
   }
 );
 
-export const modalSuccessRegistration = createAsyncThunk(
+export const modalShowSuccessRegistration = createAsyncThunk(
   'modal/successRegistration',
   async (boolean, thunkAPI) => {
     try {
