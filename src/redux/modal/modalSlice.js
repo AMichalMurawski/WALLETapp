@@ -13,6 +13,7 @@ const initialState = {
     date: new Date().toLocaleDateString(),
     type: 'expense',
     categoryId: 99,
+    categoryName: '',
     comment: '',
     sum: 0,
   },
