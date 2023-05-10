@@ -18,6 +18,7 @@ import {
 } from '../../../redux/wallet/walletThunk';
 import {
   modalAddTransaction,
+  modalEditTransaction,
   modalSpliceTransaction,
 } from '../../../redux/modal/modalThunk';
 
@@ -57,6 +58,7 @@ const initialValues = {
 export const ModalAddTransactionForm = ({ onClick }) => {
   const { modalTransaction } = useModal();
   const { categories, changeTransactions } = useWallet();
+  const { modalAddTransaction, modalEditTransaction } = useModal();
   const dispatch = useDispatch();
   const { user } = useAuth();
 
@@ -108,6 +110,7 @@ export const ModalAddTransactionForm = ({ onClick }) => {
       })
     );
     dispatch(modalAddTransaction(false));
+    dispatch(modalEditTransaction(false));
   };
 
   const renderCalendarInput = (props, openCalendar) => {
@@ -144,6 +147,8 @@ export const ModalAddTransactionForm = ({ onClick }) => {
       </div>
     );
   };
+
+  console.log(modalTransaction);
 
   return (
     <Formik
