@@ -41,12 +41,13 @@ const TableFilters = () => {
   };
 
   return (
+
     <div className={css.selectContainer}>
       <div className={css.select}>
         <Select
           styles={selectStyles}
           options={monthOptions}
-          placeholder={name}
+          placeholder={new Date().getMonth()+1}
           onChange={handleMonth}
         />
       </div>
