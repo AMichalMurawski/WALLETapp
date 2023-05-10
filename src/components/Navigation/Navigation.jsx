@@ -21,7 +21,7 @@ export const Navigation = () => {
                   <NavLink
                     style={({ isActive }) => {
                       return {
-                        scale: isActive ? '1.2' : '',
+                        scale: isActive ? '1.2' : '0.8',
                       };
                     }}
                     to="home"
@@ -34,7 +34,7 @@ export const Navigation = () => {
                     className={scss.navLink}
                     style={({ isActive }) => {
                       return {
-                        scale: isActive ? '1.2' : '',
+                        scale: isActive ? '1.2' : '0.8',
                       };
                     }}
                     to="diagram"
@@ -46,7 +46,7 @@ export const Navigation = () => {
                   <NavLink
                     style={({ isActive }) => {
                       return {
-                        scale: isActive ? '1.2' : '',
+                        scale: isActive ? '1.2' : '0.8',
                       };
                     }}
                     to="currency"
