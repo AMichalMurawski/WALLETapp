@@ -1,5 +1,6 @@
 @use 'src/stylesheets/vars' as *;
 @import '../../../stylesheets/utils/mixins';
+@import '../../../stylesheets/utils/placeholders';
 
 .backdrop {
   position: fixed;
@@ -33,9 +34,9 @@
 
   @include mq(tab) {
     width: 540px;
-    padding-top: 40px;
-    padding-bottom: 62px;
     border-radius: 20px;
+    padding: 40px 73px 40px 73px;
+    height: auto;
   }
 }
 
@@ -119,11 +120,12 @@
 }
 
 .closeBtn {
-  @extend %btnTransperentBlue !optional;
-  width: 300px;
+  @extend %btnTransperentBlue;
   height: 50px;
-  padding: 13px 0;
+  margin-bottom: 20px;
   margin-top: 20px;
-  text-transform: uppercase;
   border-radius: 20px;
+  width: 300px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
