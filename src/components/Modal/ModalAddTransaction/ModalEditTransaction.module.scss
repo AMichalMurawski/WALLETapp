@@ -1,6 +1,7 @@
 @use 'src/stylesheets/vars' as *;
 @import '../../../stylesheets/utils/mixins';
 @import '../../../stylesheets/utils/placeholders';
+@import '../../../stylesheets/utils/colors';
 
 .backdrop {
   position: fixed;
@@ -23,6 +24,7 @@
 }
 
 .box {
+  position: relative;
   padding-top: 80px;
   padding-bottom: 20px;
   background-color: #ffffff;
@@ -129,4 +131,22 @@
   width: 300px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
+}
+.xBtn svg {
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 23px;
+  right: 28px;
+  cursor: pointer;
+  opacity: 0.5;
+  fill: var(--grey-color-icon);
+  transition: transform 0.25s, opacity 0.25s;
+
+  &:hover {
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    transform: rotate(270deg);
+    opacity: 1;
+  }
 }

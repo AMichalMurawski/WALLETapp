@@ -5,6 +5,8 @@ import { ModalEditTransactionForm } from './ModalEditTransactionForm';
 import s from './ModalEditTransaction.module.scss';
 import { modalShowEditTransaction } from '../../../redux/modal/modalThunk';
 
+import IconSvg from '../../utils/IconsSvg/IconSvg';
+
 export const ModalEditTransaction = () => {
   const dispatch = useDispatch();
 
@@ -37,6 +39,9 @@ export const ModalEditTransaction = () => {
       onClick={handleBackdropClick}
     >
       <div className={s.box}>
+        <div className={s.xBtn}>
+          <IconSvg icon="close" />
+        </div>
         <h2 className={s.title}>Edit transaction</h2>
         <ModalEditTransactionCheckbox></ModalEditTransactionCheckbox>
         <ModalEditTransactionForm
