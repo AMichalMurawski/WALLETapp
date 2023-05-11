@@ -18,6 +18,9 @@ const Card = () => {
   return (
     <>
       <Balance />
+      <div className={scss.buttonContain}>
+      <AddButton />
+      </div>
       {transactions.map((single, index) => {
         return (
           <div className={scss.container}>
@@ -56,10 +59,11 @@ const Card = () => {
                 </li>
               </ul>
             </div>
-            <AddButton />
+            
           </div>
         );
       })}
+
     </>
   );
 };

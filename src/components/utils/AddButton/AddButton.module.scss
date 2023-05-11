@@ -19,7 +19,7 @@
     
     .statsButtonContainer{
         @include flex-display(null,null,flex-end);
-        position:fixed;
+        align-items: self-end;
         bottom:20px;
         right:0px;
     }
@@ -27,8 +27,7 @@
     @media only screen and (max-width: 767px) {
         .statsButtonContainer{
             @include flex-display(null,null,flex-end);
-            position:fixed;
-            top:255px;
-            right:-40px;
-        }  
-      }
+            position:relative;
+            
+        }         
+    }
