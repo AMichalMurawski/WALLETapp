@@ -41,6 +41,7 @@
 }
 
 .title {
+  margin: 0;
   @include mixins-mq(mob-only) {
     font-family: 'Poppins';
     font-weight: 400;
