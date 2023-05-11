@@ -47,6 +47,10 @@
 
 .main {
   @include flex-display(null, null, center, center);
+
+  @include mixins-mq(tab) {
+    margin-right: 20px;
+  }
 }
 
 .logout {
