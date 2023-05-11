@@ -133,6 +133,7 @@
   text-transform: uppercase;
 }
 .xBtn svg {
+  display: none;
   width: 16px;
   height: 16px;
   position: absolute;
@@ -148,5 +149,9 @@
     -moz-transform: rotate(270deg);
     transform: rotate(270deg);
     opacity: 1;
+  }
+
+  @include mixins-mq(tab) {
+    display: inline;
   }
 }
