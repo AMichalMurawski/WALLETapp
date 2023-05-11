@@ -36,7 +36,9 @@ const Home = () => {
             />
           </div>
         )}
+        <div className={scss.addButton}>
         <AddButton />
+        </div>
       </div>
     </>
   );
