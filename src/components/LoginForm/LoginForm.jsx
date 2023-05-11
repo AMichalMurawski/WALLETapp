@@ -19,8 +19,8 @@ export const LoginForm = () => {
   };
 
   const dispatch = useDispatch();
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('kevin.sam@mail.com');
+  const [password, setPassword] = useState('Password1!');
   const { isLoggedIn } = useAuth();
 
   const onSubmit = e => {
