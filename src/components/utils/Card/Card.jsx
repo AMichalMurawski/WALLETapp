@@ -24,7 +24,7 @@ const Card = () => {
 
   useEffect(() => {
     dispatch(getTransactions({ walletId: user.wallets[0].id }));
-  }, [changeTransactions]);
+  }, [changeTransactions, dispatch, user.wallets]);
 
   const handleEdit = e => {
     const id = e.currentTarget.getAttribute('data-id');
