@@ -31,11 +31,11 @@ export const App = () => {
       <Route path="/" element={<SharedLayout />}>
         <Route index element={<Navigate to="/home" />} />
         <Route
-          path="login"
+          path="/login"
           element={<RestrictedRoute redirectTo="/" component={<LoginPage />} />}
         />
         <Route
-          path="registration"
+          path="/registration"
           element={
             <RestrictedRoute redirectTo="/" component={<RegistrationPage />} />
           }
@@ -45,11 +45,13 @@ export const App = () => {
           element={
             <ProtectedRoute redirectTo="/login" component={<DashboardPage />} />
           }
-        />
+        >
+          <Route path="*" element={<Navigate to="/" />} />
+        </Route>
         <Route path="*" element={<Navigate to="/" />} />
+        <Route path="/notFound" element={<NotFound />} />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
-      <Route path="/notFound" element={<NotFound />} />
     </Routes>
   );
 };
