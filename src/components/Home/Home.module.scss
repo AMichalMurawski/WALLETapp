@@ -4,12 +4,20 @@
   @include flex-display(null,null,center);
     margin:46px 46px;
     }
-    
+
+    @media only screen and (min-width:768px){
+      .statsMain{
+          @include flex-display(column,null,null);
+                    align-items: center;
+      }
+  }
+
     .statsMain table {
         border-collapse: collapse;
         width: 715px;
         text-align: center;
         border-spacing:20px;
+        margin-bottom:100px;
     
     }
     .statsMain thead {
