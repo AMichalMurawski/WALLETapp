@@ -22,6 +22,17 @@ export const modalShowEditTransaction = createAsyncThunk(
   }
 );
 
+export const modalShowLogout = createAsyncThunk(
+  'modal/logout',
+  async (boolean, thunkAPI) => {
+    try {
+      return boolean;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
 export const modalShowSuccessLogout = createAsyncThunk(
   'modal/successLogout',
   async (boolean, thunkAPI) => {

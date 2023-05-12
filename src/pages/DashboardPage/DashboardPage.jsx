@@ -11,14 +11,19 @@ import { lazy } from 'react';
 import scss from './DashboardPage.module.scss';
 import DiagramTab from '../../components/DiagramTab/DiagramTab';
 import { useModal } from '../../hooks';
-import ModalEditTransaction from '../../components/Modal/ModalAddTransaction/ModalEditTransaction';
 
 const ModalAddTransaction = lazy(() =>
   import('../../components/Modal/ModalAddTransaction/ModalAddTransaction')
 );
+const ModalEditTransaction = lazy(() =>
+  import('../../components/Modal/ModalAddTransaction/ModalEditTransaction')
+);
+const ModalLogout = lazy(() =>
+  import('../../components/Modal/ModalLogout/ModalLogout')
+);
 
 const DashboardPage = () => {
-  const { showAddTransaction, showEditTransaction } = useModal();
+  const { showAddTransaction, showEditTransaction, showLogout } = useModal();
 
   return (
     <div className={scss.pageHomeContainer}>
@@ -92,8 +97,9 @@ const DashboardPage = () => {
         )}
       </Media>
 
-      {showAddTransaction ? <ModalAddTransaction /> : <></>}
-      {showEditTransaction ? <ModalEditTransaction /> : <></>}
+      {showAddTransaction && <ModalAddTransaction />}
+      {showEditTransaction && <ModalEditTransaction />}
+      {showLogout && <ModalLogout />}
     </div>
   );
 };

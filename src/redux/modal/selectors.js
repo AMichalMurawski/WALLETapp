@@ -5,6 +5,8 @@ export const selectShowEditTransaction = state =>
 
 export const selectShowLogout = state => state.modal.showLogout;
 
+export const selectShowSuccessLogout = state => state.modal.showSuccessLogout;
+
 export const selectShowSuccessRegistration = state =>
   state.modal.showSuccessRegistration;
 
