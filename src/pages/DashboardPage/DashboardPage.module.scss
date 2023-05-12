@@ -1,5 +1,5 @@
-@use '../../stylesheets/vars';
-@import '../../stylesheets/utils/mixins';
+@use '../../stylesheet/vars';
+@import '../../stylesheet/utils/mixins';
 
 .primary {
   @include mq(desk) {
