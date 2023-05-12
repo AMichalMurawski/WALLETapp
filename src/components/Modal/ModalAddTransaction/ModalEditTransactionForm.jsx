@@ -19,7 +19,7 @@ import {
 const initialTransaction = () => {
   return {
     date: new Date().toLocaleDateString(),
-    categoryId: 99,
+    categoryId: '99',
     categoryName: '',
     comment: '',
     sum: 0,

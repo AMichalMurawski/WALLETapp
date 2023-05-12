@@ -87,11 +87,18 @@ export const signin = createAsyncThunk(
 export const signout = createAsyncThunk(
   'auth/sign-out',
   async (_, thunkAPI) => {
+    let notify;
     try {
+      notify = toast(
+        <SpinnerToastify message={notifyMessages.logoutProgress} />,
+        notifySettings()
+      );
       const response = await axios.get('auth/sign-out');
+      toast.update(notify, notifySuccess(notifyMessages.logoutSuccess));
       setToken('');
       return response;
     } catch (error) {
+      toast.update(notify, { autoClose: 0 });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -100,11 +107,19 @@ export const signout = createAsyncThunk(
 export const refreshTokens = createAsyncThunk(
   'auth/refresh-tokens',
   async (_, thunkAPI) => {
+    let notify;
     try {
+      notify = toast(
+        <SpinnerToastify message={notifyMessages.refreshTokens} />,
+        notifySettings()
+      );
+      toast.update(notify, notifySuccess(notifyMessages.loginProgress));
       const response = await axios.get('auth/refresh-tokens');
       setToken(response.data.accessToken);
+      toast.update(notify, notifySuccess(notifyMessages.loginSuccess));
       return response.data;
     } catch (error) {
+      toast.update(notify, notifySuccess(notifyMessages.loginError));
       return thunkAPI.rejectWithValue(error.message);
     }
   }
