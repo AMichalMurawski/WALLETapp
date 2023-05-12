@@ -1,16 +1,27 @@
 import Media from 'react-media';
+
+import { lazy, useState } from 'react';
+import { NavLink } from 'react-router-dom';
+
 import { useAuth } from '../../hooks';
+
 import IconSvg from '../utils/IconsSvg/IconSvg';
 import scss from './Header.module.scss';
-import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { signout } from '../../redux/auth/authThunk';
+
+const ModalLogout = lazy(() =>
+  import('../../components/Modal/ModalLogout/ModalLogout')
+);
 
 export const Header = () => {
-  const dispatch = useDispatch();
   const { user } = useAuth();
-  const handleLogout = e => {
-    dispatch(signout());
+  const [showModal, setShowModal] = useState(false);
+
+  const handleLogoutClick = () => {
+    setShowModal(true);
+  };
+
+  const closeModal = () => {
+    setShowModal(false); //
   };
 
   return (
@@ -39,11 +50,7 @@ export const Header = () => {
                     <h1 className={scss.logout}>{user.firstName}</h1>
                   </button>
                   <p className={scss.dot}></p>
-                  <button
-                    type="button"
-                    className={scss.button}
-                    onClick={handleLogout}
-                  >
+                  <button type="button" className={scss.button}>
                     <div type="button" className={scss.exit}>
                       <IconSvg icon="exit" />
                     </div>
@@ -68,11 +75,7 @@ export const Header = () => {
                     <h1 className={scss.logout}>{user.firstName}</h1>
                   </button>
                   <p className={scss.dot}></p>
-                  <button
-                    type="button"
-                    className={scss.button}
-                    onClick={handleLogout}
-                  >
+                  <button type="button" className={scss.button}>
                     <div type="button" className={scss.exit}>
                       <IconSvg icon="exit" />
                     </div>
@@ -101,8 +104,9 @@ export const Header = () => {
                   <button
                     type="button"
                     className={scss.button}
-                    onClick={handleLogout}
+                    onClick={handleLogoutClick}
                   >
+                    {' '}
                     <div type="button" className={scss.exit}>
                       <IconSvg icon="exit" />
                     </div>
@@ -112,6 +116,7 @@ export const Header = () => {
               </div>
             </div>
           )}
+          {showModal && <ModalLogout onClose={closeModal} />}
         </>
       )}
     </Media>

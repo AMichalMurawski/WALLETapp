@@ -8,6 +8,10 @@ import { signout } from '../../../redux/auth/authThunk';
 
 export const ModalLogout = () => {
   const dispatch = useDispatch();
+  const handleLogout = e => {
+    dispatch(signout());
+  };
+
   const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
       handleCloseModal();
@@ -18,11 +22,11 @@ export const ModalLogout = () => {
     dispatch(signout());
     dispatch(modalShowSuccessLogout(false));
   };
-  
+
   const handleCloseModal = () => {
     dispatch(modalShowSuccessLogout(false));
   };
-  
+
   const escKeyDown = e => {
     if (e.code === 'Escape') {
       handleCloseModal();
@@ -47,7 +51,7 @@ export const ModalLogout = () => {
         <img className={s.logo} src={logo} alt="logo"></img>
         <h2 className={s.title}>Do you want to exit?</h2>
         <div className={s.btnBox}>
-          <button className={s.yesBtn} type="button" onClick={handleYesBtn}>
+          <button className={s.yesBtn} type="button" onClick={handleLogout}>
             yes
           </button>
           <button className={s.noBtn} type="button" onClick={handleCloseModal}>
