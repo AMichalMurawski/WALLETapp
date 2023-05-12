@@ -13,7 +13,7 @@ const RegistrationPage = lazy(() =>
   import('./pages/RegistrationPage/RegistrationPage')
 );
 const DashboardPage = lazy(() => import('./pages/DashboardPage/DashboardPage'));
-
+const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
 export const App = () => {
   const { isRefreshing } = useAuth();
   const dispatch = useDispatch();
@@ -49,6 +49,7 @@ export const App = () => {
         <Route path="*" element={<Navigate to="/" />} />
       </Route>
       <Route path="*" element={<Navigate to="/" />} />
+      <Route path="/notFound" element={<NotFound />} />
     </Routes>
   );
 };
