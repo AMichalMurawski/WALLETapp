@@ -32,14 +32,10 @@ const walletSlice = createSlice({
       state.changeTransactions = true;
     });
     builder.addCase(editTransaction.fulfilled, (state, action) => {
-      const transactions = state.transactions;
-      const transaction = action.payload.transaction;
-      transactions.forEach((e, i) => {
-        if (e._id === transaction._id) {
-          transactions.splice(i, 1, transaction);
-        }
-      });
-      state.transactions = transactions;
+      const i = state.transactions.findIndex(
+        transaction => transaction._id === action.payload.transaction._id
+      );
+      state.transactions.splice(i, 1, action.payload.transaction);
       state.balance = action.payload.balance;
       state.changeTransactions = true;
     });
