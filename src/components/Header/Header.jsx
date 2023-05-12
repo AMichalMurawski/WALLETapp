@@ -1,27 +1,20 @@
 import Media from 'react-media';
 
-import { lazy, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 import { useAuth } from '../../hooks';
 
 import IconSvg from '../utils/IconsSvg/IconSvg';
 import scss from './Header.module.scss';
-
-const ModalLogout = lazy(() =>
-  import('../../components/Modal/ModalLogout/ModalLogout')
-);
+import { useDispatch } from 'react-redux';
+import { modalShowLogout } from '../../redux/modal/modalThunk';
 
 export const Header = () => {
   const { user } = useAuth();
-  const [showModal, setShowModal] = useState(false);
+  const dispatch = useDispatch();
 
   const handleLogoutClick = () => {
-    setShowModal(true);
-  };
-
-  const closeModal = () => {
-    setShowModal(false); //
+    dispatch(modalShowLogout(true));
   };
 
   return (
@@ -116,7 +109,6 @@ export const Header = () => {
               </div>
             </div>
           )}
-          {showModal && <ModalLogout onClose={closeModal} />}
         </>
       )}
     </Media>

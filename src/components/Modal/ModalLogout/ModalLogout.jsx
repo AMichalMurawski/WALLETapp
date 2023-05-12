@@ -2,14 +2,15 @@ import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import s from './ModalLogout.module.scss';
 import logo from '../../../images/login/not_found.png';
-import { modalShowSuccessLogout } from '../../../redux/modal/modalThunk';
+import { modalShowLogout } from '../../../redux/modal/modalThunk';
 import { signout } from '../../../redux/auth/authThunk';
-//import { useModal } from '../../../hooks';
 
 export const ModalLogout = () => {
   const dispatch = useDispatch();
+
   const handleLogout = e => {
     dispatch(signout());
+    dispatch(modalShowLogout(false));
   };
 
   const handleBackdropClick = e => {
@@ -18,13 +19,13 @@ export const ModalLogout = () => {
     }
   };
 
-  const handleYesBtn = () => {
-    dispatch(signout());
-    dispatch(modalShowSuccessLogout(false));
-  };
+  // const handleYesBtn = () => {
+  //   dispatch(signout());
+  //   dispatch(modalShowSuccessLogout(false));
+  // };
 
   const handleCloseModal = () => {
-    dispatch(modalShowSuccessLogout(false));
+    dispatch(modalShowLogout(false));
   };
 
   const escKeyDown = e => {
@@ -32,6 +33,7 @@ export const ModalLogout = () => {
       handleCloseModal();
     }
   };
+
   useEffect(() => {
     document.addEventListener('keydown', escKeyDown);
     document.body.style.overflow = 'hidden';
@@ -41,6 +43,7 @@ export const ModalLogout = () => {
       document.body.style.overflow = '';
     };
   });
+
   return (
     <div
       className={s.backdrop}
