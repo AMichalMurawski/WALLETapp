@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import s from './ModalLogout.module.scss';
 import logo from '../../../images/login/not_found.png';
 import { modalShowLogout } from '../../../redux/modal/modalThunk';
