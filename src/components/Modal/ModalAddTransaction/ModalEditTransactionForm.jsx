@@ -8,7 +8,6 @@ import scss from './ModalEditTransactionForm.module.scss';
 import { useAuth, useModal, useWallet } from '../../../hooks';
 import { useDispatch } from 'react-redux';
 import {
-  addTransaction,
   editTransaction,
   getCategories,
 } from '../../../redux/wallet/walletThunk';
