@@ -1,6 +1,6 @@
-@import '../../stylesheets/utils/colors';
-@import '../../stylesheets/utils/mixins';
-@import '../../stylesheets/utils/placeholders';
+@import '../../stylesheet/utils/colors';
+@import '../../stylesheet/utils/mixins';
+@import '../../stylesheet/utils/placeholders';
 
 .formContainer {
   background-color: #ffffff;
@@ -8,7 +8,6 @@
   padding-right: 20px;
   width: 320px;
   height: 568px;
-  
 
   @include mq(tab) {
     width: 450px;
@@ -71,10 +70,9 @@
 .inputIcon {
   position: absolute;
   left: 10px;
-  bottom:50px;
+  bottom: 50px;
   color: #e0e0e0;
   fill: #e0e0e0;
-
 }
 
 .errorInputIcon {
@@ -128,7 +126,7 @@
   height: 50px;
   width: 280px;
   margin-bottom: 20px;
- 
+
   letter-spacing: 0.1em;
   text-transform: uppercase;
 
@@ -137,8 +135,6 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 2px;
- 
- 
   }
 }
 
@@ -149,7 +145,7 @@
   gap: 15px;
   height: 50px;
   margin-bottom: 20px;
- 
+
   letter-spacing: 0.1em;
   text-transform: uppercase;
 
@@ -177,10 +173,6 @@
     padding: 0;
   }
 }
-
-
-
-
 
 .icon {
   width: 25px;

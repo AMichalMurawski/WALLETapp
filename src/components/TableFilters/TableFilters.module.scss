@@ -1,15 +1,15 @@
-@import '../../stylesheets/utils/colors';
-@import '../../stylesheets/utils/mixins';
+@import '../../stylesheet/utils/colors';
+@import '../../stylesheet/utils/mixins';
 
 .selectContainer {
-    display: block;
-    padding-top: 32px;
-    gap: 16px;
+  display: block;
+  padding-top: 32px;
+  gap: 16px;
 
-    @include mq(tab) {
-      display: flex;
-            }
+  @include mq(tab) {
+    display: flex;
   }
+}
 
 .container {
   margin: 20px;

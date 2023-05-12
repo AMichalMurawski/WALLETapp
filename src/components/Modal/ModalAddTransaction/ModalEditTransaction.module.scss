@@ -1,7 +1,7 @@
-@use 'src/stylesheets/vars' as *;
-@import '../../../stylesheets/utils/mixins';
-@import '../../../stylesheets/utils/placeholders';
-@import '../../../stylesheets/utils/colors';
+@use 'src/stylesheet/vars' as *;
+@import '../../../stylesheet/utils/mixins';
+@import '../../../stylesheet/utils/placeholders';
+@import '../../../stylesheet/utils/colors';
 
 .backdrop {
   position: fixed;
