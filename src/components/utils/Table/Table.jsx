@@ -7,6 +7,7 @@ import {
   modalShowEditTransaction,
   modalSpliceTransaction,
 } from '../../../redux/modal/modalThunk';
+import { refreshTokens } from '../../../redux/auth/authThunk';
 
 const Table = ({ theadData, tbodyData, className }) => {
   const dispatch = useDispatch();
@@ -24,6 +25,12 @@ const Table = ({ theadData, tbodyData, className }) => {
     const id = e.currentTarget.getAttribute('data-id');
     dispatch(
       deleteTransaction({ walletId: user.wallets[0].id, transactionId: id })
+    ).catch(
+      dispatch(refreshTokens()).then(
+        dispatch(
+          deleteTransaction({ walletId: user.wallets[0].id, transactionId: id })
+        )
+      )
     );
   };
 

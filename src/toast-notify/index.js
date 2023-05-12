@@ -45,6 +45,10 @@ export const notifyMessages = {
   logoutProgress: 'Logout in progress',
   logoutSuccess: 'User logged out',
 
+  transactionsLoad: 'Transactions loading',
+  transactionsLoadSuccess: 'Transactions loaded',
+  transactionsLoadError: 'Transactions not loaded',
+
   transactionProgress: 'Transaction action in progress',
   transactionAdd: 'Transaction created',
   transactionDelete: 'Transaction deleted',
