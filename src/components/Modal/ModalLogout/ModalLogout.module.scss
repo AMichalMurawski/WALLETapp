@@ -1,6 +1,6 @@
-@use './utils/colors' as *;
-@use './utils/placeholders' as *;
-@forward './utils/mixins' as mixins-*;
+@import '../../../stylesheets/utils/colors';
+@import '../../../stylesheets/utils/mixins';
+@import '../../../stylesheets/utils/placeholders';
 
 
 .box {
