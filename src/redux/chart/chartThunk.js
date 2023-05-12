@@ -1,14 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
-import {
-  notifySettings,
-  notifyError,
-  notifySuccess,
-  notifyMessages,
-} from '../../toast-notify';
-import 'react-toastify/dist/ReactToastify.css';
-import { SpinnerToastify } from '../../components/utils/Spinner/SpinnerToastify';
 
 // axios.defaults.baseURL = 'https://wallet-api.herokuapp.com/api';
 axios.defaults.baseURL = 'http://localhost:3030/api';
