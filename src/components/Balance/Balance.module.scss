@@ -15,6 +15,12 @@
     @include flex-display(column,null,center);
 }
 
+@media screen and (max-width:767px) {
+    .balanceMain{
+    text-align: center;
+    }
+}
+
 .balanceTitle{
     @include font-type(null, text-little,null,null);
     font-family: "Circe";
