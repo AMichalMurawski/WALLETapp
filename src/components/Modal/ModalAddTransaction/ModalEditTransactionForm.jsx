@@ -4,27 +4,30 @@ import Datetime from 'react-datetime';
 import { useEffect } from 'react';
 import 'react-datetime/css/react-datetime.css';
 import { RiCalendar2Line } from 'react-icons/ri';
-import scss from './ModalAddTransactionForm.module.scss';
+import scss from './ModalEditTransactionForm.module.scss';
 import { useAuth, useModal, useWallet } from '../../../hooks';
 import { useDispatch } from 'react-redux';
 import {
   addTransaction,
+  editTransaction,
   getCategories,
 } from '../../../redux/wallet/walletThunk';
 import {
-  modalShowAddTransaction,
+  modalShowEditTransaction,
   modalSpliceTransaction,
 } from '../../../redux/modal/modalThunk';
 
-const initialTransaction = {
-  date: new Date().toLocaleDateString(),
-  categoryId: 99,
-  comment: '',
-  sum: 0,
+const initialTransaction = () => {
+  return {
+    date: new Date().toLocaleDateString(),
+    categoryId: '99',
+    categoryName: '',
+    comment: '',
+    sum: 0,
+  };
 };
 
 const schema = yup.object().shape({
- 
   comment: yup
     .string()
     .trim()
@@ -53,14 +56,14 @@ export const ModalEditTransactionForm = ({ onClick }) => {
     dispatch(modalSpliceTransaction(initialTransaction));
   }, [dispatch, user, changeTransactions]);
 
-  const handleDate = e => {
-    dispatch(modalSpliceTransaction({ date: e._d.toLocaleDateString() }));
+  const getCategoryName = () => {
+    const name = categories.filter(e => e.id === modalTransaction.categoryId);
+    if (!name[0]) return '';
+    return name[0].name;
   };
 
-  const handleCategoryId = e => {
-    dispatch(
-      modalSpliceTransaction({ categoryId: e.currentTarget.value.toString() })
-    );
+  const handleDate = e => {
+    dispatch(modalSpliceTransaction({ date: e._d.toLocaleDateString() }));
   };
 
   const handleSum = e => {
@@ -79,14 +82,14 @@ export const ModalEditTransactionForm = ({ onClick }) => {
   };
 
   const handleSubmit = e => {
-    console.log('submit');
     dispatch(
-      addTransaction({
+      editTransaction({
         walletId: user.wallets[0].id,
         transaction: modalTransaction,
+        transactionId: modalTransaction._id,
       })
     );
-    dispatch(modalShowAddTransaction(false));
+    dispatch(modalShowEditTransaction(false));
   };
 
   const renderCalendarInput = (props, openCalendar) => {
@@ -109,8 +112,6 @@ export const ModalEditTransactionForm = ({ onClick }) => {
     );
   };
 
-  console.log(modalTransaction);
-
   return (
     <Formik
       initialValues={initialValues}
@@ -122,35 +123,20 @@ export const ModalEditTransactionForm = ({ onClick }) => {
           <label className={scss.categoryLabel}>
             <Field
               className={scss.addFormInputCategory}
-              as="select"
-              placeholder="Select a category"
+              type="text"
+              value={getCategoryName()}
               name="category"
-              onChange={handleCategoryId}
-            >
-              {categories.map((e, i, array) => {
-                if (e.type[0] === modalTransaction.type) {
-                  return (
-                    <option key={e.id} value={e.id}>
-                      {e.name}
-                    </option>
-                  );
-                }
-                return null;
-              })}
-            </Field>
+            ></Field>
           </label>
           <label className={scss.sumBox}>
             <Field
               className={scss.addFormInputSum}
               type="text"
               placeholder="0.00"
-              enableReinitialize={true}
               value={modalTransaction.sum}
               name="amount"
-         
               onChange={handleSum}
             ></Field>
-           
           </label>
           <label className={scss.dateBox}>
             <Datetime
@@ -159,7 +145,7 @@ export const ModalEditTransactionForm = ({ onClick }) => {
               isValidDate={disableFutureDt}
               dateFormat="DD.MM.YYYY"
               closeOnSelect={true}
-              initialValue={new Date()}
+              initialValue={modalTransaction.date}
               onChange={handleDate}
             />
           </label>

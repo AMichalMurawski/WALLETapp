@@ -1,5 +1,14 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+import {
+  notifySettings,
+  notifyError,
+  notifySuccess,
+  notifyMessages,
+} from '../../toast-notify';
+import 'react-toastify/dist/ReactToastify.css';
+import { SpinnerToastify } from '../../components/utils/Spinner/SpinnerToastify';
 
 axios.defaults.baseURL = 'https://wallet-api.herokuapp.com/api';
 // axios.defaults.baseURL = 'http://localhost:3030/api';
@@ -29,11 +38,24 @@ const setToken = token => {
 export const signup = createAsyncThunk(
   'auth/sign-up',
   async (credentials, thunkAPI) => {
+    let notify;
     try {
+      notify = toast(
+        <SpinnerToastify message={notifyMessages.registerProgress} />,
+        notifySettings()
+      );
       const response = await axios.post('auth/sign-up', credentials);
+      toast.update(notify, notifySuccess(notifyMessages.registerSuccess));
       setToken(response.data.accessToken);
       return response.data;
     } catch (error) {
+      if (error.request.status === 400) {
+        toast.update(notify, notifyError(notifyMessages.registerError));
+      }
+      if (error.request.status === 409) {
+        toast.update(notify, notifyError(notifyMessages.registerExist));
+      }
+      toast.update(notify, { autoClose: 0 });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -42,11 +64,21 @@ export const signup = createAsyncThunk(
 export const signin = createAsyncThunk(
   'auth/sign-in',
   async (credentials, thunkAPI) => {
+    let notify;
     try {
+      notify = toast(
+        <SpinnerToastify message={notifyMessages.loginProgress} />,
+        notifySettings()
+      );
       const response = await axios.post('auth/sign-in', credentials);
+      toast.update(notify, notifySuccess(notifyMessages.loginSuccess));
       setToken(response.data.accessToken);
       return response.data;
     } catch (error) {
+      if (error.request.status === 404 || 400) {
+        toast.update(notify, notifyError(notifyMessages.loginError));
+      }
+      toast.update(notify, { autoClose: 0 });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -55,11 +87,18 @@ export const signin = createAsyncThunk(
 export const signout = createAsyncThunk(
   'auth/sign-out',
   async (_, thunkAPI) => {
+    let notify;
     try {
+      notify = toast(
+        <SpinnerToastify message={notifyMessages.logoutProgress} />,
+        notifySettings()
+      );
       const response = await axios.get('auth/sign-out');
+      toast.update(notify, notifySuccess(notifyMessages.logoutSuccess));
       setToken('');
       return response;
     } catch (error) {
+      toast.update(notify, { autoClose: 0 });
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -68,11 +107,19 @@ export const signout = createAsyncThunk(
 export const refreshTokens = createAsyncThunk(
   'auth/refresh-tokens',
   async (_, thunkAPI) => {
+    let notify;
     try {
+      notify = toast(
+        <SpinnerToastify message={notifyMessages.refreshTokens} />,
+        notifySettings()
+      );
+      toast.update(notify, notifySuccess(notifyMessages.loginProgress));
       const response = await axios.get('auth/refresh-tokens');
       setToken(response.data.accessToken);
+      toast.update(notify, notifySuccess(notifyMessages.loginSuccess));
       return response.data;
     } catch (error) {
+      toast.update(notify, notifySuccess(notifyMessages.loginError));
       return thunkAPI.rejectWithValue(error.message);
     }
   }

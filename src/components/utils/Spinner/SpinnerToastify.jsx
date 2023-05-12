@@ -1,6 +1,6 @@
 import React from 'react';
 import { ThreeCircles } from 'react-loader-spinner';
-import scss from './Spinner.module.scss';
+import scss from './SpinnerToastify.module.scss';
 
 export const Spinner = ({ diameter = '100' }) => (
   <div className={scss.spinnerPosition}>
@@ -19,5 +19,13 @@ export const Spinner = ({ diameter = '100' }) => (
     middleCircleColor="#4A56E2"
   />
   </div>
-
 );
+
+export const SpinnerToastify = ({ message }) => {
+  return (
+    <div className={scss.spinnerBox}>
+      <Spinner diameter="20" />
+      <p className={scss.spinnerMessage}>{message}</p>
+    </div>
+  );
+};

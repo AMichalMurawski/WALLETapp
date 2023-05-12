@@ -1,6 +1,23 @@
+@use '../stylesheets/vars' as *;
+
 .refresh {
   position: relative;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(128, 128, 128, 20%);
+  background-color: #ffffff;
+
+  @include mixins-mq(tab) {
+    background-color: #e7eaf2;
+    background-image: url('../images/login/ellipse1.svg'),
+      url('../images/login/ellipse2.svg');
+    background-repeat: no-repeat;
+    background-position: left bottom, right top;
+  }
+
+  @include mixins-mq(desk) {
+    height: 100vh;
+
+    background-image: url('../images/login/ellipse1.svg'),
+      url('../images/login/ellipse2.svg');
+  }
 }

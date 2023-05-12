@@ -21,7 +21,7 @@ import {
 const initialTransaction = {
   date: new Date().toLocaleDateString(),
   type: 'expense',
-  categoryId: 99,
+  categoryId: '99',
   comment: '',
   sum: 0,
 };

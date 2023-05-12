@@ -1,0 +1,12 @@
+@use '../../../stylesheets/vars' as *;
+
+.spinnerBox {
+  @include flex-display(row, 10px);
+  margin: 0;
+  padding: 0;
+}
+
+.spinnerMessage {
+  margin: 0;
+  padding: 0;
+}

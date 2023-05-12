@@ -1,5 +1,14 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import { toast } from 'react-toastify';
+import {
+  notifySettings,
+  notifyError,
+  notifySuccess,
+  notifyMessages,
+} from '../../toast-notify';
+import 'react-toastify/dist/ReactToastify.css';
+import { SpinnerToastify } from '../../components/utils/Spinner/SpinnerToastify';
 
 axios.defaults.baseURL = 'https://wallet-api.herokuapp.com/api';
 // axios.defaults.baseURL = 'http://localhost:3030/api';
@@ -25,13 +34,21 @@ axios.interceptors.request.use(
 export const addTransaction = createAsyncThunk(
   'wallet/addTransactions',
   async ({ walletId, transaction }, thunkAPI) => {
+    let notify;
     try {
+      notify = toast(
+        <SpinnerToastify message={notifyMessages.transactionProgress} />,
+        notifySettings()
+      );
+      console.log(transaction);
       const response = await axios.post(`wallet/${walletId}/transactions`, {
         ...transaction,
         categoryId: transaction.categoryId.toString(),
       });
+      toast.update(notify, notifySuccess(notifyMessages.transactionAdd));
       return response.data;
     } catch (error) {
+      toast.update(notify, notifyError(notifyMessages.registerError));
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -52,13 +69,21 @@ export const getTransactions = createAsyncThunk(
 export const editTransaction = createAsyncThunk(
   'wallet/editTransaction',
   async ({ walletId, transaction, transactionId }, thunkAPI) => {
+    let notify;
     try {
+      notify = toast(
+        <SpinnerToastify message={notifyMessages.transactionProgress} />,
+        notifySettings()
+      );
       const response = await axios.patch(
         `wallet/${walletId}/transactions/${transactionId}`,
         transaction
       );
+      console.log(response.data);
+      toast.update(notify, notifySuccess(notifyMessages.transactionUpdate));
       return response.data;
     } catch (error) {
+      toast.update(notify, notifyError(notifyMessages.transactionUpdateError));
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -67,12 +92,19 @@ export const editTransaction = createAsyncThunk(
 export const deleteTransaction = createAsyncThunk(
   'wallet/deleteTransaction',
   async ({ walletId, transactionId }, thunkAPI) => {
+    let notify;
     try {
+      notify = toast(
+        <SpinnerToastify message={notifyMessages.transactionProgress} />,
+        notifySettings()
+      );
       const response = await axios.delete(
         `wallet/${walletId}/transactions/${transactionId}`
       );
+      toast.update(notify, notifySuccess(notifyMessages.transactionDelete));
       return response.data;
     } catch (error) {
+      toast.update(notify, notifyError(notifyMessages.transactionDeleteError));
       return thunkAPI.rejectWithValue(error.message);
     }
   }

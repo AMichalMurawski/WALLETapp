@@ -6,6 +6,7 @@ import css from './TableFilters.module.scss';
 import { selectStyles } from './SelectStyles';
 import { useDispatch } from 'react-redux';
 import { changeMonth, changeYear } from '../../redux/chart/chartThunk';
+import { useChart } from '../../hooks';
 
 const months = Array.from({ length: 12 }, (item, i) => {
   return format(new Date(0, i), 'LLLL', {
@@ -17,6 +18,12 @@ const monthOptions = Array(12)
   .fill(null)
   .map((item, index) => ({ value: index, label: months[index] }));
 
+const monthName = month => {
+  const date = new Date();
+  date.setMonth(month);
+  return date.toLocaleString([], { month: 'long' });
+};
+
 const currentYear = new Date().getFullYear();
 const years = [];
 for (let i = currentYear; i >= 1999; i--) {
@@ -25,6 +32,7 @@ for (let i = currentYear; i >= 1999; i--) {
 
 const TableFilters = () => {
   const dispatch = useDispatch();
+  const { month, year } = useChart();
 
   const handleMonth = e => {
     dispatch(changeMonth(e.value));
@@ -40,7 +48,7 @@ const TableFilters = () => {
         <Select
           styles={selectStyles}
           options={monthOptions}
-          placeholder={new Date().getMonth() + 1}
+          placeholder={monthName(month)}
           onChange={handleMonth}
         />
       </div>
@@ -48,7 +56,7 @@ const TableFilters = () => {
         <Select
           styles={selectStyles}
           options={years}
-          placeholder={new Date().getFullYear()}
+          placeholder={year}
           onChange={handleYear}
         />
       </div>

@@ -20,7 +20,7 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(getTransactions({ walletId: user.wallets[0].id }));
-  }, [dispatch, user.wallets, changeTransactions]);
+  }, [changeTransactions, dispatch, user.wallets]);
 
   return (
     <>
@@ -36,7 +36,9 @@ const Home = () => {
             />
           </div>
         )}
-        <AddButton />
+        <div className={scss.addButton}>
+          <AddButton />
+        </div>
       </div>
     </>
   );

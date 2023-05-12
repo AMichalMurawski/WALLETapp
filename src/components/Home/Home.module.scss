@@ -3,13 +3,24 @@
 .statsMain {
   @include flex-display(null,null,center);
     margin:46px 46px;
+    @include mixins-mq(tab) {
+      display: block;
     }
-    
+    }
+
+    @media only screen and (min-width:768px){
+      .statsMain{
+          @include flex-display(column,null,null);
+                    align-items: center;
+      }
+  }
+
     .statsMain table {
         border-collapse: collapse;
         width: 715px;
         text-align: center;
         border-spacing:20px;
+        margin-bottom:100px;
     
     }
     .statsMain thead {
@@ -29,6 +40,12 @@
       border-radius: 0 30px 30px 0;
     }
     
+    .statisticsTable{
+      display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    }
     
     
     .statsMain th {

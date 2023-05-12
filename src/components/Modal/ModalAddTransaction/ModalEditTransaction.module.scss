@@ -1,5 +1,7 @@
 @use 'src/stylesheets/vars' as *;
 @import '../../../stylesheets/utils/mixins';
+@import '../../../stylesheets/utils/placeholders';
+@import '../../../stylesheets/utils/colors';
 
 .backdrop {
   position: fixed;
@@ -22,26 +24,26 @@
 }
 
 .box {
- 
-    padding-top: 70px;
-    padding-bottom: 20px;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 320px;
-    
-  
- 
+  position: relative;
+  padding-top: 80px;
+  padding-bottom: 20px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
   @include mq(tab) {
     width: 540px;
-    padding-top: 40px;
-    padding-bottom: 62px;
     border-radius: 20px;
+    padding: 40px 73px 40px 73px;
+    height: auto;
   }
 }
 
 .title {
+  margin: 0;
   @include mixins-mq(mob-only) {
     font-family: 'Poppins';
     font-weight: 400;
@@ -121,11 +123,35 @@
 }
 
 .closeBtn {
-  @extend %btnTransperentBlue !optional;
-  width: 300px;
+  @extend %btnTransperentBlue;
   height: 50px;
-  padding: 13px 0;
+  margin-bottom: 20px;
   margin-top: 20px;
-  text-transform: uppercase;
   border-radius: 20px;
+  width: 300px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.xBtn svg {
+  display: none;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 23px;
+  right: 28px;
+  cursor: pointer;
+  opacity: 0.5;
+  fill: var(--grey-color-icon);
+  transition: transform 0.25s, opacity 0.25s;
+
+  &:hover {
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    transform: rotate(270deg);
+    opacity: 1;
+  }
+
+  @include mixins-mq(tab) {
+    display: inline;
+  }
 }
