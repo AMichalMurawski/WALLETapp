@@ -13,6 +13,7 @@ export const ModalEditTransaction = () => {
   const handleCloseModal = () => {
     dispatch(modalShowEditTransaction(false));
   };
+
   const handleBackdropClick = e => {
     if (e.currentTarget === e.target) {
       handleCloseModal();
@@ -39,7 +40,7 @@ export const ModalEditTransaction = () => {
       onClick={handleBackdropClick}
     >
       <div className={s.box}>
-        <div className={s.xBtn}>
+        <div className={s.xBtn} onClick={handleCloseModal}>
           <IconSvg icon="close" />
         </div>
         <h2 className={s.title}>Edit transaction</h2>

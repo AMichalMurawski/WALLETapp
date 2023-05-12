@@ -9,6 +9,7 @@ import { useAuth, useModal, useWallet } from '../../../hooks';
 import { useDispatch } from 'react-redux';
 import {
   addTransaction,
+  editTransaction,
   getCategories,
 } from '../../../redux/wallet/walletThunk';
 import {
@@ -55,10 +56,11 @@ export const ModalEditTransactionForm = ({ onClick }) => {
     dispatch(modalSpliceTransaction(initialTransaction));
   }, [dispatch, user, changeTransactions]);
 
-  useEffect(() => {
+  const getCategoryName = () => {
     const name = categories.filter(e => e.id === modalTransaction.categoryId);
-    dispatch(modalSpliceTransaction({ categoryName: name[0].name }));
-  }, [dispatch, categories, modalTransaction.categoryId]);
+    if (!name[0]) return '';
+    return name[0].name;
+  };
 
   const handleDate = e => {
     dispatch(modalSpliceTransaction({ date: e._d.toLocaleDateString() }));
@@ -81,9 +83,10 @@ export const ModalEditTransactionForm = ({ onClick }) => {
 
   const handleSubmit = e => {
     dispatch(
-      addTransaction({
+      editTransaction({
         walletId: user.wallets[0].id,
         transaction: modalTransaction,
+        transactionId: modalTransaction._id,
       })
     );
     dispatch(modalShowEditTransaction(false));
@@ -121,7 +124,7 @@ export const ModalEditTransactionForm = ({ onClick }) => {
             <Field
               className={scss.addFormInputCategory}
               type="text"
-              disabled={modalTransaction.categoryId}
+              value={getCategoryName()}
               name="category"
             ></Field>
           </label>
@@ -142,7 +145,7 @@ export const ModalEditTransactionForm = ({ onClick }) => {
               isValidDate={disableFutureDt}
               dateFormat="DD.MM.YYYY"
               closeOnSelect={true}
-              initialValue={new Date()}
+              initialValue={modalTransaction.date}
               onChange={handleDate}
             />
           </label>

@@ -79,6 +79,7 @@ export const editTransaction = createAsyncThunk(
         `wallet/${walletId}/transactions/${transactionId}`,
         transaction
       );
+      console.log(response.data);
       toast.update(notify, notifySuccess(notifyMessages.transactionUpdate));
       return response.data;
     } catch (error) {
