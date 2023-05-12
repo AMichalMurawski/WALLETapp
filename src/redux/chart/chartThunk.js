@@ -56,21 +56,14 @@ export const changeYear = createAsyncThunk(
 export const transactionsSummary = createAsyncThunk(
   'chart/transactionsSummary',
   async ({ walletId, year, month }, thunkAPI) => {
-    let notify;
     try {
-      notify = toast(
-        <SpinnerToastify message={notifyMessages.summaryProgress} />,
-        notifySettings()
-      );
       const response = await axios.get(
         `wallet/${walletId}/transactions-summary?year=${year}&month=${
           +month + 1
         }`
       );
-      toast.update(notify, notifySuccess(notifyMessages.summarySuccess));
       return response.data;
     } catch (error) {
-      toast.update(notify, notifyError(notifyMessages.summaryError));
       return thunkAPI.rejectWithValue(error.message);
     }
   }
