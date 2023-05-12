@@ -3,7 +3,8 @@ import { ThreeCircles } from 'react-loader-spinner';
 import scss from './Spinner.module.scss';
 
 export const Spinner = ({ diameter = '100' }) => (
-  <ThreeCircles
+  <div className={scss.spinnerPosition}>
+      <ThreeCircles
     type="ThreeCircles"
     color="#24CCA7"
     className={scss.loader}
@@ -17,4 +18,6 @@ export const Spinner = ({ diameter = '100' }) => (
     innerCircleColor="#24CCA7"
     middleCircleColor="#4A56E2"
   />
+  </div>
+
 );
