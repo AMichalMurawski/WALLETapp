@@ -43,7 +43,11 @@ export const Header = () => {
                     <h1 className={scss.logout}>{user.firstName}</h1>
                   </button>
                   <p className={scss.dot}></p>
-                  <button type="button" className={scss.button}>
+                  <button
+                    type="button"
+                    className={scss.button}
+                    onClick={handleLogoutClick}
+                  >
                     <div type="button" className={scss.exit}>
                       <IconSvg icon="exit" />
                     </div>
@@ -68,7 +72,11 @@ export const Header = () => {
                     <h1 className={scss.logout}>{user.firstName}</h1>
                   </button>
                   <p className={scss.dot}></p>
-                  <button type="button" className={scss.button}>
+                  <button
+                    type="button"
+                    className={scss.button}
+                    onClick={handleLogoutClick}
+                  >
                     <div type="button" className={scss.exit}>
                       <IconSvg icon="exit" />
                     </div>

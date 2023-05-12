@@ -1,11 +1,11 @@
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import s from './ModalLogout.module.scss';
 import logo from '../../../images/login/not_found.png';
 import { modalShowLogout } from '../../../redux/modal/modalThunk';
 import { signout } from '../../../redux/auth/authThunk';
 
-export const ModalLogout = () => {
+export const ModalLogout = ({ onClose }) => {
   const dispatch = useDispatch();
 
   const handleLogout = e => {
@@ -18,12 +18,6 @@ export const ModalLogout = () => {
       handleCloseModal();
     }
   };
-
-  // const handleYesBtn = () => {
-  //   dispatch(signout());
-  //   dispatch(modalShowSuccessLogout(false));
-  // };
-
   const handleCloseModal = () => {
     dispatch(modalShowLogout(false));
   };
@@ -45,20 +39,16 @@ export const ModalLogout = () => {
   });
 
   return (
-    <div
-      className={s.backdrop}
-      onClose={handleCloseModal}
-      onClick={handleBackdropClick}
-    >
+    <div className={s.backdrop} onClick={handleBackdropClick}>
       <div className={s.box}>
-        <img className={s.logo} src={logo} alt="logo"></img>
+        <img className={s.logo} src={logo} alt="logo" />
         <h2 className={s.title}>Do you want to exit?</h2>
         <div className={s.btnBox}>
           <button className={s.yesBtn} type="button" onClick={handleLogout}>
-            yes
+            Yes
           </button>
           <button className={s.noBtn} type="button" onClick={handleCloseModal}>
-            no
+            No
           </button>
         </div>
       </div>
