@@ -1,58 +1,50 @@
-@import '../../../stylesheets/vars';
+@import '../../../stylesheet/vars';
 
-.statsButton{
-    border:none;    
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background-color:var(--btn-green-color);
-    color: var(--text-alernative);
-    margin:50px;
-    @include font-type(null, text-big);
-    cursor: pointer;
-    transition: transform .2s;
-    }
-
-.statsButton:hover{
-    transform: scale(1.2);
+.statsButton {
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--btn-green-color);
+  color: var(--text-alernative);
+  margin: 50px;
+  @include font-type(null, text-big);
+  cursor: pointer;
+  transition: transform 0.2s;
 }
-    
-    .statsButtonContainer{
-        @include flex-display(null,null,flex-end);
-        align-items: self-end;
-        bottom:20px;
-        right:0px;
-        width: 704px;
-        
-    }
 
-    @media only screen and (max-width: 767px) {
-        .statsButtonContainer{
-            @include flex-display(null,null,flex-end);
-            width:280px;
-         .statsButton{
-            position: fixed;
-            top: 75vh;
-            right: -5vw;
-           
-          
-          
-         }   
-        }         
-    }
+.statsButton:hover {
+  transform: scale(1.2);
+}
 
+.statsButtonContainer {
+  @include flex-display(null, null, flex-end);
+  align-items: self-end;
+  bottom: 20px;
+  right: 0px;
+  width: 704px;
+}
 
-    @media only screen and (min-width: 768px) {
-        .statsButtonContainer{
-            @include flex-display(null,null,flex-end);
-            width:280px;
-         .statsButton{
-            position: fixed;
-            bottom: 0px;
-            right: 0px;
-           
-          
-          
-         }   
-        }         
+@media only screen and (max-width: 767px) {
+  .statsButtonContainer {
+    @include flex-display(null, null, flex-end);
+    width: 280px;
+    .statsButton {
+      position: fixed;
+      top: 75vh;
+      right: -5vw;
     }
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .statsButtonContainer {
+    @include flex-display(null, null, flex-end);
+    width: 280px;
+    .statsButton {
+      position: fixed;
+      bottom: 0px;
+      right: 0px;
+    }
+  }
+}
