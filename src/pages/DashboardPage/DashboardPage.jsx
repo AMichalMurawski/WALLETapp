@@ -28,8 +28,8 @@ const DashboardPage = () => {
       <Header />
       <Media
         queries={{
-          mob: '(max-width: 767px)',
-          tab: '(min-width: 768px) and (max-width: 1280px)',
+          mob: '(max-width: 767.9px)',
+          tab: '(min-width: 768px) and (max-width: 1279.9px)',
           desk: '(min-width: 1280px)',
         }}
       >
