@@ -1,13 +1,45 @@
-@import '../../../stylesheets/utils/colors';
-@import '../../../stylesheets/utils/mixins';
-@import '../../../stylesheets/utils/placeholders';
+@use 'src/stylesheet/vars' as *;
+@import '../../../stylesheet/utils/colors';
+@import '../../../stylesheet/utils/mixins';
+@import '../../../stylesheet/utils/placeholders';
 
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+
+  @include mixins-mq(mob-only) {
+    overflow-x: hidden;
+    overflow-y: hidden;
+  }
+  @include mixins-mq(tab) {
+    background: var(--modal-background-color-grey);
+    overflow: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
 
 .box {
+  position: fixed;
+  padding-top: 80px;
+  padding-bottom: 20px;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  width: 100%;
+  height: 100%;
+
+  @include mq(tab) {
+    width: 540px;
+    border-radius: 20px;
+    padding: 40px 73px 40px 73px;
+    height: auto;
+  }
 }
 
 .logo {

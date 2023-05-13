@@ -1,5 +1,5 @@
-@use 'src/stylesheets/vars' as *;
-@import '../../../stylesheets/utils/mixins';
+@use 'src/stylesheet/vars' as *;
+@import '../../../stylesheet/utils/mixins';
 
 .backdrop {
   position: fixed;
@@ -22,17 +22,14 @@
 }
 
 .box {
- 
-    padding-top: 70px;
-    padding-bottom: 20px;
-    background-color: #ffffff;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 320px;
-    
-  
- 
+  padding-top: 70px;
+  padding-bottom: 20px;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 320px;
+
   @include mq(tab) {
     width: 540px;
     padding-top: 40px;
@@ -128,4 +125,28 @@
   margin-top: 20px;
   text-transform: uppercase;
   border-radius: 20px;
+}
+
+.xBtn svg {
+  display: none;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  top: 23px;
+  right: 28px;
+  cursor: pointer;
+  opacity: 0.5;
+  fill: var(--grey-color-icon);
+  transition: transform 0.25s, opacity 0.25s;
+
+  &:hover {
+    -webkit-transform: rotate(270deg);
+    -moz-transform: rotate(270deg);
+    transform: rotate(270deg);
+    opacity: 1;
+  }
+
+  @include mixins-mq(tab) {
+    display: inline;
+  }
 }

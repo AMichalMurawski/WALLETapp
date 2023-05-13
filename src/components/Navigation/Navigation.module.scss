@@ -1,52 +1,46 @@
-@import '../../stylesheets/vars';
+@import '../../stylesheet/vars';
 
-.mainHome{
-    @include flex-display(null,null,null,center);
-    margin: 40px 0px 0px 20px    
+.mainHome {
+  @include flex-display(null, null, null, center);
+  margin: 40px 0px 0px 20px;
 }
-.mainHome:hover{
-    transition: transform .2s;
-    transform: scale(1.05);
-}
-
-.home svg
-{
-height: 18px;
-width: 18px;
-
+.mainHome:hover {
+  transition: transform 0.2s;
+  transform: scale(1.05);
 }
 
-.stats svg{
-    height: 18px;
-    width: 18px;
-   
+.home svg {
+  height: 18px;
+  width: 18px;
 }
 
-.textPlain{
-    font-family:"Poppins"; 
-    @include font-type(normal, text-medium);
-    margin: 12px;
+.stats svg {
+  height: 18px;
+  width: 18px;
 }
 
-.mainStats{
-    @include flex-display(null,null,null,center);
-    margin: -10px 0px 0px 20px
-}
-.mainStats:hover{
-    transition: transform .2s;
-    transform: scale(1.05);
+.textPlain {
+  font-family: 'Poppins';
+  @include font-type(normal, text-medium);
+  margin: 12px;
 }
 
-
-
-.homeMob{
-    display:flex;
-    justify-content: center;
+.mainStats {
+  @include flex-display(null, null, null, center);
+  margin: -10px 0px 0px 20px;
+}
+.mainStats:hover {
+  transition: transform 0.2s;
+  transform: scale(1.05);
 }
 
-.homeMobIcon svg{
-    width: 38px;
-    height: 38px;
-    margin: 38px;
+.homeMob {
+  display: flex;
+  justify-content: center;
 }
 
+.homeMobIcon svg {
+  width: 38px;
+  height: 38px;
+  margin: 38px;
+}

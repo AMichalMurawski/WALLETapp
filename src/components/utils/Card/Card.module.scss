@@ -1,87 +1,85 @@
-@import '../../../stylesheets/vars';
+@import '../../../stylesheet/vars';
 
-.transactionsCard{
-    display:flex;
-    justify-content: center;
+.transactionsCard {
+  display: flex;
+  justify-content: center;
 }
-.transactionsType{
-    font-family:Circe;
-    font-weight: 700;
-    font-size:18px;
-}
-
-.transactionsValue{
-    font-family:Circe;
-    font-weight: 400;
-    font-size:16px;
+.transactionsType {
+  font-family: Circe;
+  font-weight: 700;
+  font-size: 18px;
 }
 
-.transactionsUl{
-width: 280px;
-border: 1px solid rgba(220, 220, 223, 1);
-align-items: center;
-padding:12px;
-border-radius:30px;
-border-left: 5px #FF6596 solid;
-background-color: white;
+.transactionsValue {
+  font-family: Circe;
+  font-weight: 400;
+  font-size: 16px;
 }
 
-.transactionsUl li{
-    width: 280px;
-    height: 47px;
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border-bottom:1px solid rgba(220, 220, 223, 1);
-    align-items: center;
-
+.transactionsUl {
+  width: 280px;
+  border: 1px solid rgba(220, 220, 223, 1);
+  align-items: center;
+  padding: 12px;
+  border-radius: 30px;
+  border-left: 5px #ff6596 solid;
+  background-color: white;
 }
 
-.editButton svg{
-    width: 12px;
-    height: 12px;
+.transactionsUl li {
+  width: 280px;
+  height: 47px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(220, 220, 223, 1);
+  align-items: center;
 }
 
-.transactionType{
-width: 140px;
-height: 47px;
+.editButton svg {
+  width: 12px;
+  height: 12px;
 }
 
-.transactionValue{
-width: 140px;
-height: 47px;
+.transactionType {
+  width: 140px;
+  height: 47px;
 }
 
-.delButton{
-    cursor:pointer;
-    width: 67px;
-    height: 26px;
-    background-color: rgba(36, 204, 167, 1);
-    color:rgba(255, 255, 255, 1);
-    text-align:center;
-    font-weight: 400;
-    font-size:14px;
-    border:none;
-    border-radius:30px;
-}
-.delButton:hover{
-    background-color: red;
-    transition: transform .2s;
-    transform: scale(1.05);
+.transactionValue {
+  width: 140px;
+  height: 47px;
 }
 
-.editButton{
-    cursor: pointer;
-    border:none;
-    background-color: transparent;
+.delButton {
+  cursor: pointer;
+  width: 67px;
+  height: 26px;
+  background-color: rgba(36, 204, 167, 1);
+  color: rgba(255, 255, 255, 1);
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  border: none;
+  border-radius: 30px;
 }
-.editButton:hover{
-    fill:green;
-    transition: transform .2s;
-    transform: scale(1.05);
+.delButton:hover {
+  background-color: red;
+  transition: transform 0.2s;
+  transform: scale(1.05);
 }
 
+.editButton {
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+}
+.editButton:hover {
+  fill: green;
+  transition: transform 0.2s;
+  transform: scale(1.05);
+}
 
-.buttonContain{
-    max-width: 650px;
+.buttonContain {
+  max-width: 650px;
 }

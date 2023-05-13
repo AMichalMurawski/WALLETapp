@@ -1,6 +1,6 @@
-@import '../../../stylesheets/utils/colors';
-@import '../../../stylesheets/utils/mixins';
-@import '../../../stylesheets/utils/placeholders';
+@import '../../../stylesheet/utils/colors';
+@import '../../../stylesheet/utils/mixins';
+@import '../../../stylesheet/utils/placeholders';
 
 .modal__backdrop {
   position: fixed;
@@ -68,7 +68,7 @@
   align-items: center;
   text-align: center;
 
-  @include mq(tab){
+  @include mq(tab) {
     width: 450px;
   }
 }

@@ -2,7 +2,7 @@
   "name": "walletapp",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://amichalmurawski.github.io/walletapp/",
+  "homepage": ".",
   "dependencies": {
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.3",

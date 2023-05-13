@@ -1,46 +1,48 @@
-@import '../../stylesheets/vars';
+@import '../../stylesheet/vars';
 
-.mainCurrencyComp{
-    display:flex;
-    justify-content: center;
+.mainCurrencyComp {
+  display: flex;
+  justify-content: center;
 }
 
-.mainTable{
-   @include flex-display(null,null,space-between, center);
-    margin:20px;
+.mainTable {
+  @include flex-display(null, null, space-between, center);
+  margin: 20px;
 }
 
-.tableCurrency{
-    width: 386px;
-    height: 182px;
-    border: 1px solid --text-primary;
-    border-radius:30px;
-    text-align: center;
-    padding-bottom:40px;
-    background-color:var(--main-accent-color-blue);
-    background-image: linear-gradient(180deg, rgba(255, 255, 255, 0.2) -8.67%, rgba(255, 255, 255, 0) 116.22%) ;
-    
+.tableCurrency {
+  width: 386px;
+  height: 182px;
+  border: 1px solid --text-primary;
+  border-radius: 30px;
+  text-align: center;
+  padding-bottom: 40px;
+  background-color: var(--main-accent-color-blue);
+  background-image: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.2) -8.67%,
+    rgba(255, 255, 255, 0) 116.22%
+  );
 }
 
-
-.tableHead{
-margin:12px;
-font-family: "Circe";
-@include font-type(null, text-medium);
-color: var(--text-white-color)
+.tableHead {
+  margin: 12px;
+  font-family: 'Circe';
+  @include font-type(null, text-medium);
+  color: var(--text-white-color);
 }
 
 .tableTr {
-    font-family: "Circe";
-    @include font-type(null, text-normal);
-    color: var(--text-white-color)
+  font-family: 'Circe';
+  @include font-type(null, text-normal);
+  color: var(--text-white-color);
 }
 
-.tableValue{
-text-align: start;
-padding:20px;
+.tableValue {
+  text-align: start;
+  padding: 20px;
 }
 
-.tableAdjust{
-    padding-bottom: 40px;
+.tableAdjust {
+  padding-bottom: 40px;
 }

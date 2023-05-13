@@ -1,6 +1,6 @@
-@import '../../stylesheets/utils/colors';
-@import '../../stylesheets/utils/mixins';
-@import '../../stylesheets/utils/placeholders';
+@import '../../stylesheet/utils/colors';
+@import '../../stylesheet/utils/mixins';
+@import '../../stylesheet/utils/placeholders';
 .formContainer {
   padding-top: 70px;
   padding-bottom: 20px;
@@ -36,7 +36,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
 .input {
@@ -116,7 +115,7 @@
   height: 50px;
   width: 280px;
   margin-bottom: 20px;
-  
+
   letter-spacing: 0.1em;
   text-transform: uppercase;
 
@@ -129,13 +128,13 @@
 }
 
 .loginBtnLoading {
-@extend %btnGreen;
+  @extend %btnGreen;
   display: flex;
   align-items: center;
   gap: 15px;
   height: 50px;
   margin-bottom: 20px;
-  
+
   letter-spacing: 0.1em;
   text-transform: uppercase;
 
@@ -162,7 +161,6 @@
     margin-right: auto;
   }
 }
-
 
 .icon {
   width: 25px;

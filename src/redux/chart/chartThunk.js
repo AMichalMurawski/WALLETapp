@@ -1,17 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { toast } from 'react-toastify';
-import {
-  notifySettings,
-  notifyError,
-  notifySuccess,
-  notifyMessages,
-} from '../../toast-notify';
-import 'react-toastify/dist/ReactToastify.css';
-import { SpinnerToastify } from '../../components/utils/Spinner/SpinnerToastify';
 
-// axios.defaults.baseURL = 'https://wallet-api.herokuapp.com/api';
-axios.defaults.baseURL = 'http://localhost:3030/api';
+axios.defaults.baseURL = 'https://wallet-api.herokuapp.com/api';
+// axios.defaults.baseURL = 'http://localhost:3030/api';
 axios.defaults.withCredentials = true;
 
 const STORAGE_ACCESS_TOKEN = 'accessToken';
@@ -56,21 +47,14 @@ export const changeYear = createAsyncThunk(
 export const transactionsSummary = createAsyncThunk(
   'chart/transactionsSummary',
   async ({ walletId, year, month }, thunkAPI) => {
-    let notify;
     try {
-      notify = toast(
-        <SpinnerToastify message={notifyMessages.summaryProgress} />,
-        notifySettings()
-      );
       const response = await axios.get(
         `wallet/${walletId}/transactions-summary?year=${year}&month=${
           +month + 1
         }`
       );
-      toast.update(notify, notifySuccess(notifyMessages.summarySuccess));
       return response.data;
     } catch (error) {
-      toast.update(notify, notifyError(notifyMessages.summaryError));
       return thunkAPI.rejectWithValue(error.message);
     }
   }

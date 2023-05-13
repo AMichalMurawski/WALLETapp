@@ -11,7 +11,7 @@ export const Balance = () => {
 
   useEffect(() => {
     dispatch(getTransactions({ walletId: user.wallets[0].id }));
-  }, [user.wallets]);
+  }, [user.wallets, dispatch]);
 
   return (
     <div className={scss.balance}>

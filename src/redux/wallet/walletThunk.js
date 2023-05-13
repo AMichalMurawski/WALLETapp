@@ -10,8 +10,8 @@ import {
 import 'react-toastify/dist/ReactToastify.css';
 import { SpinnerToastify } from '../../components/utils/Spinner/SpinnerToastify';
 
-// axios.defaults.baseURL = 'https://wallet-api.herokuapp.com/api';
-axios.defaults.baseURL = 'http://localhost:3030/api';
+axios.defaults.baseURL = 'https://wallet-api.herokuapp.com/api';
+// axios.defaults.baseURL = 'http://localhost:3030/api';
 axios.defaults.withCredentials = true;
 
 const STORAGE_ACCESS_TOKEN = 'accessToken';
@@ -57,20 +57,10 @@ export const addTransaction = createAsyncThunk(
 export const getTransactions = createAsyncThunk(
   'wallet/getTransactions',
   async ({ walletId }, thunkAPI) => {
-    let notify;
     try {
-      notify = toast(
-        <SpinnerToastify message={notifyMessages.transactionProgress} />,
-        notifySettings()
-      );
       const response = await axios.get(`wallet/${walletId}/transactions`);
-      toast.update(
-        notify,
-        notifySuccess(notifyMessages.transactionsLoadSuccess)
-      );
       return response.data;
     } catch (error) {
-      toast.update(notify, notifyError(notifyMessages.transactionsLoadError));
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -89,6 +79,7 @@ export const editTransaction = createAsyncThunk(
         `wallet/${walletId}/transactions/${transactionId}`,
         transaction
       );
+      console.log(response.data);
       toast.update(notify, notifySuccess(notifyMessages.transactionUpdate));
       return response.data;
     } catch (error) {

@@ -1,16 +1,20 @@
 import Media from 'react-media';
+
+import { NavLink } from 'react-router-dom';
+
 import { useAuth } from '../../hooks';
+
 import IconSvg from '../utils/IconsSvg/IconSvg';
 import scss from './Header.module.scss';
 import { useDispatch } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { signout } from '../../redux/auth/authThunk';
+import { modalShowLogout } from '../../redux/modal/modalThunk';
 
 export const Header = () => {
-  const dispatch = useDispatch();
   const { user } = useAuth();
-  const handleLogout = e => {
-    dispatch(signout());
+  const dispatch = useDispatch();
+
+  const handleLogoutClick = () => {
+    dispatch(modalShowLogout(true));
   };
 
   return (
@@ -42,7 +46,7 @@ export const Header = () => {
                   <button
                     type="button"
                     className={scss.button}
-                    onClick={handleLogout}
+                    onClick={handleLogoutClick}
                   >
                     <div type="button" className={scss.exit}>
                       <IconSvg icon="exit" />
@@ -71,7 +75,7 @@ export const Header = () => {
                   <button
                     type="button"
                     className={scss.button}
-                    onClick={handleLogout}
+                    onClick={handleLogoutClick}
                   >
                     <div type="button" className={scss.exit}>
                       <IconSvg icon="exit" />
@@ -101,8 +105,9 @@ export const Header = () => {
                   <button
                     type="button"
                     className={scss.button}
-                    onClick={handleLogout}
+                    onClick={handleLogoutClick}
                   >
+                    {' '}
                     <div type="button" className={scss.exit}>
                       <IconSvg icon="exit" />
                     </div>
