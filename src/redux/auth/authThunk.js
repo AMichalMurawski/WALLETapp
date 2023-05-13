@@ -10,8 +10,8 @@ import {
 import 'react-toastify/dist/ReactToastify.css';
 import { SpinnerToastify } from '../../components/utils/Spinner/SpinnerToastify';
 
-axios.defaults.baseURL = 'https://wallet-api.herokuapp.com/api';
-// axios.defaults.baseURL = 'http://localhost:3030/api';
+// axios.defaults.baseURL = 'https://wallet-api.herokuapp.com/api';
+axios.defaults.baseURL = 'http://localhost:3030/api';
 axios.defaults.withCredentials = true;
 
 const STORAGE_ACCESS_TOKEN = 'accessToken';
