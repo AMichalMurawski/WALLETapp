@@ -11,7 +11,8 @@
     background-image: url('../images/login/ellipse1.svg'),
       url('../images/login/ellipse2.svg');
     background-repeat: no-repeat;
-    background-position: left bottom, right top;
+    background-position-x: 0%,56vw;
+    background-position-y: bottom,top;
   }
 
   @include mixins-mq(desk) {
